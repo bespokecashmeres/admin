@@ -1,5 +1,6 @@
+import { ROUTES } from '@/constants'
 import { redirect } from 'next/navigation'
 
 export default function Home() {
-  redirect('/dashboard')
+  redirect(`/${ROUTES.admin}/${ROUTES.auth}/${ROUTES.signin}`)
 }

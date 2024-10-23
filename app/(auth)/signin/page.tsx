@@ -4,8 +4,8 @@ export const metadata = {
 }
 
 import Link from 'next/link'
-import AuthHeader from '../auth-header'
-import AuthImage from '../auth-image'
+import AuthHeader from '../../../components/ui/auth-header'
+import AuthImage from '../../../components/ui/auth-image'
 
 export default function SignIn() {
   return (

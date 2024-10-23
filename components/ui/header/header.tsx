@@ -1,18 +1,14 @@
 'use client'
 
-import { useState } from 'react'
 import { useAppProvider } from '@/app/app-provider'
-
-import SearchModal from '@/components/search-modal'
-import Notifications from '@/components/dropdown-notifications'
-import DropdownHelp from '@/components/dropdown-help'
-import ThemeToggle from '@/components/theme-toggle'
-import DropdownProfile from '@/components/dropdown-profile'
+import ThemeToggle from '@/components/ui/header/theme-toggle'
+import DropdownProfile from '@/components/ui/header/dropdown-profile'
+import LocaleToggle from './locale-toggle'
 
 export default function Header() {
 
   const { sidebarOpen, setSidebarOpen } = useAppProvider()
-  const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false)
+  // const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false)
 
   return (
     <header className="sticky top-0 bg-white dark:bg-[#182235] border-b border-slate-200 dark:border-slate-700 z-30">
@@ -41,7 +37,7 @@ export default function Header() {
 
           {/* Header: Right side */}
           <div className="flex items-center space-x-3">
-            <div>
+            {/* <div>
               <button
                 className={`w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600/80 rounded-full ml-3 ${searchModalOpen && 'bg-slate-200'}`}
                 onClick={() => { setSearchModalOpen(true) }}
@@ -53,9 +49,10 @@ export default function Header() {
                 </svg>
               </button>
               <SearchModal isOpen={searchModalOpen} setIsOpen={setSearchModalOpen} />
-            </div>
-            <Notifications align="right" />
-            <DropdownHelp align="right" />
+            </div> */}
+            {/* <Notifications align="right" /> */}
+            {/* <DropdownHelp align="right" /> */}
+            <LocaleToggle />
             <ThemeToggle />
             {/*  Divider */}
             <hr className="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />

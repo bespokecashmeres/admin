@@ -1,4 +1,4 @@
-// axiosInstance.ts
+// wsAxiosInstance.ts
 
 import axios, {
   AxiosResponse,
@@ -7,23 +7,26 @@ import axios, {
 } from "axios";
 import toast from "react-hot-toast";
 import CONFIG from ".";
-import { LOCAL_STORAGE } from "@/constants";
+import { LOCAL_STORAGE, ROUTES } from "@/constants";
 import { getUserLocale } from "./locale";
+import { clearLocalStorageTokenAndData } from "@/utils/common.utils";
 // import { toast } from 'react-toastify' // Import a toast library (e.g., react-toastify)
 
-const axiosInstance = axios.create({
+const wsAxiosInstance = axios.create({
   baseURL: CONFIG.apiUrl, // Replace with your API base URL
   timeout: 50000000, // Specify the timeout (optional)
 });
 
 // Request interceptor for adding headers or performing any actions before the request is sent
-axiosInstance.interceptors.request.use(
+wsAxiosInstance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    // Add an authorization token from localStorage to the headers if available
-    const token = localStorage.getItem(LOCAL_STORAGE.token);
+    if (typeof window !== "undefined") {
+      // Add an authorization token from localStorage to the headers if available
+      const token = localStorage.getItem(LOCAL_STORAGE.wToken);
 
-    if (token && config.headers) {
-      config.headers.Authorization = token;
+      if (token && config.headers) {
+        config.headers.Authorization = token;
+      }
     }
     const locale = await getUserLocale();
     config.headers["Accept-Language"] = locale;
@@ -32,19 +35,21 @@ axiosInstance.interceptors.request.use(
   (error: AxiosError) => {
     // Handle request errors
     return Promise.reject(error);
-  },
+  }
 );
 
 // Response interceptor for handling successful responses and errors
-axiosInstance.interceptors.response.use(
-  (response: AxiosResponse) => {
+wsAxiosInstance.interceptors.response.use(
+  async (response: AxiosResponse) => {
     if (
       response.data?.code === 401 &&
       response.data?.statusCode === "SESSION_EXPIRE"
     ) {
-      localStorage.clear();
+      if (typeof window !== "undefined") {
+        clearLocalStorageTokenAndData();
+      }
       toast.error(response.data?.message);
-      window.location.href = `/login`;
+      window.location.href = `/${ROUTES.ws}/${ROUTES.auth}/${ROUTES.signin}`;
     }
     // You can handle successful responses here
     return response; // Return only the data portion of the response
@@ -78,7 +83,7 @@ axiosInstance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
+  }
 );
 
-export default axiosInstance;
+export default wsAxiosInstance;

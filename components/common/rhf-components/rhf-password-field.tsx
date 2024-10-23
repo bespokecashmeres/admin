@@ -1,6 +1,9 @@
-import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import PasswordField from '../inputs/password-input-field';
+"use client";
+
+import React from "react";
+import { useController, useFormContext } from "react-hook-form";
+import { PasswordField } from "@/components";
+import { useTranslations } from "next-intl";
 
 interface RHFPasswordFieldProps {
   name: string;
@@ -15,32 +18,31 @@ const RHFPasswordField: React.FC<RHFPasswordFieldProps> = ({
   name,
   label,
   required = false,
-  infoText = '',
+  infoText = "",
   rules = {},
   disabled = false, // Default is not disabled
 }) => {
+  const t = useTranslations();
+  const { control } = useFormContext(); // Hook form context
   const {
+    field,
+    fieldState: { error },
+  } = useController({
+    name,
     control,
-  } = useFormContext(); // Hook form context
-
+    rules: {
+      required: required ? t("COMMON.REQUIRED_MESSAGE", { label }) : false,
+      ...rules, // Spread the passed rules object
+    },
+  });
   return (
-    <Controller
-      control={control}
-      name={name}
-      rules={{
-        required: required ? `${label} is required` : false,
-        ...rules, // Spread the passed rules object
-      }}
-      render={({ field, fieldState: { error } }) => (
-        <PasswordField
-          {...field}
-          label={label}
-          error={error?.message}
-          required={required}
-          infoText={infoText}
-          disabled={disabled} // Pass disabled state to PasswordField
-        />
-      )}
+    <PasswordField
+      {...field}
+      label={label}
+      error={error?.message}
+      required={required}
+      infoText={infoText}
+      disabled={disabled} // Pass disabled state to PasswordField
     />
   );
 };

@@ -1,6 +1,9 @@
-import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import NumberField from '../inputs/number-input-field';
+"use client";
+
+import React from "react";
+import { useController, useFormContext } from "react-hook-form";
+import { NumberField } from "@/components";
+import { useTranslations } from "next-intl";
 
 interface RHFNumberFieldProps {
   name: string;
@@ -17,36 +20,37 @@ const RHFNumberField: React.FC<RHFNumberFieldProps> = ({
   name,
   label,
   required = false,
-  infoText = '',
+  infoText = "",
   rules = {},
   disabled = false,
   step = 1, // Default step is 1
   endorsement, // Pass endorsement to NumberField
 }) => {
+  const t = useTranslations();
+  const { control } = useFormContext(); // Hook form context
   const {
+    field,
+    fieldState: { error },
+  } = useController({
+    name,
     control,
-  } = useFormContext(); // Hook form context
+    rules: {
+      required: required ? t("COMMON.REQUIRED_MESSAGE", { label }) : false,
+      ...rules, // Spread the passed rules object
+    },
+  });
 
   return (
-    <Controller
-      control={control}
+    <NumberField
+      {...field}
+      label={label}
       name={name}
-      rules={{
-        required: required ? `${label} is required` : false,
-        ...rules, // Spread the passed rules object
-      }}
-      render={({ field, fieldState: { error } }) => (
-        <NumberField
-          {...field}
-          label={label}
-          error={error?.message}
-          required={required}
-          infoText={infoText}
-          disabled={disabled} // Pass disabled state to NumberField
-          step={step} // Pass the step value to NumberField
-          endorsement={endorsement} // Pass endorsement value to NumberField
-        />
-      )}
+      error={error?.message}
+      required={required}
+      infoText={infoText}
+      disabled={disabled} // Pass disabled state to NumberField
+      step={step} // Pass the step value to NumberField
+      endorsement={endorsement} // Pass endorsement value to NumberField
     />
   );
 };

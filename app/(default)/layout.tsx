@@ -1,5 +1,5 @@
 import Sidebar from '@/components/ui/sidebar'
-import Header from '@/components/ui/header'
+import Header from '@/components/ui/header/header'
 
 export default function DefaultLayout({
   children,

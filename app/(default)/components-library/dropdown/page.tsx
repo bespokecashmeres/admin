@@ -6,7 +6,7 @@ export const metadata = {
 import DateSelect from '@/components/date-select'
 import DropdownFull from '@/components/dropdown-full'
 import DropdownFilter from '@/components/dropdown-filter'
-import DropdownProfile from '@/components/dropdown-profile'
+import DropdownProfile from '@/components/ui/header/dropdown-profile'
 import DropdownSwitch from '@/components/dropdown-switch'
 import DropdownNotifications from '@/components/dropdown-notifications'
 import DropdownHelp from '@/components/dropdown-help'

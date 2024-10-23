@@ -6,6 +6,9 @@ import AppProvider from "./app-provider";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Toaster } from "react-hot-toast";
+import { Providers } from "@/framework/redux/Provider";
+import { ProgressLoader } from "@/components";
+export const dynamic = 'force-dynamic';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,10 +38,13 @@ export default async function RootLayout({
         className={`${inter.variable} font-inter antialiased bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Toaster />
-          <Theme>
-            <AppProvider>{children}</AppProvider>
-          </Theme>
+          <Toaster position="top-right" />
+          <Providers>
+            <ProgressLoader />
+            <Theme>
+              <AppProvider>{children}</AppProvider>
+            </Theme>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

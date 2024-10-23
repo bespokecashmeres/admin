@@ -1,0 +1,1 @@
+export { default as AuthTabs } from './auth-tabs';

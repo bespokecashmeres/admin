@@ -1,0 +1,16 @@
+export const SIGNIN_API_URL = "/login";
+export const SIGNOUT_API_URL = "/logout";
+export const COUNTRY_LIST_API = "/country/list";
+export const REQUEST_FORGOT_PASSWORD_LINK_URL = "/forgot-password";
+export const SET_NEW_PASSWORD_URL = "/forgot-password/set-new";
+export const ADMIN_USERS_URL = "/admin/users";
+export const ADMIN_WHOLE_SALER_URL = "/admin/whole-saler";
+export const ADMIN_USER_STATUS_UPDATE_URL = "/admin/user/status";
+export const ADMIN_WHOLE_SALER_STATUS_UPDATE_URL = "/admin/whole-saler/status";
+export const ADMIN_ADD_USER_URL = "/admin/user/add";
+export const EMAIL_VERIFY_URL = "/whole-saler/email-verification";
+export const REGISTARTION_URL = "/register";
+export const ADMIN_GET_USER_DATA_URL = "/admin/user";
+export const ADMIN_UPDATE_USER_DATA_URL = "/admin/user/update";
+export const ADMIN_UPDATE_WHOLE_SALER_DATA_URL = "/admin/whole-saler/update";
+export const ADMIN_ADD_WHOLE_SALER_URL = "/admin/whole-saler/add";

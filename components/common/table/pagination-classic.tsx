@@ -5,6 +5,7 @@ interface PaginationProps {
   rowsPerPage: number;
   totalRows: number;
   rowsPerPageOptions?: number[];
+  isLoading: boolean;
 }
 
 export default function PaginationClassic({
@@ -14,6 +15,7 @@ export default function PaginationClassic({
   rowsPerPageOptions = [10, 25, 50],
   onPageChange,
   onRowsPerPageChange,
+  isLoading
 }: PaginationProps) {
   const startRow = (currentPage - 1) * rowsPerPage + 1;
   const endRow = Math.min(currentPage * rowsPerPage, totalRows);
@@ -35,7 +37,7 @@ export default function PaginationClassic({
               <a
                 className="btn bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-indigo-500"
                 href="#"
-                onClick={() => onPageChange(currentPage - 1)}
+                onClick={() => !isLoading && onPageChange(currentPage - 1)}
               >
                 &lt;- Previous
               </a>
@@ -50,7 +52,7 @@ export default function PaginationClassic({
               <a
                 className="btn bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-indigo-500"
                 href="#"
-                onClick={() => onPageChange(currentPage + 1)}
+                onClick={() => !isLoading && onPageChange(currentPage + 1)}
               >
                 Next -&gt;
               </a>

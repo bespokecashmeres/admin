@@ -89,6 +89,7 @@ const TestListTable = () => {
           onRowsPerPageChange={() => {}}
           rowsPerPage={10}
           totalRows={44}
+          isLoading
         />
       </div>
     </div>

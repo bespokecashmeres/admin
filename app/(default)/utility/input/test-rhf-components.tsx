@@ -144,7 +144,6 @@ const TestRHFComponent = () => {
           ]}
           required={true}
           infoText="Choose multiple options"
-          control={methods.control}
           rules={{
             required: "At least one option is required",
           }}

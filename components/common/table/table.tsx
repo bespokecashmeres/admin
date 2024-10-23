@@ -1,6 +1,7 @@
 import { SORT_DIRECTION } from "@/constants/enum";
 import { SortConfig } from "@/types";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 export type ColumnType = {
@@ -28,19 +29,26 @@ const ListTable = <T extends Record<string, any>>({
   onSortChange,
   sortConfig,
   title,
-  totalRows
+  totalRows,
 }: TableProps<T>) => {
+  const t = useTranslations();
   return (
     <div className="bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700 relative">
       <header className="px-5 py-4">
         <h2 className="font-semibold text-slate-800 dark:text-slate-100">
           {title}{" "}
           <span className="text-slate-400 dark:text-slate-500 font-medium">
-            {totalRows}
+            ({totalRows})
           </span>
         </h2>
       </header>
-      <div>
+      <div className="relative">
+        {/* Loader */}
+        {isLoading && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-slate-900 dark:bg-slate-300 bg-opacity-75 dark:bg-opacity-50">
+            <div className="w-12 h-12 border-8 border-gray-200 border-t-8 border-t-[#6366F1] rounded-full animate-spin"></div>
+          </div>
+        )}
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="table-auto w-full dark:text-slate-300">
@@ -104,7 +112,7 @@ const ListTable = <T extends Record<string, any>>({
               ) : (
                 <tr>
                   <td colSpan={columns.length} align="center" className="py-2">
-                    No record found...
+                    {t(`COMMON.${isLoading ? "LOADING" : "NO_RECORD_FOUND"}`)}...
                   </td>
                 </tr>
               )}

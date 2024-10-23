@@ -1,6 +1,9 @@
-import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import InputField from '../inputs/input-field';
+"use client";
+
+import React from "react";
+import { useFormContext, useController } from "react-hook-form";
+import { InputField } from "@/components";
+import { useTranslations } from "next-intl";
 
 interface RHFInputFieldProps {
   name: string;
@@ -9,39 +12,41 @@ interface RHFInputFieldProps {
   infoText?: string;
   rules?: object;
   disabled?: boolean; // New prop for disabling the field
+  type?: string;
 }
 
 const RHFInputField: React.FC<RHFInputFieldProps> = ({
   name,
   label,
   required = false,
-  infoText = '',
+  infoText = "",
   rules = {},
   disabled = false, // Default is not disabled
+  type,
 }) => {
+  const t = useTranslations();
+  const { control } = useFormContext(); // Hook form context
   const {
+    field,
+    fieldState: { error },
+  } = useController({
+    name,
     control,
-    formState: { errors },
-  } = useFormContext(); // Hook form context
+    rules: {
+      required: required ? t("COMMON.REQUIRED_MESSAGE", { label }) : false,
+      ...rules, // Spread the passed rules object
+    },
+  });
 
   return (
-    <Controller
-      control={control}
-      name={name}
-      rules={{
-        required: required ? `${label} is required` : false,
-        ...rules, // Spread the passed rules object
-      }}
-      render={({ field, fieldState: { error } }) => (
-        <InputField
-          {...field}
-          label={label}
-          error={error?.message}
-          required={required}
-          infoText={infoText}
-          disabled={disabled} // Pass disabled state to InputField
-        />
-      )}
+    <InputField
+      {...field}
+      label={label}
+      type={type}
+      error={error?.message}
+      required={required}
+      infoText={infoText}
+      disabled={disabled} // Pass disabled state to InputField
     />
   );
 };

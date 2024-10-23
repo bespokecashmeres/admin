@@ -1,3 +1,80 @@
 {
-  "LANGUAGE": "Danish"
+  "LANGUAGE": "Danish",
+  "COMMON": {
+    "SUCCESS": "Succes",
+    "BACK_TO_LOGIN": "Tilbage til login",
+    "SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN": "Noget gik galt. Prøv venligst igen senere!",
+    "SIGNOUT": "Log ud",
+    "EMAIL_ADDRESS": "E-mailadresse",
+    "PASSWORD": "Adgangskode",
+    "NEW_PASSWORD": "Ny adgangskode",
+    "PASSWORD_AT_LEAST_EIGHT": "{label} skal være mindst 8 tegn",
+    "CONFIRM_PASSWORD": "Bekræft adgangskode",
+    "PASSWORDS_DO_NOT_MATCH": "Adgangskoderne stemmer ikke overens",
+    "SUBMIT": "Indsend",
+    "REQUIRED_MESSAGE": "{label} er påkrævet",
+    "FIRST_NAME": "Fornavn",
+    "MIDDLE_NAME": "Mellemnavn",
+    "LAST_NAME": "Efternavn",
+    "MOBILE_NUMBER": "Mobilnummer",
+    "CODE": "Kode",
+    "MEN": "Mænd",
+    "WOMEN": "Kvinder",
+    "GENDER": "Køn",
+    "SUBSCRIBE_TO_OUR_NEWSLETTER": "Tilmeld dig vores nyhedsbrev",
+    "ADMIN": "Admin",
+    "WHOLE_SALER": "Engrosforhandler",
+    "LOADING": "Indlæser",
+    "NO_RECORD_FOUND": "Ingen poster fundet",
+    "CREATE": "Opret",
+    "STATUS": "Status",
+    "ACTION": "Handling",
+    "EDIT": "Rediger",
+    "DELETE": "Slet",
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM": "Er du sikker på, at du vil slette dette element?",
+    "CANCEL": "Annuller",
+    "YES": "Ja"
+  },
+  "META_DATA": {
+    "DESCRIPTION": "Dette er {title}-siden for {APP_NAME} Admin"
+  },
+  "SIGNIN": {
+    "TITLE": "Log ind",
+    "WELCOME_BACK": "Velkommen tilbage",
+    "DONT_HAVE_AN_ACCOUNT": "Har du ikke en konto"
+  },
+  "SIGNUP": {
+    "TITLE": "Tilmeld",
+    "CREATE_YOUR_ACCOUNT": "Opret din konto",
+    "HAVE_AN_ACCOUNT": "Har du en konto"
+  },
+  "FORGOT_PASSWORD": {
+    "TITLE": "Glemt adgangskode",
+    "SEND_FORGOT_LINK": "Send glemt link",
+    "FORGOT_YOUR_PASSWORD": "Glemt din adgangskode",
+    "REMEMBERED_YOUR_PASSWORD": "Husket din adgangskode"
+  },
+  "SET_NEW_PASSWORD": {
+    "TITLE": "Indstil ny adgangskode"
+  },
+  "EMAIL_VERIFY": {
+    "TITLE": "Bekræft e-mail",
+    "VERIFICATION_LINK_EXPIRE_MESSAGE": "Bekræftelseslinket er udløbet. Log venligst ind igen for at modtage en ny bekræftelsesmail",
+    "EMAIL_VERIFIED_MESSAGE": "Din e-mail er blevet bekræftet med succes"
+  },
+  "DASHBOARD": {
+    "HELLO": "Hej"
+  },
+  "USERS": {
+    "TITLE": "Brugere",
+    "SEARCH_BY_NAME": "Søg efter navn"
+  },
+  "WHOLE_SALER": {
+    "TITLE": "Engrosforhandler"
+  },
+  "STATUS_FILTER": {
+    "ALL_TAB": "Alle",
+    "ACTIVE_TAB": "Aktiv",
+    "INACTIVE_TAB": "Inaktiv"
+  }
 }

@@ -1,7 +1,7 @@
-import axiosInstance from "@/config/axiosInstance";
+import adminAxiosInstance from "@/config/adminAxiosInstance";
+import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { SORT_DIRECTION } from "@/constants/enum";
 import { SortConfig } from "@/types";
-import axios from "axios";
 import { useState, useEffect } from "react";
 
 type FetchResponse<T> = {
@@ -33,14 +33,14 @@ type FetchResponse<T> = {
  */
 const useTable = <T extends Record<string, any>>({
   fetchUrl,
-  searchField,
-  defaultRowsPerPage,
+  defaultRowsPerPage = 10,
+  isAdmin = true,
 }: {
   fetchUrl: string;
-  searchField: string;
-  defaultRowsPerPage: number;
+  defaultRowsPerPage?: number;
+  isAdmin?: boolean;
 }) => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [rows, setRows] = useState<T[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filter, setFilter] = useState<object>({});
@@ -63,23 +63,20 @@ const useTable = <T extends Record<string, any>>({
         : SORT_DIRECTION.DESCENDING
       : undefined;
 
-    const search =
-      searchField && searchTerm ? { [searchField]: searchTerm } : {};
-
     const requestBody = {
       page: currentPage,
       perPage: rowsPerPage,
       sortBy,
       sortOrder,
-      search,
+      search: searchTerm,
       ...(Object.keys(filter).length > 0 && { filter }),
     };
 
     try {
-      const response = await axiosInstance.post(
-        fetchUrl,
-        requestBody
-      );
+      const response = await (isAdmin
+        ? adminAxiosInstance
+        : wsAxiosInstance
+      ).post(fetchUrl, requestBody);
       const result: FetchResponse<T> = response.data?.data ?? {};
       setRows(result?.data ?? []);
       setCurrentPage(result?.currentPage || 1);
@@ -125,17 +122,19 @@ const useTable = <T extends Record<string, any>>({
   return {
     rows,
     searchTerm,
+    currentPage,
+    rowsPerPage,
+    totalRows,
+    sortConfig,
+    loading,
+    filter,
     handleSortChange,
     handleSearchChange,
     handlePageChange,
     handleRowsPerPageChange,
     handleFilter,
-    currentPage,
-    rowsPerPage,
-    totalRows,
     fetchRows,
-    sortConfig,
-    loading,
+    setLoading,
   };
 };
 

@@ -1,6 +1,9 @@
-import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import DropdownField from '../inputs/dropdown-field';
+"use client";
+
+import React from "react";
+import { useController, useFormContext } from "react-hook-form";
+import { DropdownField } from "@/components";
+import { useTranslations } from "next-intl";
 
 interface RHFFormDropdownFieldProps {
   name: string;
@@ -10,6 +13,8 @@ interface RHFFormDropdownFieldProps {
   infoText?: string;
   rules?: object;
   disabled?: boolean; // Prop for disabling the field
+  placeholder?: string;
+  isClearable?: boolean;
 }
 
 const RHFFormDropdownField: React.FC<RHFFormDropdownFieldProps> = ({
@@ -17,33 +22,37 @@ const RHFFormDropdownField: React.FC<RHFFormDropdownFieldProps> = ({
   label,
   options,
   required = false,
-  infoText = '',
+  infoText = "",
   rules = {},
   disabled = false,
+  placeholder,
+  isClearable
 }) => {
+  const t = useTranslations();
+  const { control } = useFormContext(); // Hook form context
   const {
+    field,
+    fieldState: { error },
+  } = useController({
+    name,
     control,
-  } = useFormContext(); // Hook form context
+    rules: {
+      required: required ? t("COMMON.REQUIRED_MESSAGE", { label }) : false,
+      ...rules, // Spread the passed rules object
+    },
+  });
 
   return (
-    <Controller
-      control={control}
-      name={name}
-      rules={{
-        required: required ? `${label} is required` : false,
-        ...rules, // Spread the passed rules object
-      }}
-      render={({ field, fieldState: { error } }) => (
-        <DropdownField
-          {...field} // Pass all field props from react-hook-form
-          label={label}
-          error={error?.message}
-          options={options} // Pass the options to DropdownField
-          required={required}
-          infoText={infoText}
-          disabled={disabled} // Pass disabled state to DropdownField
-        />
-      )}
+    <DropdownField
+      {...field} // Pass all field props from react-hook-form
+      label={label}
+      isClearable={isClearable}
+      error={error?.message}
+      options={options} // Pass the options to DropdownField
+      required={required}
+      infoText={infoText}
+      disabled={disabled} // Pass disabled state to DropdownField
+      placeholder={placeholder}
     />
   );
 };
