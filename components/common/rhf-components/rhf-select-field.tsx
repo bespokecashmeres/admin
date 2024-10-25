@@ -15,6 +15,7 @@ interface RHFFormDropdownFieldProps {
   disabled?: boolean; // Prop for disabling the field
   placeholder?: string;
   isClearable?: boolean;
+  handleOptionSelect?: (option: any) => void;
 }
 
 const RHFFormDropdownField: React.FC<RHFFormDropdownFieldProps> = ({
@@ -26,7 +27,8 @@ const RHFFormDropdownField: React.FC<RHFFormDropdownFieldProps> = ({
   rules = {},
   disabled = false,
   placeholder,
-  isClearable
+  isClearable,
+  handleOptionSelect,
 }) => {
   const t = useTranslations();
   const { control } = useFormContext(); // Hook form context
@@ -42,9 +44,15 @@ const RHFFormDropdownField: React.FC<RHFFormDropdownFieldProps> = ({
     },
   });
 
+  const handleOnChange = (value: any) => {
+    field.onChange(value);
+    handleOptionSelect?.(value);
+  };
+
   return (
     <DropdownField
       {...field} // Pass all field props from react-hook-form
+      onChange={handleOnChange}
       label={label}
       isClearable={isClearable}
       error={error?.message}

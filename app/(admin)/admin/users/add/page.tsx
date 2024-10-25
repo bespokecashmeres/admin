@@ -8,6 +8,7 @@ import { getTranslations } from "next-intl/server";
 import React from "react";
 import { handleApiCall } from "@/utils/common.utils";
 import { COUNTRY_LIST_API } from "@/constants/apis";
+import AddComponent from "./add-component";
 
 export const viewport: Viewport = viewportData;
 
@@ -28,7 +29,7 @@ const Add = async () => {
   return (
     <DefaultLayout>
       <AddEditWrapper title={t("COMMON.CREATE")}>
-        <UserFormComponent countries={filteredRes} />
+        <AddComponent countries={filteredRes} />
       </AddEditWrapper>
     </DefaultLayout>
   );

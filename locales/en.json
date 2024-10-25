@@ -38,7 +38,14 @@
     "YES": "Yes",
     "SEARCH_BY_NAME": "Search by name",
     "ADD_MORE_FIELDS": "Add More Fields",
-    "CONTINUE_WITH_GOOGLE": "Continue with Google"
+    "CONTINUE_WITH_GOOGLE": "Continue with Google",
+    "WANT_TO_ADD_MEASUREMENT": "Want to add Measurement",
+    "MEASUREMENT": "Measurement",
+    "TITLE": "Title",
+    "VALUE": "Value",
+    "ADD_MORE_MEASUREMENTS": "Add More Measurements",
+    "HEIGHT": "Height",
+    "WEIGHT": "Weight"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"

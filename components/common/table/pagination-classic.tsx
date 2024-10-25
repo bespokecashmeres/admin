@@ -41,7 +41,7 @@ export default function PaginationClassic({
                 value={`${rowsPerPage}`}
                 onChange={onRowsPerPageChange}
                 isClearable={false}
-                className="py-0"
+                className="!py-0"
               />
             </div>
           </li>

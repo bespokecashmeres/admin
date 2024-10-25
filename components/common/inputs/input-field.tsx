@@ -10,11 +10,13 @@ interface InputFieldProps {
   error?: string;
   disabled?: boolean; // New prop for disabling the field
   type?: string;
+  disableTab?: boolean;
+  readOnly?: boolean;
 }
 
 const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
   (
-    { label, name, type, error, required, infoText, disabled, ...rest },
+    { label, name, type, error, required, infoText, disabled, disableTab, readOnly, ...rest },
     ref
   ) => {
     return (
@@ -53,6 +55,8 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
               ? "bg-gray-200 text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:cursor-not-allowed" // Disabled styles
               : ""
           )}
+          readOnly={readOnly}
+          {...(disableTab ? { tabIndex: -1 } : {})}
           {...rest}
         />
         {error && <p className="mt-1 text-xs text-red-500">{error}</p>}

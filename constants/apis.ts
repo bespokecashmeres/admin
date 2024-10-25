@@ -14,6 +14,7 @@ export const ADMIN_GET_USER_DATA_URL = "/admin/user";
 export const ADMIN_UPDATE_USER_DATA_URL = "/admin/user/update";
 export const ADMIN_UPDATE_WHOLE_SALER_DATA_URL = "/admin/whole-saler/update";
 export const ADMIN_ADD_WHOLE_SALER_URL = "/admin/whole-saler/add";
+export const MEASUREMENT_TYPE_ACTIVE_LIST_URL = "/measurement-type/active";
 export const MEASUREMENT_TYPE_LIST_URL = "/measurement-type/list";
 export const MEASUREMENT_TYPE_UPDATE_URL = "/measurement-type/update";
 export const MEASUREMENT_TYPE_STATUS_URL = "/measurement-type/status";

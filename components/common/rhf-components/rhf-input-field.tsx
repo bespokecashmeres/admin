@@ -13,6 +13,8 @@ interface RHFInputFieldProps {
   rules?: object;
   disabled?: boolean; // New prop for disabling the field
   type?: string;
+  disableTab?: boolean;
+  readOnly?: boolean;
 }
 
 const RHFInputField: React.FC<RHFInputFieldProps> = ({
@@ -23,6 +25,8 @@ const RHFInputField: React.FC<RHFInputFieldProps> = ({
   rules = {},
   disabled = false, // Default is not disabled
   type,
+  disableTab = false,
+  readOnly = false
 }) => {
   const t = useTranslations();
   const { control } = useFormContext(); // Hook form context
@@ -47,6 +51,8 @@ const RHFInputField: React.FC<RHFInputFieldProps> = ({
       required={required}
       infoText={infoText}
       disabled={disabled} // Pass disabled state to InputField
+      disableTab={disableTab}
+      readOnly={readOnly}
     />
   );
 };

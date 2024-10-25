@@ -5,3 +5,6 @@ export { default as EditLinkButton } from "./edit-link-button";
 export { default as DeleteButton } from "./delete-button";
 export { default as DeleteButtonWithConfirmation } from "./delete-button-with-confirmation";
 export { default as CancelLinkButton } from "./cancel-link-button";
+export { default as NormalButton } from "./normal-button";
+export { default as DragDropButton } from "./drag-drop-button";
+
