@@ -98,7 +98,7 @@ const ListTable = <T extends Record<string, any>>({
                       <td
                         key={columnIndex}
                         className={clsx(
-                          "px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap",
+                          "px-2 first:pl-5 last:pr-5 py-1 whitespace-nowrap",
                           `text-${column?.align ?? "center"}`
                         )}
                       >

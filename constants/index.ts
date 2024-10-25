@@ -18,11 +18,12 @@ export const ROUTES = {
   signup: "signup",
   forgotPassword: "forgot-password",
   dashboard: "dashboard",
-  manageUsers: "manage-users",
   users: "users",
   user: "user",
   wholeSaler: "whole-saler",
-  add: "add"
+  add: "add",
+  measurementType: "measurement-type",
+  google: "google"
 } as const;
 
 export const USER_TYPES = {

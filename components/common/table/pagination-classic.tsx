@@ -1,3 +1,5 @@
+import { DropdownField } from "../inputs";
+
 interface PaginationProps {
   onPageChange: (page: number) => void;
   onRowsPerPageChange: (number: number) => void;
@@ -15,7 +17,7 @@ export default function PaginationClassic({
   rowsPerPageOptions = [10, 25, 50],
   onPageChange,
   onRowsPerPageChange,
-  isLoading
+  isLoading,
 }: PaginationProps) {
   const startRow = (currentPage - 1) * rowsPerPage + 1;
   const endRow = Math.min(currentPage * rowsPerPage, totalRows);
@@ -28,6 +30,21 @@ export default function PaginationClassic({
         aria-label="Navigation"
       >
         <ul className="flex justify-center">
+          <li>
+            <div>
+              <DropdownField
+                name="rows-per-page"
+                options={rowsPerPageOptions.map((value) => ({
+                  label: `${value}`,
+                  value: `${value}`,
+                }))}
+                value={`${rowsPerPage}`}
+                onChange={onRowsPerPageChange}
+                isClearable={false}
+                className="py-0"
+              />
+            </div>
+          </li>
           <li className="ml-3 first:ml-0">
             {currentPage === 1 ? (
               <span className="btn bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-300 dark:text-slate-600">

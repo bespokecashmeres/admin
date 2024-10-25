@@ -13,6 +13,7 @@
     "PASSWORDS_DO_NOT_MATCH": "Passwords do not match",
     "SUBMIT": "Submit",
     "REQUIRED_MESSAGE": "{label} is required",
+    "NAME": "Name",
     "FIRST_NAME": "First Name",
     "MIDDLE_NAME": "Middle Name",
     "LAST_NAME": "Last Name",
@@ -21,6 +22,7 @@
     "MEN": "Men",
     "WOMEN": "Women",
     "GENDER": "Gender",
+    "FIELDS": "Fields",
     "SUBSCRIBE_TO_OUR_NEWSLETTER": "Subscribe to our newsletter",
     "ADMIN": "Admin",
     "WHOLE_SALER": "Whole Saler",
@@ -33,7 +35,10 @@
     "DELETE": "Delete",
     "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM": "Are you sure you want to delete this item?",
     "CANCEL": "Cancel",
-    "YES": "Yes"
+    "YES": "Yes",
+    "SEARCH_BY_NAME": "Search by name",
+    "ADD_MORE_FIELDS": "Add More Fields",
+    "CONTINUE_WITH_GOOGLE": "Continue with Google"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
@@ -66,8 +71,7 @@
     "HELLO": "Hello"
   },
   "USERS": {
-    "TITLE": "Users",
-    "SEARCH_BY_NAME": "Search by name"
+    "TITLE": "Users"
   },
   "WHOLE_SALER": {
     "TITLE": "Whole Saler"
@@ -76,5 +80,8 @@
     "ALL_TAB": "All",
     "ACTIVE_TAB": "Active",
     "INACTIVE_TAB": "Inactive"
+  },
+  "MEASUREMENT_TYPE": {
+    "TITLE": "Measurement Type"
   }
 }

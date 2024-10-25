@@ -1,8 +1,9 @@
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { getUserLocale } from "@/config/locale";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
-import { LOCAL_STORAGE } from "@/constants";
+import { LOCAL_STORAGE, MESSAGES } from "@/constants";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
+import toast from "react-hot-toast";
 
 type KeyValueObject = { [key: string]: any };
 
@@ -36,7 +37,7 @@ export const handleApiCall = async <T>(
       method,
       headers: {
         ...headers,
-        "Accept-Language": locale
+        "Accept-Language": locale,
       },
     };
 
@@ -60,4 +61,36 @@ export const clearLocalStorageTokenAndData = () => {
     localStorage.removeItem(LOCAL_STORAGE.wToken);
     localStorage.removeItem(LOCAL_STORAGE.ws);
   }
-}
+};
+
+export const statusChangeHandler = async ({
+  setLoading,
+  apiUrl,
+  status,
+  _id,
+  t,
+  fetchRows,
+}: {
+  setLoading: (value: React.SetStateAction<boolean>) => void;
+  apiUrl: string;
+  status: boolean;
+  _id: string;
+  fetchRows: () => Promise<void>;
+  t: any;
+}) => {
+  try {
+    setLoading(true);
+    const response = await adminAxiosInstance.patch(apiUrl, { status, _id });
+    if (response.data.success) {
+      toast.success(response.data.message || t(MESSAGES.SUCCESS));
+      fetchRows();
+    } else {
+      toast.error(response.data.message || t(MESSAGES.SOMETHING_WENT_WRONG));
+      setLoading(false);
+    }
+  } catch (error) {
+    console.error(error);
+    setLoading(false);
+    toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
+  }
+};

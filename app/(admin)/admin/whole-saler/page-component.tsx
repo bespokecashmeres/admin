@@ -130,7 +130,7 @@ const PageComponent = () => {
           return (
             <div className="flex justify-center">
               <EditLinkButton
-                href={`/${ROUTES.admin}/${ROUTES.manageUsers}/${ROUTES.wholeSaler}/${value}`}
+                href={`/${ROUTES.admin}/${ROUTES.wholeSaler}/${value}`}
               />
             </div>
           );
@@ -145,9 +145,9 @@ const PageComponent = () => {
       {/* Page header */}
       <PageHeader
         createButtonLabel={t("COMMON.CREATE")}
-        createButtonLink={`/${ROUTES.admin}/${ROUTES.manageUsers}/${ROUTES.wholeSaler}/${ROUTES.add}`}
+        createButtonLink={`/${ROUTES.admin}/${ROUTES.wholeSaler}/${ROUTES.add}`}
         handleSearchChange={handleSearchChange}
-        searchPlaceholder={`${t("USERS.SEARCH_BY_NAME")}...`}
+        searchPlaceholder={`${t("COMMON.SEARCH_BY_NAME")}...`}
         searchTerm={searchTerm}
         title={t("WHOLE_SALER.TITLE")}
       />

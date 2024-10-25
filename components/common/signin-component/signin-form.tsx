@@ -15,6 +15,7 @@ import { setLoadingState } from "@/framework/redux/reducers";
 import { pickProperties } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { signIn } from "next-auth/react";
+import SignInGoogle from "./signin-google";
 
 type SignInFormType = {
   email: string;
@@ -122,7 +123,12 @@ const SigninForm = () => {
           </div>
         </form>
       </FormProvider>
-      <button onClick={() => signIn("google")}>Sign in with Google</button>
+
+      {isAdmin && (
+        <div className="pt-5 mt-6 border-t border-slate-200 dark:border-slate-700">
+          <SignInGoogle />
+        </div>
+      )}
     </>
   );
 };

@@ -7,9 +7,13 @@ import React, { useState } from "react";
 const DeleteButtonWithConfirmation = ({
   deleteId,
   handleDelete,
+  height = 40,
+  width = 40,
 }: {
   handleDelete: (deleteId: string) => void;
   deleteId: string;
+  height?: number;
+  width?: number;
 }) => {
   const t = useTranslations();
   const [infoModalOpen, setInfoModalOpen] = useState<boolean>(false);
@@ -19,11 +23,16 @@ const DeleteButtonWithConfirmation = ({
         className="text-rose-500 hover:text-rose-600 rounded-full"
         onClick={() => {
           setInfoModalOpen(true);
-          handleDelete(deleteId);
         }}
+        type="button"
       >
         <span className="sr-only">{t("COMMON.DELETE")}</span>
-        <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32">
+        <svg
+          className="fill-current"
+          height={height}
+          width={width}
+          viewBox="0 0 32 32"
+        >
           <path d="M13 15h2v6h-2zM17 15h2v6h-2z" />
           <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z" />
         </svg>
@@ -54,6 +63,7 @@ const DeleteButtonWithConfirmation = ({
                 onClick={() => {
                   setInfoModalOpen(false);
                 }}
+                type="button"
               >
                 {t("COMMON.CANCEL")}
               </button>
@@ -61,7 +71,9 @@ const DeleteButtonWithConfirmation = ({
                 className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white"
                 onClick={() => {
                   setInfoModalOpen(false);
+                  handleDelete(deleteId);
                 }}
+                type="button"
               >
                 {t("COMMON.YES")}
               </button>

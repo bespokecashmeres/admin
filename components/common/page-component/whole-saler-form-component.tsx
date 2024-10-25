@@ -92,7 +92,7 @@ const WholeSalerFormComponent = ({
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
         router.replace(
-          `/${ROUTES.admin}/${ROUTES.manageUsers}/${ROUTES.wholeSaler}`
+          `/${ROUTES.admin}/${ROUTES.wholeSaler}`
         );
       } else {
         toast.error(
@@ -177,7 +177,7 @@ const WholeSalerFormComponent = ({
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={`/${ROUTES.admin}/${ROUTES.manageUsers}/${ROUTES.wholeSaler}`}
+            href={`/${ROUTES.admin}/${ROUTES.wholeSaler}`}
           />
           <SubmitButton label="Submit" />
         </div>

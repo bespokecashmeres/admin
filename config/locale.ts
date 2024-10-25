@@ -8,7 +8,7 @@ import CONFIG from "@/config";
 // also read it from a database, backend service, or any other source.
 const COOKIE_NAME = "NEXT_LOCALE";
 
-async function getCookieData() {
+export async function getCookieData() {
   const cookieData = cookies()
   return new Promise((resolve) =>
     setTimeout(() => {
@@ -16,7 +16,6 @@ async function getCookieData() {
     }, 1000)
   )
 }
-
 
 export async function getUserLocale() {
   const cookieData: any = await getCookieData()

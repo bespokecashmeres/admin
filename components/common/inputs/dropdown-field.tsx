@@ -17,6 +17,7 @@ interface DropdownFieldProps {
   onChange?: (value: any) => void; // Optional onChange handler
   value: any; // Controlled value from react-hook-form
   isClearable?: boolean;
+  className?: string;
 }
 
 const CustomOption = (props: any) => {
@@ -48,7 +49,8 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
       options,
       value,
       onChange,
-      isClearable = true
+      isClearable = true,
+      className = "",
     },
     ref
   ) => {
@@ -66,25 +68,27 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
 
     return (
       <div className="w-full mb-4">
-        {label && <label
-          htmlFor={name}
-          className={clsx(
-            "flex items-center mb-1 text-sm font-medium",
-            "text-gray-700 dark:text-gray-300",
-            error ? "text-red-500 dark:text-red-500" : "",
-            disabled ? "opacity-50 cursor-not-allowed" : ""
-          )}
-        >
-          {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
-          {infoText && (
-            <Tooltip className="ml-2">
-              <div className="text-xs text-slate-600 dark:text-slate-200 text-center">
-                {infoText}
-              </div>
-            </Tooltip>
-          )}
-        </label>}
+        {label && (
+          <label
+            htmlFor={name}
+            className={clsx(
+              "flex items-center mb-1 text-sm font-medium",
+              "text-gray-700 dark:text-gray-300",
+              error ? "text-red-500 dark:text-red-500" : "",
+              disabled ? "opacity-50 cursor-not-allowed" : ""
+            )}
+          >
+            {label}
+            {required && <span className="text-red-500 ml-1">*</span>}
+            {infoText && (
+              <Tooltip className="ml-2">
+                <div className="text-xs text-slate-600 dark:text-slate-200 text-center">
+                  {infoText}
+                </div>
+              </Tooltip>
+            )}
+          </label>
+        )}
         <Select
           id={name}
           name={name}
@@ -109,13 +113,14 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
                   : "",
                 disabled
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:cursor-not-allowed"
-                  : ""
+                  : "",
+                className
               ),
             menuList: () =>
               "text-gray-800 bg-gray-100 dark:border-gray-200 dark:text-gray-200 dark:bg-gray-800",
             singleValue: () => "text-gray-800 dark:text-gray-200",
             valueContainer: () => "text-dark dark:text-white",
-            placeholder: () => "text-gray-800 dark:text-gray-300"
+            placeholder: () => "text-gray-800 dark:text-gray-300",
           }}
           classNamePrefix="react-select" // Class prefix for custom styling
           styles={{
@@ -130,7 +135,7 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
                 boxShadow: "none !important",
                 color: "#B0B0B0 !important",
               },
-              color: "unset"
+              color: "unset",
             }),
             valueContainer: (provided: any) => ({
               ...provided,

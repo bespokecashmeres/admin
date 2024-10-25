@@ -1,10 +1,19 @@
 import Link from "next/link";
 import React from "react";
 
-const CreateLinkButton = ({ label, href }: { label: string; href: string }) => {
+const CreateLinkButton = ({
+  label,
+  href = "#",
+  onClick,
+}: {
+  label: string;
+  href?: string;
+  onClick?: () => void;
+}) => {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className="btn bg-indigo-500 hover:bg-indigo-600 text-white"
     >
       <svg

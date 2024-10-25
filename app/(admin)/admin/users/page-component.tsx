@@ -16,6 +16,7 @@ import {
   ADMIN_USERS_URL,
 } from "@/constants/apis";
 import useTable from "@/hooks/useTable";
+import { statusChangeHandler } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import React, { Fragment, useCallback, useMemo } from "react";
@@ -48,27 +49,14 @@ const PageComponent = () => {
 
   const handleStatusChange = useCallback(
     async (event: React.ChangeEvent<HTMLInputElement>, _id: string) => {
-      try {
-        setLoading(true);
-        const response = await adminAxiosInstance.patch(
-          ADMIN_USER_STATUS_UPDATE_URL,
-          { status: event.target.checked, _id }
-        );
-        if (response.data.success) {
-          toast.success(response.data.message || t(MESSAGES.SUCCESS));
-          fetchRows();
-        } else {
-          toast.error(
-            response.data.message ||
-              t(MESSAGES.SOMETHING_WENT_WRONG)
-          );
-          setLoading(false);
-        }
-      } catch (error) {
-        console.error(error);
-        setLoading(false);
-        toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
-      }
+      statusChangeHandler({
+        setLoading,
+        _id,
+        apiUrl: ADMIN_USER_STATUS_UPDATE_URL,
+        fetchRows,
+        status: event.target.checked,
+        t,
+      });
     },
     [fetchRows, setLoading]
   );
@@ -125,7 +113,7 @@ const PageComponent = () => {
           return (
             <div className="flex justify-center">
               <EditLinkButton
-                href={`/${ROUTES.admin}/${ROUTES.manageUsers}/${ROUTES.users}/${value}`}
+                href={`/${ROUTES.admin}/${ROUTES.users}/${value}`}
               />
             </div>
           );
@@ -140,9 +128,9 @@ const PageComponent = () => {
       {/* Page header */}
       <PageHeader
         createButtonLabel={t("COMMON.CREATE")}
-        createButtonLink={`/${ROUTES.admin}/${ROUTES.manageUsers}/${ROUTES.users}/${ROUTES.add}`}
+        createButtonLink={`/${ROUTES.admin}/${ROUTES.users}/${ROUTES.add}`}
         handleSearchChange={handleSearchChange}
-        searchPlaceholder={`${t("USERS.SEARCH_BY_NAME")}...`}
+        searchPlaceholder={`${t("COMMON.SEARCH_BY_NAME")}...`}
         searchTerm={searchTerm}
         title={t("USERS.TITLE")}
       />
