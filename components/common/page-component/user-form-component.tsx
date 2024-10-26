@@ -146,6 +146,7 @@ const UserFormComponent = ({
   const onSubmit = async (data: UserFormType) => {
     const { password, ...rest } = data;
     try {
+      setDisableSubmit(true);
       dispatch(setLoadingState(true));
       const registrationResponse = await adminAxiosInstance({
         url: editData ? ADMIN_UPDATE_USER_DATA_URL : ADMIN_ADD_USER_URL,
@@ -180,6 +181,7 @@ const UserFormComponent = ({
       toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
     } finally {
       dispatch(setLoadingState(false));
+      setDisableSubmit(false);
     }
   };
 
@@ -391,7 +393,7 @@ const UserFormComponent = ({
             label="Cancel"
             href={`/${ROUTES.admin}/${ROUTES.users}`}
           />
-          <SubmitButton label="Submit" />
+          <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>
       </form>
     </FormProvider>

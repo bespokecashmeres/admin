@@ -12,9 +12,14 @@ import adminAxiosInstance from "@/config/adminAxiosInstance";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { SIGNOUT_API_URL } from "@/constants/apis";
 import toast from "react-hot-toast";
-import { clearLocalStorageTokenAndData } from "@/utils/common.utils";
+import {
+  clearLocalStorageTokenAndData,
+  getAWSImageUrl,
+} from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { CommonSliceTypes } from "@/types/redux";
+import UserProfile from "./user-profile";
+import { useMemo } from "react";
 
 export default function DropdownProfile({
   align,
@@ -44,8 +49,7 @@ export default function DropdownProfile({
         );
       } else {
         toast.error(
-          logoutResponse.data.message ||
-            t(MESSAGES.SOMETHING_WENT_WRONG)
+          logoutResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
         );
       }
     } catch (error) {
@@ -55,15 +59,21 @@ export default function DropdownProfile({
       dispatch(setLoadingState(false));
     }
   };
+
+  const url = userData?.profile_picture ?? "";
+  const profileUrl = useMemo(
+    () =>
+      url?.startsWith("https://") ? url : url.length ? getAWSImageUrl(url) : "",
+    [url]
+  );
+
   return (
     <Menu as="div" className="relative inline-flex">
       <Menu.Button className="inline-flex justify-center items-center group">
-        <Image
-          className="w-8 h-8 rounded-full"
-          src={UserAvatar}
-          width={32}
-          height={32}
-          alt="User"
+        <UserProfile
+          firstName={userData?.first_name}
+          lastName={userData?.last_name}
+          profile={profileUrl}
         />
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">
@@ -97,6 +107,26 @@ export default function DropdownProfile({
           </div>
         </div>
         <Menu.Items as="ul" className="focus:outline-none">
+          <Menu.Item as="li">
+            {({ active }) => (
+              <Link
+                className={`font-medium text-sm flex items-center py-1 px-3 ${
+                  active ||
+                  pathname ===
+                    `/${ROUTES[isAdmin ? "admin" : "ws"]}/${ROUTES.settings}/${
+                      ROUTES.account
+                    }/`
+                    ? "text-indigo-600 bg-indigo-200"
+                    : "text-indigo-500"
+                }`}
+                href={`/${ROUTES[isAdmin ? "admin" : "ws"]}/${
+                  ROUTES.settings
+                }/${ROUTES.account}`}
+              >
+                {t("COMMON.SETTINGS")}
+              </Link>
+            )}
+          </Menu.Item>
           <Menu.Item as="li">
             {({ active }) => (
               <button

@@ -10,7 +10,7 @@ import {
 } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -21,6 +21,7 @@ interface FormValues {
 }
 
 const SetNewPasswordForm = ({ token }: { token: string }) => {
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const t = useTranslations();
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
 
   const onSubmit = async (data: FormValues) => {
     try {
+      setDisableSubmit(true);
       dispatch(setLoadingState(true));
       clearLocalStorageTokenAndData();
       const setNewPasswordResponse: any = await handleApiCall(
@@ -62,6 +64,7 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
       toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
     } finally {
       dispatch(setLoadingState(false));
+      setDisableSubmit(false);
     }
   };
 
@@ -95,7 +98,7 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
           />
         </div>
         <div className="flex justify-center mt-6">
-          <SubmitButton label={t("COMMON.SUBMIT")} />
+          <SubmitButton label={t("COMMON.SUBMIT")} disabled={disableSubmit} />
         </div>
       </form>
     </FormProvider>

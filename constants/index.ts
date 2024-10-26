@@ -23,7 +23,10 @@ export const ROUTES = {
   wholeSaler: "whole-saler",
   add: "add",
   measurementType: "measurement-type",
-  google: "google"
+  google: "google",
+  account: "account",
+  settings: "settings",
+  changePassword: "change-password"
 } as const;
 
 export const USER_TYPES = {

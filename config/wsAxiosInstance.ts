@@ -43,7 +43,8 @@ wsAxiosInstance.interceptors.response.use(
   async (response: AxiosResponse) => {
     if (
       response.data?.code === 401 &&
-      response.data?.statusCode === "SESSION_EXPIRE"
+      (response.data?.statusCode === "SESSION_EXPIRE" ||
+        response.data?.statusCode === "ACCOUNT_SUSPENDED")
     ) {
       if (typeof window !== "undefined") {
         clearLocalStorageTokenAndData();

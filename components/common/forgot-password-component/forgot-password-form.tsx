@@ -2,7 +2,7 @@
 
 import { MESSAGES, ROUTES, USER_TYPES } from "@/constants";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { SubmitButton, RHFInputField } from "@/components";
@@ -18,6 +18,7 @@ type ForgotPasswordFormType = {
 };
 
 const ForgotPasswordForm = () => {
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const t = useTranslations();
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const ForgotPasswordForm = () => {
 
   const onSubmit = async (data: ForgotPasswordFormType) => {
     try {
+      setDisableSubmit(true);
       dispatch(setLoadingState(true));
       const loginResponse = await (isAdmin
         ? adminAxiosInstance
@@ -48,6 +50,7 @@ const ForgotPasswordForm = () => {
       toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
     } finally {
       dispatch(setLoadingState(false));
+      setDisableSubmit(false);
     }
   };
 
@@ -63,7 +66,7 @@ const ForgotPasswordForm = () => {
           />
         </div>
         <div className="flex justify-center mt-6">
-          <SubmitButton label={t("FORGOT_PASSWORD.SEND_FORGOT_LINK")} />
+          <SubmitButton label={t("FORGOT_PASSWORD.SEND_FORGOT_LINK")} disabled={disableSubmit} />
         </div>
       </form>
     </FormProvider>

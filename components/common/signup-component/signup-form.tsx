@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { SubmitButton } from "../buttons";
 import {
   RHFInputField,
@@ -34,6 +34,7 @@ type SignUpFormType = {
 };
 
 const SignupForm = ({ countries }: { countries: any }) => {
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const t = useTranslations();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -55,6 +56,7 @@ const SignupForm = ({ countries }: { countries: any }) => {
   const onSubmit = async (data: SignUpFormType) => {
     const { confirmPassword, ...rest } = data;
     try {
+      setDisableSubmit(true);
       dispatch(setLoadingState(true));
       const registrationResponse = await wsAxiosInstance.post(
         REGISTARTION_URL,
@@ -77,6 +79,7 @@ const SignupForm = ({ countries }: { countries: any }) => {
       toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
     } finally {
       dispatch(setLoadingState(false));
+      setDisableSubmit(false);
     }
   };
 
@@ -149,7 +152,7 @@ const SignupForm = ({ countries }: { countries: any }) => {
             name="news_letter"
           />
 
-          <SubmitButton label={t("SIGNUP.TITLE")} />
+          <SubmitButton label={t("SIGNUP.TITLE")} disabled={disableSubmit} />
         </div>
       </form>
     </FormProvider>

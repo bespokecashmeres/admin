@@ -15,4 +15,7 @@ export type LoggedInUser = {
   email: string;
   token: string;
   profile_picture?: string;
+  country_id?: string;
+  gender?: string;
+  mobile_number?: string;
 };

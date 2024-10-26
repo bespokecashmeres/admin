@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { LOCAL_STORAGE, MESSAGES, ROUTES, USER_TYPES } from "@/constants";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,7 +14,6 @@ import { useDispatch } from "react-redux";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { pickProperties } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
-import { signIn } from "next-auth/react";
 import SignInGoogle from "./signin-google";
 
 type SignInFormType = {
@@ -23,6 +22,7 @@ type SignInFormType = {
 };
 
 const SigninForm = () => {
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const t = useTranslations();
   const pathname = usePathname();
   const router = useRouter();
@@ -37,6 +37,7 @@ const SigninForm = () => {
 
   const onSubmit = async (data: SignInFormType) => {
     try {
+      setDisableSubmit(true);
       dispatch(setLoadingState(true));
       const loginResponse = await (isAdmin
         ? adminAxiosInstance
@@ -57,7 +58,7 @@ const SigninForm = () => {
           "email",
           "country_id",
           "profile_picture",
-          "user_type",
+          "mobile_number"
         ]);
         localStorage.setItem(
           LOCAL_STORAGE[isAdmin ? "aToken" : "wToken"],
@@ -80,6 +81,7 @@ const SigninForm = () => {
       toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
     } finally {
       dispatch(setLoadingState(false));
+      setDisableSubmit(false);
     }
   };
 
@@ -119,14 +121,14 @@ const SigninForm = () => {
                 {t("FORGOT_PASSWORD.TITLE")}?
               </Link>
             </div>
-            <SubmitButton label={t("SIGNIN.TITLE")} />
+            <SubmitButton label={t("SIGNIN.TITLE")} disabled={disableSubmit} />
           </div>
         </form>
       </FormProvider>
 
       {isAdmin && (
         <div className="pt-5 mt-6 border-t border-slate-200 dark:border-slate-700">
-          <SignInGoogle />
+          <SignInGoogle disabled={disableSubmit} />
         </div>
       )}
     </>

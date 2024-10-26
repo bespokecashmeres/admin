@@ -7,10 +7,8 @@ import React, { useEffect } from "react";
 
 const PageComponent = () => {
   const { data: session } = useSession();
-  console.log("session: ", session);
   const router = useRouter();
   useEffect(() => {
-    console.log("session: ", session);
     if (session) {
       const sessionData: any = session;
       localStorage.setItem(LOCAL_STORAGE.aToken, sessionData?.accessToken);

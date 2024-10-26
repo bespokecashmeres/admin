@@ -16,3 +16,4 @@ export * from "./status-filter";
 export * from "./layout";
 export * from "./page-component";
 export * from "./wrapper";
+export * from "./settings";

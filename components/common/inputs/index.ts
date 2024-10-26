@@ -7,3 +7,4 @@ export { default as CheckboxField } from "./checkbox-field";
 export { default as RadioField } from "./radio-field";
 export { default as ToggleField } from "./toggle-field";
 export { default as DebouncedSearch } from "./search-input";
+export { default as FileUploadButton } from "./file-upload-button";

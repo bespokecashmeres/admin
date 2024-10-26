@@ -10,8 +10,6 @@ import {
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES, ROUTES } from "@/constants";
 import {
-  ADMIN_ADD_USER_URL,
-  ADMIN_UPDATE_USER_DATA_URL,
   MEASUREMENT_TYPE_ADD_URL,
   MEASUREMENT_TYPE_UPDATE_URL,
 } from "@/constants/apis";
@@ -96,7 +94,7 @@ const DraggableField = ({ index, moveField, removeField, t }: any) => {
 };
 
 const MeasurementTypeFormComponent = ({ editData }: { editData?: any }) => {
-  const [disableSubmit, setDisableSubmit] = useState(false);
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const t = useTranslations();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -199,10 +197,10 @@ const MeasurementTypeFormComponent = ({ editData }: { editData?: any }) => {
         </DndProvider>
         <div className="mt-6 flex justify-end gap-4">
           <CancelLinkButton
-            label="Cancel"
+            label={t("COMMON.CANCEL")}
             href={`/${ROUTES.admin}/${ROUTES.users}/${ROUTES.measurementType}`}
           />
-          <SubmitButton label="Submit" disabled={disableSubmit} />
+          <SubmitButton label={t("COMMON.SUBMIT")} disabled={disableSubmit} />
         </div>
       </form>
     </FormProvider>

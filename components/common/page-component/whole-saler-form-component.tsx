@@ -12,15 +12,13 @@ import {
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES, ROUTES, USER_TYPES } from "@/constants";
 import {
-  ADMIN_ADD_USER_URL,
   ADMIN_ADD_WHOLE_SALER_URL,
-  ADMIN_UPDATE_USER_DATA_URL,
   ADMIN_UPDATE_WHOLE_SALER_DATA_URL,
 } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -43,6 +41,7 @@ const WholeSalerFormComponent = ({
   countries: { value: string; label: string }[];
   editData?: any;
 }) => {
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const t = useTranslations();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -76,6 +75,7 @@ const WholeSalerFormComponent = ({
   const onSubmit = async (data: WholeFormType) => {
     const { password, ...rest } = data;
     try {
+      setDisableSubmit(true);
       dispatch(setLoadingState(true));
       const registrationResponse = await adminAxiosInstance({
         url: editData
@@ -104,6 +104,7 @@ const WholeSalerFormComponent = ({
       toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
     } finally {
       dispatch(setLoadingState(false));
+      setDisableSubmit(false);
     }
   };
 
@@ -179,7 +180,7 @@ const WholeSalerFormComponent = ({
             label="Cancel"
             href={`/${ROUTES.admin}/${ROUTES.wholeSaler}`}
           />
-          <SubmitButton label="Submit" />
+          <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>
       </form>
     </FormProvider>

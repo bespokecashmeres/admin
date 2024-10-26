@@ -39,7 +39,7 @@ const handler = NextAuth({
           "email",
           "country_id",
           "profile_picture",
-          "user_type",
+          "mobile_number"
         ]);
 
         account.accessToken = result?.token;

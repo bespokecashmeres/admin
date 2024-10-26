@@ -7,6 +7,7 @@
     "SIGNOUT": "Sign Out",
     "EMAIL_ADDRESS": "Email Address",
     "PASSWORD": "Password",
+    "OLD_PASSWORD": "Old Password",
     "NEW_PASSWORD": "New Password",
     "PASSWORD_AT_LEAST_EIGHT": "{label} must be at least 8 characters",
     "CONFIRM_PASSWORD": "Confirm Password",
@@ -45,7 +46,15 @@
     "VALUE": "Value",
     "ADD_MORE_MEASUREMENTS": "Add More Measurements",
     "HEIGHT": "Height",
-    "WEIGHT": "Weight"
+    "WEIGHT": "Weight",
+    "PROFILE": "Profile",
+    "NA": "NA",
+    "ACCOUNT": "Account",
+    "SETTINGS": "Settings",
+    "MY_ACCOUNT":"My Account",
+    "CHANGE_PASSWORD": "Change Password",
+    "CHANGE": "Change",
+    "CLEAR": "Clear"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"

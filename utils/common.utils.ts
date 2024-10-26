@@ -1,3 +1,4 @@
+import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { getUserLocale } from "@/config/locale";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
@@ -93,4 +94,18 @@ export const statusChangeHandler = async ({
     setLoading(false);
     toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
   }
+};
+
+
+/**
+ * Constructs a complete AWS image URL based on the provided image key.
+ *
+ * If no image key is provided, an empty string is returned.
+ *
+ * @param {string} imageKey - The key of the image in the AWS S3 bucket.
+ * @returns {string} The complete URL to the image, or an empty string if no image key is provided.
+ */
+export const getAWSImageUrl = (imageKey?: string): string => {
+  if (!imageKey) return "/images/no-image.png";
+  return `${CONFIG.bucketDomain}${imageKey}`;
 };

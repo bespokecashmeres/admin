@@ -4,11 +4,12 @@ import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-const SignInGoogle = () => {
+const SignInGoogle = ({ disabled = false }: { disabled?: boolean }) => {
   const t = useTranslations();
   return (
     <button
       type="button"
+      disabled={disabled}
       onClick={() => signIn("google")}
       className="text-white w-full  bg-indigo-500 hover:bg-indigo-600  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between mr-2 mb-2 mt-1"
     >
