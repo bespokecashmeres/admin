@@ -14,56 +14,47 @@ const handler = NextAuth({
   callbacks: {
     async signIn({ account }: { account: Account | null }) {
       // Send Google user token and profile to your Node.js backend for login/registration handling
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/login/google-login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            token: account?.id_token,
-            userType: USER_TYPES.admin,
-          }),
+      try {
+        console.log("signIn account: ", account);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/login/google-login`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              token: account?.id_token,
+              userType: USER_TYPES.admin,
+            }),
+          }
+        );
+        console.log("res: ", res);
+        const data = await res.json();
+        console.log("data: ", data);
+  
+        if (data.success && account) {
+          const result = data?.data;
+          const userData = pickProperties(result, [
+            "_id",
+            "first_name",
+            "middle_name",
+            "last_name",
+            "gender",
+            "email",
+            "country_id",
+            "profile_picture",
+            "mobile_number"
+          ]);
+  
+          account.accessToken = result?.token;
+          account.userData = JSON.stringify(userData);
         }
-      );
-      const data = await res.json();
-      console.log("data: ", data);
-
-      if (data.success && account) {
-        const result = data?.data;
-        const userData = pickProperties(result, [
-          "_id",
-          "first_name",
-          "middle_name",
-          "last_name",
-          "gender",
-          "email",
-          "country_id",
-          "profile_picture",
-          "mobile_number"
-        ]);
-
-        account.accessToken = result?.token;
-        account.userData = JSON.stringify(userData);
-
-        // cookieData.set(LOCAL_STORAGE.aToken, result?.token, {
-        //   maxAge: 30 * 24 * 60 * 60,
-        //   path: "/",
-        //   secure: true,
-        //   httpOnly: true,
-        //   sameSite: "strict",
-        // });
-
-        // cookieData.set(LOCAL_STORAGE.admin, JSON.stringify(userData), {
-        //   maxAge: 30 * 24 * 60 * 60,
-        //   path: "/",
-        //   secure: true,
-        //   httpOnly: true,
-        //   sameSite: "strict",
-        // });
-
+        console.log("data: ", data);
+        return data.success;
+      } catch (error) {
+        console.log(error);
+        return false;
       }
-      console.log("data: ", data);
-      return data.success;
+      
     },
     async jwt({ token, account }) {
       if (account) {
@@ -78,6 +69,7 @@ const handler = NextAuth({
       return session;
     },
     async redirect({ url, baseUrl }) {
+      console.log("baseUrl: ", baseUrl);
       return `${baseUrl}/${ROUTES.admin}/${ROUTES.auth}/${ROUTES.google}`;
     },
   },
