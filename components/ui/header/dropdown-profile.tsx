@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
-import UserAvatar from "@/public/images/user-avatar-32.png";
 import { usePathname, useRouter } from "next/navigation";
 import { MESSAGES, ROUTES } from "@/constants";
 import { setLoadingState } from "@/framework/redux/reducers";

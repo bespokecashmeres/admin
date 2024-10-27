@@ -1,4 +1,4 @@
-import { AccountPage } from "@/components";
+import { ChangePasswordPage } from "@/components";
 import {
   generateAdminPageMetadata,
   viewportData,
@@ -11,12 +11,12 @@ export const viewport: Viewport = viewportData;
 
 export async function generateMetadata() {
   const t = await getTranslations("COMMON");
-  const title = t("ACCOUNT");
+  const title = t("CHANGE_PASSWORD");
   return generateAdminPageMetadata({ title });
 }
 
-const Account = async () => {
-  return <AccountPage />;
+const ChangePassword = async () => {
+  return <ChangePasswordPage />;
 };
 
-export default Account;
+export default ChangePassword;

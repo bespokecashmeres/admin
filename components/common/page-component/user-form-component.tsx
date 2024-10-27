@@ -21,7 +21,7 @@ import {
 import { setLoadingState } from "@/framework/redux/reducers";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";

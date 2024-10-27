@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useAppProvider } from "@/app/app-provider";
-import { usePathname, useSelectedLayoutSegments } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Transition } from "@headlessui/react";
 import { getBreakpoint } from "../utils/utils";
 import SidebarLinkGroup from "./sidebar-link-group";
@@ -10,17 +10,19 @@ import SidebarLink from "./sidebar-link";
 import Logo from "./logo";
 import clsx from "clsx";
 import { ROUTES } from "@/constants";
+import { useTranslations } from "next-intl";
 
 export default function Sidebar() {
   const sidebar = useRef<HTMLDivElement>(null);
+  const t = useTranslations();
   const { sidebarOpen, setSidebarOpen } = useAppProvider();
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
-  const segments = useSelectedLayoutSegments();
   const pathname = usePathname();
   let newPathName = pathname;
   if (newPathName.endsWith("/")) {
     newPathName = newPathName.slice(0, -1);
   }
+  const isAdmin = pathname.includes(`/${ROUTES.admin}`);
   const [breakpoint, setBreakpoint] = useState<string | undefined>(
     getBreakpoint()
   );
@@ -64,14 +66,14 @@ export default function Sidebar() {
       title: "Pages",
       children: [
         {
-          title: "Dashboard",
-          route: "/admin/dashboard",
-          conditionRoute: "dashboard",
+          title: t("COMMON.DASHBOARD"),
+          route: `/${ROUTES[isAdmin ? "admin" : "ws"]}/${ROUTES.dashboard}`,
+          conditionRoute: `${ROUTES.dashboard}`,
           icon: (
             <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
               <path
                 className={`fill-current ${
-                  newPathName.includes("/dashboard")
+                  newPathName.includes(`/${ROUTES.dashboard}`)
                     ? "text-indigo-500"
                     : "text-slate-400"
                 }`}
@@ -79,7 +81,7 @@ export default function Sidebar() {
               />
               <path
                 className={`fill-current ${
-                  newPathName.includes("/dashboard")
+                  newPathName.includes(`/${ROUTES.dashboard}`)
                     ? "text-indigo-600"
                     : "text-slate-600"
                 }`}
@@ -87,7 +89,7 @@ export default function Sidebar() {
               />
               <path
                 className={`fill-current ${
-                  newPathName.includes("/dashboard")
+                  newPathName.includes(`/${ROUTES.dashboard}`)
                     ? "text-indigo-200"
                     : "text-slate-400"
                 }`}
@@ -96,8 +98,8 @@ export default function Sidebar() {
             </svg>
           ),
         },
-        {
-          title: "Users",
+        ...(isAdmin ? [{
+          title: t("USERS.TITLE"),
           route: "#",
           conditionRoute: ROUTES.users,
           icon: (
@@ -122,18 +124,18 @@ export default function Sidebar() {
           ),
           children: [
             {
-              title: "Users",
+              title: t("USERS.TITLE"),
               route: `/${ROUTES.admin}/${ROUTES.users}`,
             },
             {
-              title: "Measurement Types",
+              title: t("COMMON.MEASUREMENT_TYPES"),
               route: `/${ROUTES.admin}/${ROUTES.users}/${ROUTES.measurementType}`,
             },
           ],
         },
         {
-          title: "Whole Salers",
-          route: "#",
+          title: t("COMMON.WHOLE_SALERS"),
+          route: `/${ROUTES.admin}/${ROUTES.wholeSaler}`,
           conditionRoute: ROUTES.wholeSaler,
           icon: (
             <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
@@ -155,13 +157,7 @@ export default function Sidebar() {
               />
             </svg>
           ),
-          children: [
-            {
-              title: "Whole Saler",
-              route: `/${ROUTES.admin}/${ROUTES.wholeSaler}`,
-            },
-          ],
-        },
+        },] : [])
       ],
     },
   ];

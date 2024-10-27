@@ -19,3 +19,17 @@ export type LoggedInUser = {
   gender?: string;
   mobile_number?: string;
 };
+
+export type CellType = "default" | "phone" | "toggle" | "action";
+
+export interface ColumnConfig {
+  accessor: string;
+  header: string;
+  cellType: CellType;
+}
+
+export interface Column {
+  accessor: string;
+  header: string;
+  cell: (value: any, row?: any) => JSX.Element;
+}

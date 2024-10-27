@@ -54,7 +54,10 @@
     "MY_ACCOUNT":"My Account",
     "CHANGE_PASSWORD": "Change Password",
     "CHANGE": "Change",
-    "CLEAR": "Clear"
+    "CLEAR": "Clear",
+    "DASHBOARD": "Dashboard",
+    "MEASUREMENT_TYPES": "Measurement Types",
+    "WHOLE_SALERS": "Whole Salers"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"

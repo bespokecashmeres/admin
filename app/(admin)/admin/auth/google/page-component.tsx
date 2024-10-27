@@ -2,10 +2,12 @@
 
 import { LOCAL_STORAGE, ROUTES } from "@/constants";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 const PageComponent = () => {
+  const t = useTranslations();
   const { data: session } = useSession();
   const router = useRouter();
   useEffect(() => {
@@ -17,7 +19,7 @@ const PageComponent = () => {
     }
   }, [session]);
 
-  return <div>Loading...</div>;
+  return <div>{t("COMMON.LOADING")}...</div>;
 };
 
 export default PageComponent;

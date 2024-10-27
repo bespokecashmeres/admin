@@ -20,7 +20,7 @@ export const commonSlice = createSlice({
       state.adminUser = action.payload;
     },
     setWholeSalerUserDetailsState(state, action) {
-      state.adminUser = action.payload;
+      state.wsUser = action.payload;
     },
   },
 });

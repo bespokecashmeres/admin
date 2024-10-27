@@ -3,7 +3,6 @@
 import { useAppProvider } from '@/app/app-provider'
 import ThemeToggle from '@/components/ui/header/theme-toggle'
 import DropdownProfile from '@/components/ui/header/dropdown-profile'
-import LocaleToggle from './locale-toggle'
 
 export default function Header() {
 

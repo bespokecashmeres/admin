@@ -2,6 +2,7 @@
 
 import { CancelLinkButton, RHFPasswordField, SubmitButton } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
+import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { MESSAGES, ROUTES } from "@/constants";
 import { RESET_PASSWORD_URL } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
@@ -39,7 +40,9 @@ const ChangePasswordFormComponent = () => {
       setDisableSubmit(true);
       dispatch(setLoadingState(true));
 
-      const changePasswordResponse = await adminAxiosInstance({
+      const changePasswordResponse = await (isAdmin
+        ? adminAxiosInstance
+        : wsAxiosInstance)({
         url: RESET_PASSWORD_URL,
         method: "POST",
         data: {

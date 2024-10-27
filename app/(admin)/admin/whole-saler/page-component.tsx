@@ -1,9 +1,6 @@
 "use client";
 
 import {
-  CreateLinkButton,
-  DebouncedSearch,
-  DeleteButtonWithConfirmation,
   EditLinkButton,
   ListTable,
   PageHeader,
@@ -15,8 +12,6 @@ import {
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES, ROUTES } from "@/constants";
 import {
-  ADMIN_USER_STATUS_UPDATE_URL,
-  ADMIN_USERS_URL,
   ADMIN_WHOLE_SALER_STATUS_UPDATE_URL,
   ADMIN_WHOLE_SALER_URL,
 } from "@/constants/apis";

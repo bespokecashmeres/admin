@@ -1,8 +1,4 @@
-import {
-  DefaultLayout,
-  SettingWrapper,
-  ChangePasswordFormComponent,
-} from "@/components";
+import { ChangePasswordPage } from "@/components";
 import {
   generateAdminPageMetadata,
   viewportData,
@@ -20,15 +16,7 @@ export async function generateMetadata() {
 }
 
 const Account = async () => {
-  const t = await getTranslations();
-
-  return (
-    <DefaultLayout>
-      <SettingWrapper title={t("COMMON.CHANGE_PASSWORD")}>
-        <ChangePasswordFormComponent />
-      </SettingWrapper>
-    </DefaultLayout>
-  );
+  return <ChangePasswordPage />;
 };
 
 export default Account;

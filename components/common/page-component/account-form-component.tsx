@@ -11,6 +11,7 @@ import {
   UserProfile,
 } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
+import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { LOCAL_STORAGE, MESSAGES, ROUTES } from "@/constants";
 import { UPDATE_ACCOUNT_URL } from "@/constants/apis";
 import {
@@ -103,7 +104,7 @@ const AccountFormComponent = ({
       formData.append("country_id", data.country_id);
       formData.append("gender", data.gender);
 
-      const registrationResponse = await adminAxiosInstance({
+      const registrationResponse = await (isAdmin ? adminAxiosInstance : wsAxiosInstance)({
         url: UPDATE_ACCOUNT_URL,
         method: "PATCH",
         data: formData,
