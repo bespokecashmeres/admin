@@ -88,6 +88,7 @@ const ChangePasswordFormComponent = () => {
               <RHFPasswordField
                 name="newPassword"
                 label={t("COMMON.NEW_PASSWORD")}
+                required
               />
               <RHFPasswordField
                 name="confirmPassword"
