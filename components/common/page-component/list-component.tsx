@@ -28,6 +28,7 @@ const ListComponent = ({
   title,
   searchPlaceholder,
   columnConfigs,
+  showReorder = false,
 }: {
   fetchUrl: string;
   statusUrl: string;
@@ -35,6 +36,7 @@ const ListComponent = ({
   title: string;
   searchPlaceholder: string;
   columnConfigs: ColumnConfig[];
+  showReorder?: boolean;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -55,6 +57,7 @@ const ListComponent = ({
     handleSearchChange,
     handleSortChange,
     setLoading,
+    onReorder,
   } = useTable({
     fetchUrl,
     isAdmin,
@@ -152,6 +155,9 @@ const ListComponent = ({
         sortConfig={sortConfig}
         title={t(title)}
         totalRows={totalRows}
+        currentPage={currentPage}
+        rowsPerPage={rowsPerPage}
+        {...(showReorder ? { onReorder } : {})}
       />
       {/* Pagination */}
       <div className="mt-8">

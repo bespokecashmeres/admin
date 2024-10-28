@@ -73,6 +73,7 @@ const ChangePasswordFormComponent = () => {
     }
   };
 
+  const password = methods.watch("newPassword");
   return (
     <FormProvider {...methods}>
       <div className="grow">
@@ -92,6 +93,10 @@ const ChangePasswordFormComponent = () => {
                 name="confirmPassword"
                 label={t("COMMON.CONFIRM_PASSWORD")}
                 required
+                rules={{
+                  validate: (value: string) =>
+                    value === password || t("COMMON.PASSWORDS_DO_NOT_MATCH"),
+                }}
               />
             </div>
           </div>

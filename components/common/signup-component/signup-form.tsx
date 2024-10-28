@@ -133,7 +133,7 @@ const SignupForm = ({ countries }: { countries: any }) => {
             required
             rules={{
               validate: (value: string) =>
-                value === password || t("PASSWORDS_DO_NOT_MATCH"),
+                value === password || t("COMMON.PASSWORDS_DO_NOT_MATCH"),
             }}
           />
           <RHFRadioGroup

@@ -41,6 +41,7 @@ export default async function Dashboard() {
         searchPlaceholder="COMMON.SEARCH_BY_NAME"
         title="USERS.TITLE"
         columnConfigs={columnConfigs}
+        showReorder
       />
     </DefaultLayout>
   );

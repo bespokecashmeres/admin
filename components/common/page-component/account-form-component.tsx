@@ -96,15 +96,20 @@ const AccountFormComponent = ({
       if (selectedFile) {
         formData.append("profile_picture", selectedFile);
       }
-      formData.append("email", data.email);
       formData.append("first_name", data.first_name);
       formData.append("last_name", data.last_name);
       formData.append("middle_name", data.middle_name ?? "");
-      formData.append("mobile_number", data.mobile_number);
-      formData.append("country_id", data.country_id);
       formData.append("gender", data.gender);
 
-      const registrationResponse = await (isAdmin ? adminAxiosInstance : wsAxiosInstance)({
+      if (isAdmin) {
+        formData.append("email", data.email);
+        formData.append("mobile_number", data.mobile_number);
+        formData.append("country_id", data.country_id);
+      }
+
+      const registrationResponse = await (isAdmin
+        ? adminAxiosInstance
+        : wsAxiosInstance)({
         url: UPDATE_ACCOUNT_URL,
         method: "PATCH",
         data: formData,
@@ -207,29 +212,31 @@ const AccountFormComponent = ({
                 required
               />
             </div>
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-2">
-              <div className="grid gap-5 md:grid-cols-[120px_auto]">
-                <RHFFormDropdownField
-                  label={t("COMMON.CODE")}
-                  name="country_id"
-                  placeholder={t("COMMON.CODE")}
-                  options={countries}
-                  isClearable={false}
+            {isAdmin && (
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-2">
+                <div className="grid gap-5 md:grid-cols-[120px_auto]">
+                  <RHFFormDropdownField
+                    label={t("COMMON.CODE")}
+                    name="country_id"
+                    placeholder={t("COMMON.CODE")}
+                    options={countries}
+                    isClearable={false}
+                    required
+                  />
+                  <RHFNumberField
+                    name="mobile_number"
+                    label={t("COMMON.MOBILE_NUMBER")}
+                    required
+                  />
+                </div>
+                <RHFInputField
+                  name="email"
+                  label={t("COMMON.EMAIL_ADDRESS")}
                   required
-                />
-                <RHFNumberField
-                  name="mobile_number"
-                  label={t("COMMON.MOBILE_NUMBER")}
-                  required
+                  type="email"
                 />
               </div>
-              <RHFInputField
-                name="email"
-                label={t("COMMON.EMAIL_ADDRESS")}
-                required
-                type="email"
-              />
-            </div>
+            )}
             <div>
               <RHFRadioGroup
                 name="gender"

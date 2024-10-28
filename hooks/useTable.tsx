@@ -1,3 +1,5 @@
+"use client";
+
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { SORT_DIRECTION } from "@/constants/enum";
@@ -35,10 +37,12 @@ const useTable = <T extends Record<string, any>>({
   fetchUrl,
   defaultRowsPerPage = 10,
   isAdmin = true,
+  reorderUrl = "",
 }: {
   fetchUrl: string;
   defaultRowsPerPage?: number;
   isAdmin?: boolean;
+  reorderUrl?: string;
 }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [rows, setRows] = useState<T[]>([]);
@@ -119,6 +123,33 @@ const useTable = <T extends Record<string, any>>({
     setCurrentPage(1); // Reset to first page on rows per page change
   };
 
+  const onReorder = async (
+    reorderedRows: any,
+    currentPage: number,
+    rowsPerPage: number
+  ) => {
+    setLoading(true);
+    setRows(reorderedRows);
+    const startingOrder = (currentPage - 1) * rowsPerPage + 1;
+    const bulkOperationRows = reorderedRows?.map((row: any, index: number) => ({
+      _id: row._id,
+      order: startingOrder + index,
+    }));
+
+    try {
+      const response = await (isAdmin
+        ? adminAxiosInstance
+        : wsAxiosInstance
+      ).post(reorderUrl, { rows: JSON.stringify(bulkOperationRows) });
+      console.log("reorder response: ", response);
+      // fetchRows();
+    } catch (error) {
+      console.error("Failed to fetch rows:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     rows,
     searchTerm,
@@ -135,6 +166,7 @@ const useTable = <T extends Record<string, any>>({
     handleFilter,
     fetchRows,
     setLoading,
+    onReorder
   };
 };
 
