@@ -1,0 +1,118 @@
+{
+  "LANGUAGE": "English",
+  "COMMON": {
+    "SUCCESS": "Success",
+    "BACK_TO_LOGIN": "Back To Login",
+    "SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN": "Something went wrong. Please try again later!",
+    "SIGNOUT": "Sign Out",
+    "EMAIL_ADDRESS": "Email Address",
+    "PASSWORD": "Password",
+    "OLD_PASSWORD": "Old Password",
+    "NEW_PASSWORD": "New Password",
+    "PASSWORD_AT_LEAST_EIGHT": "{label} must be at least 8 characters",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "PASSWORDS_DO_NOT_MATCH": "Passwords do not match",
+    "SUBMIT": "Submit",
+    "REQUIRED_MESSAGE": "{label} is required",
+    "NAME": "Name",
+    "FIRST_NAME": "First Name",
+    "MIDDLE_NAME": "Middle Name",
+    "LAST_NAME": "Last Name",
+    "MOBILE_NUMBER": "Mobile Number",
+    "CODE": "Code",
+    "MEN": "Men",
+    "WOMEN": "Women",
+    "GENDER": "Gender",
+    "FIELDS": "Fields",
+    "SUBSCRIBE_TO_OUR_NEWSLETTER": "Subscribe to our newsletter",
+    "ADMIN": "Admin",
+    "WHOLE_SALER": "Whole Saler",
+    "LOADING": "Loading",
+    "NO_RECORD_FOUND": "No record found",
+    "CREATE": "Create",
+    "STATUS": "Status",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM": "Are you sure you want to delete this item?",
+    "CANCEL": "Cancel",
+    "YES": "Yes",
+    "SEARCH": "Search",
+    "SEARCH_BY_NAME": "Search by name",
+    "ADD_MORE_FIELDS": "Add More Fields",
+    "CONTINUE_WITH_GOOGLE": "Continue with Google",
+    "WANT_TO_ADD_MEASUREMENT": "Want to add Measurement",
+    "MEASUREMENT": "Measurement",
+    "TITLE": "Title",
+    "VALUE": "Value",
+    "ADD_MORE_MEASUREMENTS": "Add More Measurements",
+    "HEIGHT": "Height",
+    "WEIGHT": "Weight",
+    "PROFILE": "Profile",
+    "NA": "NA",
+    "ACCOUNT": "Account",
+    "SETTINGS": "Settings",
+    "MY_ACCOUNT":"My Account",
+    "CHANGE_PASSWORD": "Change Password",
+    "CHANGE": "Change",
+    "CLEAR": "Clear",
+    "DASHBOARD": "Dashboard",
+    "MEASUREMENT_TYPES": "Measurement Types",
+    "WHOLE_SALERS": "Whole Salers",
+    "LOOKBOOK": "Look Book",
+    "IMAGE": "Image",
+    "PDF": "Pdf",
+    "IMAGE_ACCEPTED_FORMAT": "Accepted formats: JPG, PNG",
+    "PDF_ACCEPTED_FORMAT": "Accepted formats: PDF",
+    "FILE_TYPE_NOT_ALLOWED_MESSAGE": "File type not allowed. Only JPG, and PNG are accepted",
+    "FILE_SIZE_MESSAGE": "File size must be less than 10MB",
+    "FILE_TYPE_FOR_PDF_NOT_ALLOWED_MESSAGE": "File type not allowed. Only PDF are accepted",
+    "DESCRIPTION": "Description",
+    "CLICK_DRAG_DROP_UPLOAD": "Click or Drag & Drop to Upload",
+    "UPLOAD_DISABLED": "Upload Disabled"
+  },
+  "META_DATA": {
+    "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
+  },
+  "SIGNIN": {
+    "TITLE": "Sign In",
+    "WELCOME_BACK": "Welcome back",
+    "DONT_HAVE_AN_ACCOUNT": "Don't you have an account"
+  },
+  "SIGNUP": {
+    "TITLE": "Sign Up",
+    "CREATE_YOUR_ACCOUNT": "Create your Account",
+    "HAVE_AN_ACCOUNT": "Have an account"
+  },
+  "FORGOT_PASSWORD": {
+    "TITLE": "Forgot Password",
+    "SEND_FORGOT_LINK": "Send Forgot Link",
+    "FORGOT_YOUR_PASSWORD": "Forgot Your Password",
+    "REMEMBERED_YOUR_PASSWORD": "Remembered your password"
+  },
+  "SET_NEW_PASSWORD": {
+    "TITLE": "Set New Password"
+  },
+  "EMAIL_VERIFY": {
+    "TITLE": "Email Verify",
+    "VERIFICATION_LINK_EXPIRE_MESSAGE": "The verification link has expired. Please log in again to receive a new verification email",
+    "EMAIL_VERIFIED_MESSAGE": "Your email has been successfully verified"
+  },
+  "DASHBOARD": {
+    "HELLO": "Hello"
+  },
+  "USERS": {
+    "TITLE": "Users"
+  },
+  "WHOLE_SALER": {
+    "TITLE": "Whole Saler"
+  },
+  "STATUS_FILTER": {
+    "ALL_TAB": "All",
+    "ACTIVE_TAB": "Active",
+    "INACTIVE_TAB": "Inactive"
+  },
+  "MEASUREMENT_TYPE": {
+    "TITLE": "Measurement Type"
+  }
+}

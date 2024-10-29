@@ -1,0 +1,1 @@
+export { default as SignupComponent } from './signup-component';

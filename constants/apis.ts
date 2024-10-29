@@ -1,0 +1,33 @@
+export const SIGNIN_API_URL = "/login";
+export const SIGNOUT_API_URL = "/logout";
+export const COUNTRY_LIST_API = "/country/list";
+export const REQUEST_FORGOT_PASSWORD_LINK_URL = "/forgot-password";
+export const RESET_PASSWORD_URL = "/reset-password";
+export const SET_NEW_PASSWORD_URL = "/forgot-password/set-new";
+export const ADMIN_USERS_URL = "/admin/users";
+export const ADMIN_WHOLE_SALER_URL = "/admin/whole-saler";
+export const ADMIN_USER_STATUS_UPDATE_URL = "/admin/user/status";
+export const ADMIN_WHOLE_SALER_STATUS_UPDATE_URL = "/admin/whole-saler/status";
+export const ADMIN_ADD_USER_URL = "/admin/user/add";
+export const EMAIL_VERIFY_URL = "/whole-saler/email-verification";
+export const REGISTARTION_URL = "/register";
+export const UPDATE_ACCOUNT_URL = "/update-user";
+export const ADMIN_GET_USER_DATA_URL = "/admin/user";
+export const ADMIN_UPDATE_USER_DATA_URL = "/admin/user/update";
+export const ADMIN_UPDATE_WHOLE_SALER_DATA_URL = "/admin/whole-saler/update";
+export const ADMIN_ADD_WHOLE_SALER_URL = "/admin/whole-saler/add";
+export const MEASUREMENT_TYPE_ACTIVE_LIST_URL = "/measurement-type/active";
+export const MEASUREMENT_TYPE_LIST_URL = "/measurement-type/list";
+export const MEASUREMENT_TYPE_UPDATE_URL = "/measurement-type/update";
+export const MEASUREMENT_TYPE_STATUS_URL = "/measurement-type/status";
+export const MEASUREMENT_TYPE_ADD_URL = "/measurement-type/add";
+export const MEASUREMENT_TYPE_GET_URL = "/measurement-type";
+
+// look book
+export const LOOKBOOK_ACTIVE_LIST_URL = "/lookbook/active";
+export const LOOKBOOK_LIST_URL = "/lookbook/list";
+export const LOOKBOOK_UPDATE_URL = "/lookbook/update";
+export const LOOKBOOK_STATUS_URL = "/lookbook/status";
+export const LOOKBOOK_ADD_URL = "/lookbook/add";
+export const LOOKBOOK_GET_URL = "/lookbook";
+export const LOOKBOOK_ROW_REORDER_URL = "/lookBook/row/reorder";

@@ -1,0 +1,1 @@
+export { default as WelcomeBanner } from "./welcome-banner";
