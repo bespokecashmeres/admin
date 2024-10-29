@@ -1,9 +1,10 @@
 "use client";
 
+import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { SORT_DIRECTION } from "@/constants/enum";
-import { SortConfig } from "@/types";
+import { Locale, SortConfig } from "@/types";
 import { useState, useEffect } from "react";
 
 type FetchResponse<T> = {
@@ -38,11 +39,13 @@ const useTable = <T extends Record<string, any>>({
   defaultRowsPerPage = 10,
   isAdmin = true,
   reorderUrl = "",
+  showLanguageFilter = true,
 }: {
   fetchUrl: string;
   defaultRowsPerPage?: number;
   isAdmin?: boolean;
   reorderUrl?: string;
+  showLanguageFilter?: boolean;
 }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [rows, setRows] = useState<T[]>([]);
@@ -52,10 +55,11 @@ const useTable = <T extends Record<string, any>>({
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
   const [totalRows, setTotalRows] = useState(0);
+  const [language, setLanguage] = useState<Locale>(CONFIG.defaultLocale);
 
   useEffect(() => {
     fetchRows();
-  }, [currentPage, rowsPerPage, sortConfig, searchTerm, filter]);
+  }, [currentPage, rowsPerPage, sortConfig, searchTerm, filter, language]);
 
   const fetchRows = async () => {
     setLoading(true);
@@ -74,6 +78,7 @@ const useTable = <T extends Record<string, any>>({
       sortOrder,
       search: searchTerm,
       ...(Object.keys(filter).length > 0 && { filter }),
+      ...(showLanguageFilter ? { language } : {}),
     };
 
     try {
@@ -150,6 +155,10 @@ const useTable = <T extends Record<string, any>>({
     }
   };
 
+  const handleLanguageChange = (language: Locale) => {
+    setLanguage(language);
+  };
+
   return {
     rows,
     searchTerm,
@@ -159,6 +168,7 @@ const useTable = <T extends Record<string, any>>({
     sortConfig,
     loading,
     filter,
+    language,
     handleSortChange,
     handleSearchChange,
     handlePageChange,
@@ -166,7 +176,8 @@ const useTable = <T extends Record<string, any>>({
     handleFilter,
     fetchRows,
     setLoading,
-    onReorder
+    onReorder,
+    handleLanguageChange,
   };
 };
 

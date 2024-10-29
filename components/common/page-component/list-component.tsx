@@ -4,6 +4,7 @@ import {
   EditLinkButton,
   EyeOpenIcon,
   ListTable,
+  LocaleTabs,
   PageHeader,
   PaginationClassic,
   StatusFilter,
@@ -27,6 +28,7 @@ const ListComponent = ({
   columnConfigs,
   showReorder = false,
   reorderUrl = "",
+  showLanguageFilter = false,
 }: {
   fetchUrl: string;
   statusUrl: string;
@@ -36,6 +38,7 @@ const ListComponent = ({
   columnConfigs: ColumnConfig[];
   showReorder?: boolean;
   reorderUrl?: string;
+  showLanguageFilter?: boolean;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -57,10 +60,13 @@ const ListComponent = ({
     handleSortChange,
     setLoading,
     onReorder,
+    handleLanguageChange,
+    language,
   } = useTable({
     fetchUrl,
     isAdmin,
     reorderUrl,
+    showLanguageFilter,
   });
 
   const handleStatusChange = useCallback(
@@ -174,6 +180,15 @@ const ListComponent = ({
       <div className="sm:flex sm:justify-between sm:items-center mb-5">
         <StatusFilter filter={filter} handleFilter={handleFilter} />
       </div>
+
+      {showLanguageFilter && (
+        <div className="sm:flex sm:justify-between sm:items-center mb-1">
+          <LocaleTabs
+            active={language}
+            handleTabChange={handleLanguageChange}
+          />
+        </div>
+      )}
 
       <ListTable
         columns={columns}

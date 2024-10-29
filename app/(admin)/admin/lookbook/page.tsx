@@ -1,6 +1,10 @@
 import { DefaultLayout, ListComponent } from "@/components";
 import { ROUTES } from "@/constants";
-import { LOOKBOOK_LIST_URL, LOOKBOOK_ROW_REORDER_URL, LOOKBOOK_STATUS_URL } from "@/constants/apis";
+import {
+  LOOKBOOK_LIST_URL,
+  LOOKBOOK_ROW_REORDER_URL,
+  LOOKBOOK_STATUS_URL,
+} from "@/constants/apis";
 import { ColumnConfig } from "@/types";
 import {
   generateAdminPageMetadata,
@@ -19,12 +23,12 @@ export async function generateMetadata() {
 }
 
 const columnConfigs: ColumnConfig[] = [
-    { accessor: "title", header: "COMMON.TITLE", cellType: "default" },
-    { accessor: "image", header: "COMMON.IMAGE", cellType: "image" },
-    { accessor: "pdf", header: "COMMON.PDF", cellType: "pdf" },
-    { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
-    { accessor: "_id", header: "COMMON.ACTION", cellType: "action" }
-  ];
+  { accessor: "title", header: "COMMON.TITLE", cellType: "default" },
+  { accessor: "image", header: "COMMON.IMAGE", cellType: "image" },
+  { accessor: "pdf", header: "COMMON.PDF", cellType: "pdf" },
+  { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
+  { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
+];
 
 const LookBook = () => {
   return (
@@ -38,6 +42,7 @@ const LookBook = () => {
         columnConfigs={columnConfigs}
         reorderUrl={LOOKBOOK_ROW_REORDER_URL}
         showReorder
+        showLanguageFilter
       />
     </DefaultLayout>
   );
