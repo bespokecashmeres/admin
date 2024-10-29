@@ -2,6 +2,7 @@
 
 import {
   EditLinkButton,
+  EyeOpenIcon,
   ListTable,
   PageHeader,
   PaginationClassic,
@@ -10,13 +11,9 @@ import {
   ToggleField,
 } from "@/components";
 import { ROUTES } from "@/constants";
-import {
-  ADMIN_USER_STATUS_UPDATE_URL,
-  ADMIN_USERS_URL,
-} from "@/constants/apis";
 import useTable from "@/hooks/useTable";
 import { Column, ColumnConfig } from "@/types";
-import { statusChangeHandler } from "@/utils/common.utils";
+import { getAWSImageUrl, statusChangeHandler } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import React, { Fragment, useCallback, useMemo } from "react";
@@ -29,6 +26,7 @@ const ListComponent = ({
   searchPlaceholder,
   columnConfigs,
   showReorder = false,
+  reorderUrl = "",
 }: {
   fetchUrl: string;
   statusUrl: string;
@@ -37,6 +35,7 @@ const ListComponent = ({
   searchPlaceholder: string;
   columnConfigs: ColumnConfig[];
   showReorder?: boolean;
+  reorderUrl?: string;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -61,6 +60,7 @@ const ListComponent = ({
   } = useTable({
     fetchUrl,
     isAdmin,
+    reorderUrl,
   });
 
   const handleStatusChange = useCallback(
@@ -117,6 +117,34 @@ const ListComponent = ({
                   <EditLinkButton
                     href={`/${ROUTES.admin}/${pageRoute}/${value}`}
                   />
+                </div>
+              ),
+            };
+          case "image":
+            return {
+              ...commonProps,
+              cell: (value: string) => (
+                <div className="flex justify-center">
+                  <img
+                    src={getAWSImageUrl(value)}
+                    alt={value}
+                    className=" h-12 w-12"
+                  />
+                </div>
+              ),
+            };
+          case "pdf":
+            return {
+              ...commonProps,
+              cell: (value: string) => (
+                <div className="flex justify-center">
+                  <a
+                    href={getAWSImageUrl(value)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <EyeOpenIcon />
+                  </a>
                 </div>
               ),
             };

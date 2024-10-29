@@ -34,7 +34,7 @@ export default async function Dashboard() {
         fetchUrl={ADMIN_WHOLE_SALER_URL}
         statusUrl={ADMIN_WHOLE_SALER_STATUS_UPDATE_URL}
         pageRoute={`${ROUTES.wholeSaler}`}
-        searchPlaceholder="COMMON.SEARCH_BY_NAME"
+        searchPlaceholder="COMMON.SEARCH"
         title="WHOLE_SALER.TITLE"
         columnConfigs={columnConfigs}
       />

@@ -20,7 +20,7 @@ export type LoggedInUser = {
   mobile_number?: string;
 };
 
-export type CellType = "default" | "phone" | "toggle" | "action";
+export type CellType = "default" | "phone" | "toggle" | "action" | "image" | "pdf";
 
 export interface ColumnConfig {
   accessor: string;
@@ -33,3 +33,14 @@ export interface Column {
   header: string;
   cell: (value: any, row?: any) => JSX.Element;
 }
+
+export type AllowedImageFileType = 'image/jpeg' | 'image/png';
+
+export type AllowedPdfFileType = 'application/pdf';
+
+export type LanguageContent = {
+  language: string;
+  text: string;
+};
+
+

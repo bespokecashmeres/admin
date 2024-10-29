@@ -9,3 +9,4 @@ export { default as MeasurementTypeFormComponent } from "./measurement-type-form
 export { default as AccountFormComponent } from "./account-form-component";
 export { default as ChangePasswordFormComponent } from "./change-password-form-component";
 export { default as ListComponent } from "./list-component";
+export { default as LookBookFormComponent } from "./lookbook-form-component";

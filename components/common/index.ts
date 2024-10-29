@@ -7,7 +7,7 @@ export * from "./icons";
 export * from "./loader";
 export * from "./buttons";
 export * from "./auth-footer";
-export * from "./auth-tabs";
+export * from "./tabs";
 export * from "./table";
 export * from "./progress-loder";
 export * from "./set-new-password-component";

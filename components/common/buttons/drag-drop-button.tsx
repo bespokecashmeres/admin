@@ -9,12 +9,12 @@ const DragDropButton = () => {
       width="42px"
       height="42px"
       viewBox="0 0 32.00 32.00"
-      stroke-width="0.00032"
+      strokeWidth="0.00032"
       className="fill-gray-700 stroke-gray-700 dark:fill-gray-300 dark:stroke-gray-300"
     >
       <g
         id="SVGRepo_bgCarrier"
-        stroke-width="0"
+        strokeWidth="0"
         transform="translate(16,16), scale(0)"
       >
         <rect
@@ -30,10 +30,10 @@ const DragDropButton = () => {
 
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         stroke="#CCCCCC"
-        stroke-width="0.704"
+        strokeWidth="0.704"
       />
 
       <g id="SVGRepo_iconCarrier">

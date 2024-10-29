@@ -5,3 +5,5 @@ export { default as RHFFormDropdownField } from "./rhf-select-field";
 export { default as RHFMultiSelectDropdownField } from "./rhf-multi-select-field";
 export { default as RHFCheckboxField } from "./rhf-checkbox-field";
 export { default as RHFRadioGroup } from "./rhf-radio-field";
+export { default as RHFFileField } from "./rhf-file-field";
+export { default as RHFTextareaField } from "./rhf-text-area-field";

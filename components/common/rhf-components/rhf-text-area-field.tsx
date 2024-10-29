@@ -2,31 +2,27 @@
 
 import React from "react";
 import { useFormContext, useController } from "react-hook-form";
-import { InputField } from "@/components";
 import { useTranslations } from "next-intl";
+import TextareaField from "../inputs/text-area-field";
 
-interface RHFInputFieldProps {
+interface RHFTextareaFieldProps {
   name: string;
   label: string;
   required?: boolean;
   infoText?: string;
   rules?: object;
   disabled?: boolean;
-  type?: string;
-  disableTab?: boolean;
   readOnly?: boolean;
 }
 
-const RHFInputField: React.FC<RHFInputFieldProps> = ({
+const RHFTextareaField: React.FC<RHFTextareaFieldProps> = ({
   name,
   label,
   required = false,
   infoText = "",
   rules = {},
   disabled = false,
-  type,
-  disableTab = false,
-  readOnly = false
+  readOnly = false,
 }) => {
   const t = useTranslations();
   const { control } = useFormContext();
@@ -43,18 +39,16 @@ const RHFInputField: React.FC<RHFInputFieldProps> = ({
   });
 
   return (
-    <InputField
+    <TextareaField
       {...field}
       label={label}
-      type={type}
       error={error?.message}
       required={required}
       infoText={infoText}
-      disabled={disabled} // Pass disabled state to InputField
-      disableTab={disableTab}
+      disabled={disabled}
       readOnly={readOnly}
     />
   );
 };
 
-export default RHFInputField;
+export default RHFTextareaField;

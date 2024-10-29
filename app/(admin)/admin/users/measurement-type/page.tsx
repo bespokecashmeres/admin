@@ -31,7 +31,7 @@ export default async function List() {
         fetchUrl={MEASUREMENT_TYPE_LIST_URL}
         statusUrl={MEASUREMENT_TYPE_STATUS_URL}
         pageRoute={`${ROUTES.users}/${ROUTES.measurementType}`}
-        searchPlaceholder="COMMON.SEARCH_BY_NAME"
+        searchPlaceholder="COMMON.SEARCH"
         title="MEASUREMENT_TYPE.TITLE"
         columnConfigs={columnConfigs}
       />

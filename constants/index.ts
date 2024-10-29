@@ -1,4 +1,5 @@
 import CONFIG from "@/config";
+import { AllowedImageFileType, AllowedPdfFileType } from "@/types";
 
 export const LOCALES = ["en", "da"] as const;
 
@@ -8,7 +9,6 @@ export const LOCAL_STORAGE = {
   wToken: "wToken",
   ws: "ws",
 } as const;
-
 
 export const ROUTES = {
   admin: "admin",
@@ -26,13 +26,14 @@ export const ROUTES = {
   google: "google",
   account: "account",
   settings: "settings",
-  changePassword: "change-password"
+  changePassword: "change-password",
+  lookbook: "lookbook",
 } as const;
 
 export const USER_TYPES = {
   admin: "admin",
   ws: "ws",
-  user: "user"
+  user: "user",
 } as const;
 
 export const HTTP_STATUS_CODES = {
@@ -58,5 +59,11 @@ export const ADMIN_GENERAL_INFO = {
 export const MESSAGES = {
   SUCCESS: "COMMON.SUCCESS",
   SOMETHING_WENT_WRONG: "COMMON.SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN",
-  LOADING: "COMMON.LOADING"
+  LOADING: "COMMON.LOADING",
 } as const;
+
+export const IMAGE_ALLOWED_TYPES: AllowedImageFileType[] = ["image/jpeg", "image/png"] as const;
+
+export const PDF_ALLOWED_TYPES: AllowedPdfFileType[] = ["application/pdf"] as const;
+
+export const MAX_FILE_UPLOAD_SIZE = 10 * 1024 * 1024;

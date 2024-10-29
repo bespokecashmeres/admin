@@ -38,7 +38,7 @@ export default async function Dashboard() {
         fetchUrl={ADMIN_USERS_URL}
         statusUrl={ADMIN_USER_STATUS_UPDATE_URL}
         pageRoute={ROUTES.users}
-        searchPlaceholder="COMMON.SEARCH_BY_NAME"
+        searchPlaceholder="COMMON.SEARCH"
         title="USERS.TITLE"
         columnConfigs={columnConfigs}
       />

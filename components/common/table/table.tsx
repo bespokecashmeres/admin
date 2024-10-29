@@ -197,7 +197,7 @@ const ListTable = <T extends Record<string, any>>({
                 <tbody>
                   <tr>
                     <td
-                      colSpan={columns.length}
+                      colSpan={columns.length + (showReorder ? 1 : 0)}
                       align="center"
                       className="py-2"
                     >

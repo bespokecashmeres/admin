@@ -37,6 +37,7 @@
     "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM": "Are you sure you want to delete this item?",
     "CANCEL": "Cancel",
     "YES": "Yes",
+    "SEARCH": "Search",
     "SEARCH_BY_NAME": "Search by name",
     "ADD_MORE_FIELDS": "Add More Fields",
     "CONTINUE_WITH_GOOGLE": "Continue with Google",
@@ -57,7 +58,18 @@
     "CLEAR": "Clear",
     "DASHBOARD": "Dashboard",
     "MEASUREMENT_TYPES": "Measurement Types",
-    "WHOLE_SALERS": "Whole Salers"
+    "WHOLE_SALERS": "Whole Salers",
+    "LOOKBOOK": "Look Book",
+    "IMAGE": "Image",
+    "PDF": "Pdf",
+    "IMAGE_ACCEPTED_FORMAT": "Accepted formats: JPG, PNG",
+    "PDF_ACCEPTED_FORMAT": "Accepted formats: PDF",
+    "FILE_TYPE_NOT_ALLOWED_MESSAGE": "File type not allowed. Only JPG, and PNG are accepted",
+    "FILE_SIZE_MESSAGE": "File size must be less than 10MB",
+    "FILE_TYPE_FOR_PDF_NOT_ALLOWED_MESSAGE": "File type not allowed. Only PDF are accepted",
+    "DESCRIPTION": "Description",
+    "CLICK_DRAG_DROP_UPLOAD": "Click or Drag & Drop to Upload",
+    "UPLOAD_DISABLED": "Upload Disabled"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"

@@ -22,3 +22,12 @@ export const MEASUREMENT_TYPE_UPDATE_URL = "/measurement-type/update";
 export const MEASUREMENT_TYPE_STATUS_URL = "/measurement-type/status";
 export const MEASUREMENT_TYPE_ADD_URL = "/measurement-type/add";
 export const MEASUREMENT_TYPE_GET_URL = "/measurement-type";
+
+// look book
+export const LOOKBOOK_ACTIVE_LIST_URL = "/lookbook/active";
+export const LOOKBOOK_LIST_URL = "/lookbook/list";
+export const LOOKBOOK_UPDATE_URL = "/lookbook/update";
+export const LOOKBOOK_STATUS_URL = "/lookbook/status";
+export const LOOKBOOK_ADD_URL = "/lookbook/add";
+export const LOOKBOOK_GET_URL = "/lookbook";
+export const LOOKBOOK_ROW_REORDER_URL = "/lookBook/row/reorder";

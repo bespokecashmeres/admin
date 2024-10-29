@@ -2,7 +2,14 @@ import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { getUserLocale } from "@/config/locale";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
-import { LOCAL_STORAGE, MESSAGES } from "@/constants";
+import {
+  IMAGE_ALLOWED_TYPES,
+  LOCAL_STORAGE,
+  MAX_FILE_UPLOAD_SIZE,
+  MESSAGES,
+  PDF_ALLOWED_TYPES,
+} from "@/constants";
+import { AllowedImageFileType, AllowedPdfFileType } from "@/types";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import toast from "react-hot-toast";
 
@@ -96,7 +103,6 @@ export const statusChangeHandler = async ({
   }
 };
 
-
 /**
  * Constructs a complete AWS image URL based on the provided image key.
  *
@@ -108,4 +114,52 @@ export const statusChangeHandler = async ({
 export const getAWSImageUrl = (imageKey?: string): string => {
   if (!imageKey) return "/images/no-image.png";
   return `${CONFIG.bucketDomain}${imageKey}`;
+};
+
+export const validateImageFileType = (
+  files: FileList | null,
+  message: string,
+  requiredMessage: string
+) => {
+  if (!files || files.length === 0) {
+    return requiredMessage || true; // Return the message if no file is present
+  }
+
+  const allValidTypes = Array.from(files).every((file) =>
+    IMAGE_ALLOWED_TYPES.includes(file.type as AllowedImageFileType)
+  );
+
+  return allValidTypes || message; // Return true or the message
+};
+
+export const validatePdfFileType = (
+  files: FileList | null,
+  message: string,
+  requiredMessage: string
+) => {
+  if (!files || files.length === 0) {
+    return requiredMessage || true; // Return the message if no file is present
+  }
+
+  const allValidTypes = Array.from(files).every((file) =>
+    PDF_ALLOWED_TYPES.includes(file.type as AllowedPdfFileType)
+  );
+
+  return allValidTypes || message; // Return true or the message
+};
+
+export const validateFileSize = (
+  files: FileList | null,
+  message: string,
+  requiredMessage: string
+) => {
+  if (!files || files.length === 0) {
+    return requiredMessage || true; // Return the message if no file is present
+  }
+
+  const allValidSizes = Array.from(files).every(
+    (file) => file.size <= MAX_FILE_UPLOAD_SIZE
+  );
+
+  return allValidSizes || message; // Return true if valid size, otherwise the message
 };
