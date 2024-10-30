@@ -28,6 +28,7 @@ const Add = async () => {
   const filteredRes = res?.data?.map((country: any) => ({
     value: country?._id,
     label: `${country?.phoneCode}`,
+    image: `${country?.flag}`
   }));
   return (
     <DefaultLayout>

@@ -22,6 +22,7 @@ interface DropdownFieldProps {
 
 const CustomOption = (props: any) => {
   const { data, innerRef, innerProps } = props;
+  console.log("data: ", data);
   return (
     <div
       ref={innerRef}
@@ -99,6 +100,7 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
           isClearable={isClearable}
           placeholder={placeholder}
           hideSelectedOptions
+          isSearchable
           components={{ Option: CustomOption }}
           className="react-select-container shadow-none focus:shadow-none text-white"
           classNames={{
