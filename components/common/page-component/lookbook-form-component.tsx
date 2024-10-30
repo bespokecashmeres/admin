@@ -4,32 +4,23 @@ import {
   CancelLinkButton,
   LocaleTabs,
   RHFFileField,
-  RHFFormDropdownField,
   RHFInputField,
-  RHFNumberField,
-  RHFPasswordField,
-  RHFRadioGroup,
   RHFTextareaField,
   SubmitButton,
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import {
-  IMAGE_ALLOWED_TYPES,
   LOCALES,
-  MAX_FILE_UPLOAD_SIZE,
   MESSAGES,
   ROUTES,
-  USER_TYPES,
 } from "@/constants";
 import {
-  ADMIN_ADD_WHOLE_SALER_URL,
-  ADMIN_UPDATE_WHOLE_SALER_DATA_URL,
   LOOKBOOK_ADD_URL,
   LOOKBOOK_UPDATE_URL,
 } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
-import { AllowedImageFileType, LanguageContent, Locale } from "@/types";
+import { Locale } from "@/types";
 import {
   validateFileSize,
   validateImageFileType,
@@ -43,8 +34,8 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
 type LookBookFormType = {
-  title: LanguageContent[];
-  description: LanguageContent[];
+  title: Record<string, string>;
+  description: Record<string, string>;
   image?: FileList | null;
   pdf?: FileList | null;
 };
@@ -57,10 +48,11 @@ const LookBookFormComponent = ({ editData }: { editData?: any }) => {
   const t = useTranslations();
   const dispatch = useDispatch();
   const router = useRouter();
+  
   const methods = useForm<LookBookFormType>({
     defaultValues: {
-      title: LOCALES.map((lang) => ({ language: lang, text: "" })),
-      description: LOCALES.map((lang) => ({ language: lang, text: "" })),
+      title: LOCALES.reduce((acc, lang) => ({ ...acc, [lang]: "" }), {}),
+      description: LOCALES.reduce((acc, lang) => ({ ...acc, [lang]: "" }), {}),
       image: null,
       pdf: null,
     },
@@ -68,25 +60,16 @@ const LookBookFormComponent = ({ editData }: { editData?: any }) => {
 
   useEffect(() => {
     if (editData) {
-      const defaultTitle = LOCALES.map((lang) => {
-        const langEntry = editData.title?.find(
-          (t: LanguageContent) => t.language === lang
-        );
-        return {
-          language: lang,
-          text: langEntry ? langEntry.text : "",
-        };
-      });
+      const defaultTitle = LOCALES.reduce((acc, lang) => {
+        acc[lang] = editData.title?.[lang] || "";
+        return acc;
+      }, {} as Record<string, string>);
 
-      const defaultDescription = LOCALES.map((lang) => {
-        const langEntry = editData.description?.find(
-          (d: LanguageContent) => d.language === lang
-        );
-        return {
-          language: lang,
-          text: langEntry ? langEntry.text : "",
-        };
-      });
+      const defaultDescription = LOCALES.reduce((acc, lang) => {
+        acc[lang] = editData.description?.[lang] || "";
+        return acc;
+      }, {} as Record<string, string>);
+
       methods.reset({
         title: defaultTitle,
         description: defaultDescription,
@@ -97,7 +80,6 @@ const LookBookFormComponent = ({ editData }: { editData?: any }) => {
   }, [editData]);
 
   const onSubmit = async (data: LookBookFormType) => {
-    console.log("data: ", data);
     try {
       setDisableSubmit(true);
       dispatch(setLoadingState(true));
@@ -125,6 +107,7 @@ const LookBookFormComponent = ({ editData }: { editData?: any }) => {
           "Content-Type": "multipart/form-data",
         },
       });
+
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
         router.replace(`/${ROUTES.admin}/${ROUTES.lookbook}`);
@@ -187,25 +170,20 @@ const LookBookFormComponent = ({ editData }: { editData?: any }) => {
     setActiveTab(lang);
   };
 
-  const renderLanguageFields = (language: Locale) => {
-    const languageIndex = methods
-      .getValues("title")
-      .findIndex((title) => title.language === language);
-    return (
-      <div key={language} className="space-y-4">
-        <RHFInputField
-          name={`title.${languageIndex}.text`}
-          label={`${t("COMMON.TITLE")} (${language})`}
-          required
-        />
-        <RHFTextareaField
-          name={`description.${languageIndex}.text`}
-          label={`${t("COMMON.DESCRIPTION")} (${language})`}
-          required
-        />
-      </div>
-    );
-  };
+  const renderLanguageFields = (language: Locale) => (
+    <div key={language} className="space-y-4">
+      <RHFInputField
+        name={`title.${language}`}
+        label={`${t("COMMON.TITLE")} (${language})`}
+        required
+      />
+      <RHFTextareaField
+        name={`description.${language}`}
+        label={`${t("COMMON.DESCRIPTION")} (${language})`}
+        required
+      />
+    </div>
+  );
 
   return (
     <FormProvider {...methods}>
