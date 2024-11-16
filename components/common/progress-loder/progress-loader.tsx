@@ -4,7 +4,7 @@ import {
   setAdminUserDetailsState,
   setWholeSalerUserDetailsState,
 } from "@/framework/redux/reducers";
-import { LoggedInUser } from "@/types";
+import { LoggedInUser } from "@/types/index";
 import { CommonSliceTypes } from "@/types/redux";
 import { usePathname, useRouter } from "next/navigation";
 import React, { Fragment, useEffect } from "react";

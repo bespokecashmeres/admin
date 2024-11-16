@@ -1,7 +1,7 @@
 "use client";
 
 import { LOCALES } from "@/constants";
-import { Locale } from "@/types";
+import { Locale } from "@/types/index";
 import clsx from "clsx";
 import React from "react";
 

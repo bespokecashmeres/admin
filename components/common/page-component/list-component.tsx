@@ -13,7 +13,8 @@ import {
 } from "@/components";
 import { ROUTES } from "@/constants";
 import useTable from "@/hooks/useTable";
-import { Column, ColumnConfig } from "@/types";
+import { listTranslations } from "@/locales/manual-translation";
+import { Column, ColumnConfig, Locale } from "@/types/index";
 import { getAWSImageUrl, statusChangeHandler } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
@@ -42,6 +43,7 @@ const ListComponent = ({
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
+
   const isAdmin = pathname.includes(`/${ROUTES.admin}`);
   const {
     loading,
@@ -157,11 +159,19 @@ const ListComponent = ({
           default:
             return {
               ...commonProps,
-              cell: (value: string) => <TableCell value={value || "-"} />,
+              cell: (value: string) => (
+                <TableCell
+                  value={
+                    (col.shouldTranslate
+                      ? listTranslations[language as Locale][value]
+                      : value) || "-"
+                  }
+                />
+              ),
             };
         }
       }),
-    [columnConfigs, handleStatusChange, pageRoute]
+    [columnConfigs, handleStatusChange, pageRoute, language]
   );
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { SORT_DIRECTION } from "@/constants/enum";
-import { SortConfig } from "@/types";
+import { SortConfig } from "@/types/index";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import React from "react";
