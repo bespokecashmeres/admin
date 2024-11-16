@@ -1,7 +1,6 @@
-import React, { Fragment } from "react";
-import { ROUTES } from "@/constants";
+import { Fragment } from "react";
 import SigninForm from "./signin-form";
-import { AuthTabs, AuthWrapper } from "@/components";
+import { AuthWrapper } from "@/components";
 import SignInFooter from "./signin-footer";
 import { getTranslations } from "next-intl/server";
 
@@ -11,7 +10,7 @@ const SigninComponent = async () => {
     <AuthWrapper title={t("SIGNIN.WELCOME_BACK")}>
       <Fragment>
         {/* Tab */}
-        <AuthTabs path={ROUTES.signin} />
+        {/* <AuthTabs path={ROUTES.signin} /> */}
         {/* Form */}
         <SigninForm />
         {/* Footer */}
