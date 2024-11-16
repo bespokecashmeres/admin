@@ -20,7 +20,7 @@ import {
   LOOKBOOK_UPDATE_URL,
 } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
-import { Locale } from "@/types";
+import { Locale } from "@/types/index";
 import {
   validateFileSize,
   validateImageFileType,

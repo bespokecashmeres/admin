@@ -4,7 +4,7 @@ import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { SORT_DIRECTION } from "@/constants/enum";
-import { Locale, SortConfig } from "@/types";
+import { Locale, SortConfig } from "@/types/index";
 import { useState, useEffect } from "react";
 
 type FetchResponse<T> = {

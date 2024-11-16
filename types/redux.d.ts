@@ -1,4 +1,4 @@
-import { LoggedInUser } from "@/types"
+import { LoggedInUser } from "@/types/index"
 
 export type CommonStateType = {
     loading: boolean

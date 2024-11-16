@@ -68,7 +68,7 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
     };
 
     return (
-      <div className="w-full mb-4">
+      <div className="w-full">
         {label && (
           <label
             htmlFor={name}
@@ -93,7 +93,7 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
         <Select
           id={name}
           name={name}
-          value={selectedOption} // Controlled value
+          value={selectedOption || ""} // Controlled value
           onChange={handleChange} // Update state on change
           options={options} // Pass options for dropdown
           isDisabled={disabled} // Disable the dropdown if necessary

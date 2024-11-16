@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { Locale } from "@/types";
+import { Locale } from "@/types/index";
 import CONFIG from "@/config";
 
 // In this example the locale is read from a cookie. You could alternatively

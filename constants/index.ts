@@ -1,5 +1,5 @@
 import CONFIG from "@/config";
-import { AllowedImageFileType, AllowedPdfFileType } from "@/types";
+import { AllowedImageFileType, AllowedPdfFileType } from "@/types/index";
 
 export const LOCALES = ["en", "da"] as const;
 
@@ -28,6 +28,11 @@ export const ROUTES = {
   settings: "settings",
   changePassword: "change-password",
   lookbook: "lookbook",
+  categories: "categories",
+  mainCategory: "main-category",
+  subCategory: "sub-category",
+  childCategory: "child-category",
+  subChildCategory: "sub-child-category"
 } as const;
 
 export const USER_TYPES = {
@@ -60,6 +65,7 @@ export const MESSAGES = {
   SUCCESS: "COMMON.SUCCESS",
   SOMETHING_WENT_WRONG: "COMMON.SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN",
   LOADING: "COMMON.LOADING",
+  INVALID_SLUG: "COMMON.INVALID_SLUG"
 } as const;
 
 export const IMAGE_ALLOWED_TYPES: AllowedImageFileType[] = ["image/jpeg", "image/png"] as const;
@@ -67,3 +73,8 @@ export const IMAGE_ALLOWED_TYPES: AllowedImageFileType[] = ["image/jpeg", "image
 export const PDF_ALLOWED_TYPES: AllowedPdfFileType[] = ["application/pdf"] as const;
 
 export const MAX_FILE_UPLOAD_SIZE = 10 * 1024 * 1024;
+
+export const BIND_LANGUAGE_TRANSLATE_KEY = {
+  men: "COMMON.MEN",
+  women: "COMMON.WOMEN"
+} as const;

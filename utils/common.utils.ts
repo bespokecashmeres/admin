@@ -3,14 +3,17 @@ import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { getUserLocale } from "@/config/locale";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import {
+  BIND_LANGUAGE_TRANSLATE_KEY,
   IMAGE_ALLOWED_TYPES,
   LOCAL_STORAGE,
   MAX_FILE_UPLOAD_SIZE,
   MESSAGES,
   PDF_ALLOWED_TYPES,
 } from "@/constants";
-import { AllowedImageFileType, AllowedPdfFileType } from "@/types";
+import { GENDER_LIST_API } from "@/constants/apis";
+import { AllowedImageFileType, AllowedPdfFileType, BindLanguageTranslateKeyType } from "@/types/index";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { getTranslations } from "next-intl/server";
 import toast from "react-hot-toast";
 
 type KeyValueObject = { [key: string]: any };
@@ -162,4 +165,22 @@ export const validateFileSize = (
   );
 
   return allValidSizes || message; // Return true if valid size, otherwise the message
+};
+
+// Queries
+
+export const getGenderList = async () => {
+  const t = await getTranslations();
+  const res: any = await handleApiCall(GENDER_LIST_API, "GET", null, {});
+
+  const filteredGenderList = res?.data?.map(
+    (gender: { _id: string; name: string }) => ({
+      value: gender._id,
+      label: `${t(
+        BIND_LANGUAGE_TRANSLATE_KEY[gender.name as BindLanguageTranslateKeyType]
+      )}`,
+    })
+  );
+
+  return filteredGenderList;
 };

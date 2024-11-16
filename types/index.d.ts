@@ -1,4 +1,6 @@
-import { LOCALES } from "@/constants";
+import { BIND_LANGUAGE_TRANSLATE_KEY, LOCALES } from "@/constants";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 export type Locale = (typeof LOCALES)[number];
 
@@ -20,12 +22,19 @@ export type LoggedInUser = {
   mobile_number?: string;
 };
 
-export type CellType = "default" | "phone" | "toggle" | "action" | "image" | "pdf";
+export type CellType =
+  | "default"
+  | "phone"
+  | "toggle"
+  | "action"
+  | "image"
+  | "pdf";
 
 export interface ColumnConfig {
   accessor: string;
   header: string;
   cellType: CellType;
+  shouldTranslate?: boolean;
 }
 
 export interface Column {
@@ -34,13 +43,15 @@ export interface Column {
   cell: (value: any, row?: any) => JSX.Element;
 }
 
-export type AllowedImageFileType = 'image/jpeg' | 'image/png';
+export type AllowedImageFileType = "image/jpeg" | "image/png";
 
-export type AllowedPdfFileType = 'application/pdf';
+export type AllowedPdfFileType = "application/pdf";
 
 export type LanguageContent = {
   language: string;
   text: string;
 };
 
+export type BindLanguageTranslateKeyType = keyof typeof BIND_LANGUAGE_TRANSLATE_KEY
 
+export type DropDownOptionType = { value: string; label: string };

@@ -69,7 +69,10 @@
     "FILE_TYPE_FOR_PDF_NOT_ALLOWED_MESSAGE": "File type not allowed. Only PDF are accepted",
     "DESCRIPTION": "Description",
     "CLICK_DRAG_DROP_UPLOAD": "Click or Drag & Drop to Upload",
-    "UPLOAD_DISABLED": "Upload Disabled"
+    "UPLOAD_DISABLED": "Upload Disabled",
+    "SLUG": "Slug",
+    "CATEGORIES": "Categories",
+    "INVALID_SLUG": "Slug must be URL-friendly and cannot contain spaces"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
@@ -114,5 +117,17 @@
   },
   "MEASUREMENT_TYPE": {
     "TITLE": "Measurement Type"
+  },
+  "MAIN_CATEGORY": {
+    "TITLE": "Main Category"
+  },
+  "SUB_CATEGORY": {
+    "TITLE": "Sub Category"
+  },
+  "CHILD_CATEGORY": {
+    "TITLE": "Child Category"
+  },
+  "SUB_CHILD_CATEGORY": {
+    "TITLE": "Sub Child Category"
   }
 }
