@@ -1,5 +1,5 @@
 import { ListComponent } from "@/components";
-import { ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
 import {
   CHILD_CATEGORY_LIST_URL,
   CHILD_CATEGORY_ROW_REORDER_URL,
@@ -51,7 +51,7 @@ export default function Page() {
     <ListComponent
       fetchUrl={CHILD_CATEGORY_LIST_URL}
       statusUrl={CHILD_CATEGORY_STATUS_URL}
-      pageRoute={`${ROUTES.categories}/${ROUTES.childCategory}`}
+      pageRoute={FULL_PATH_ROUTES.categoriesChildCategory}
       searchPlaceholder="COMMON.SEARCH"
       title="CHILD_CATEGORY.TITLE"
       columnConfigs={columnConfigs}

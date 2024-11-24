@@ -5,6 +5,7 @@ import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES, ROUTES } from "@/constants";
 import { MEASUREMENT_TYPE_ACTIVE_LIST_URL } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
+import { buildPath } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -26,7 +27,7 @@ const EditComponent = ({
     setLoading(true);
     const fetchSingleData = async () => {
       adminAxiosInstance
-        .get(`/${ROUTES.admin}/${ROUTES.user}/${id}`)
+        .get(buildPath(true, ROUTES.admin, ROUTES.user, id))
         .then((response) => {
           const result = response.data as any;
           if (result.success) {

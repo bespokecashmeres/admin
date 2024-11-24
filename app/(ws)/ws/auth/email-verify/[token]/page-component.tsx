@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import NotFoundImage from "@/public/images/404-illustration.svg";
 import NotFoundImageDark from "@/public/images/404-illustration-dark.svg";
 import Link from "next/link";
-import { MESSAGES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, MESSAGES, ROUTES } from "@/constants";
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
 
@@ -48,7 +48,7 @@ const EmailVerifyComponent = ({ result }: { result: any }) => {
                 {t("EMAIL_VERIFY.EMAIL_VERIFIED_MESSAGE")}!
               </div>
               <Link
-                href={`/${ROUTES.ws}/${ROUTES.auth}/${ROUTES.signin}`}
+                href={FULL_PATH_ROUTES.wsAuthSignin}
                 className="btn bg-indigo-500 hover:bg-indigo-600 text-white"
               >
                 {t("COMMON.BACK_TO_LOGIN")}

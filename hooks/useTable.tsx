@@ -115,7 +115,7 @@ const useTable = <T extends Record<string, any>>({
   };
 
   const handleFilter = (filter: object) => {
-    setFilter(filter);
+    setFilter((prev) => ({ ...prev, ...filter }));
     setCurrentPage(1); // Reset to first page on search
   };
 
@@ -142,12 +142,10 @@ const useTable = <T extends Record<string, any>>({
     }));
 
     try {
-      const response = await (isAdmin
+      await (isAdmin
         ? adminAxiosInstance
         : wsAxiosInstance
       ).post(reorderUrl, { rows: JSON.stringify(bulkOperationRows) });
-      console.log("reorder response: ", response);
-      // fetchRows();
     } catch (error) {
       console.error("Failed to fetch rows:", error);
     } finally {

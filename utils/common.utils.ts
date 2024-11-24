@@ -6,14 +6,27 @@ import {
   BIND_LANGUAGE_TRANSLATE_KEY,
   IMAGE_ALLOWED_TYPES,
   LOCAL_STORAGE,
+  LOCALES,
   MAX_FILE_UPLOAD_SIZE,
   MESSAGES,
   PDF_ALLOWED_TYPES,
 } from "@/constants";
-import { GENDER_LIST_API } from "@/constants/apis";
-import { AllowedImageFileType, AllowedPdfFileType, BindLanguageTranslateKeyType } from "@/types/index";
+import {
+  COLOR_DROPDOWN_URL,
+  COUNTRY_LIST_API,
+  FABRICS_DROPDOWN_URL,
+  GENDER_LIST_API,
+  PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
+  PRODUCT_TYPE_DROPDOWN_URL,
+  SIZE_DROPDOWN_URL,
+} from "@/constants/apis";
+import {
+  AllowedImageFileType,
+  AllowedPdfFileType,
+  BindLanguageTranslateKeyType,
+} from "@/types/index";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import toast from "react-hot-toast";
 
 type KeyValueObject = { [key: string]: any };
@@ -167,11 +180,29 @@ export const validateFileSize = (
   return allValidSizes || message; // Return true if valid size, otherwise the message
 };
 
+export const initializeLocalizedObject = (
+  existingData: Record<string, string>
+) => {
+  return LOCALES.reduce((acc, lang) => {
+    acc[lang] = existingData?.[lang] || "";
+    return acc;
+  }, {} as Record<string, string>);
+};
+
+// Helper Function for Path Construction
+export const buildPath = (
+  leadingSlash: boolean,
+  ...segments: string[]
+): string => (leadingSlash ? "/" : "") + segments.join("/");
+
 // Queries
 
 export const getGenderList = async () => {
+  const locale = await getLocale();
   const t = await getTranslations();
-  const res: any = await handleApiCall(GENDER_LIST_API, "GET", null, {});
+  const res: any = await handleApiCall(GENDER_LIST_API, "GET", null, {
+    "Accept-Language": locale,
+  });
 
   const filteredGenderList = res?.data?.map(
     (gender: { _id: string; name: string }) => ({
@@ -183,4 +214,127 @@ export const getGenderList = async () => {
   );
 
   return filteredGenderList;
+};
+
+export const getCountryList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    COUNTRY_LIST_API,
+    "GET",
+    null,
+    {
+      "Accept-Language": locale,
+    },
+    false
+  );
+
+  const filteredRes = res?.data?.map((country: any) => ({
+    value: country?._id,
+    label: `${country?.phoneCode}`,
+    image: `${country?.flag}`,
+  }));
+
+  return filteredRes;
+};
+
+export const getProductTypeList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    PRODUCT_TYPE_DROPDOWN_URL,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getSizeList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    SIZE_DROPDOWN_URL,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getColorList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    COLOR_DROPDOWN_URL,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getFabricList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    FABRICS_DROPDOWN_URL,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getRelatedProductsList = async (_id?: string) => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
+    "POST",
+    {
+      _id,
+    },
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
 };

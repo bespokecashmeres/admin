@@ -22,7 +22,6 @@ interface DropdownFieldProps {
 
 const CustomOption = (props: any) => {
   const { data, innerRef, innerProps } = props;
-  console.log("data: ", data);
   return (
     <div
       ref={innerRef}

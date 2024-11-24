@@ -1,5 +1,5 @@
 import { ListComponent } from "@/components";
-import { ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
 import {
   MAIN_CATEGORY_LIST_URL,
   MAIN_CATEGORY_ROW_REORDER_URL,
@@ -41,7 +41,7 @@ export default function Page() {
     <ListComponent
       fetchUrl={MAIN_CATEGORY_LIST_URL}
       statusUrl={MAIN_CATEGORY_STATUS_URL}
-      pageRoute={`${ROUTES.categories}/${ROUTES.mainCategory}`}
+      pageRoute={FULL_PATH_ROUTES.categoriesMainCategory}
       searchPlaceholder="COMMON.SEARCH"
       title="MAIN_CATEGORY.TITLE"
       columnConfigs={columnConfigs}

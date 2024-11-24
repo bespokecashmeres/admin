@@ -10,7 +10,7 @@ import {
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { LOCALES, MESSAGES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCALES, MESSAGES, ROUTES } from "@/constants";
 import {
   CHILD_CATEGORY_DROPDOWN_URL,
   MAIN_CATEGORY_DROPDOWN_URL,
@@ -158,7 +158,6 @@ const SubChildCategoryFormComponent = ({
   }, [editData]);
 
   const handleGenderChange = (option: any) => {
-    console.log(option);
     if (option) {
       dispatch(setLoadingState(true));
       methods.setValue("mainCategoryId", "");
@@ -194,7 +193,6 @@ const SubChildCategoryFormComponent = ({
   };
 
   const handleMainCategoryChange = (option: any) => {
-    console.log(option);
     if (option) {
       const gender = methods.getValues("genderId");
       dispatch(setLoadingState(true));
@@ -231,7 +229,6 @@ const SubChildCategoryFormComponent = ({
   };
 
   const handleSubCategoryChange = (option: any) => {
-    console.log(option);
     if (option) {
       const gender = methods.getValues("genderId");
       const mainCategoryId = methods.getValues("mainCategoryId");
@@ -303,9 +300,7 @@ const SubChildCategoryFormComponent = ({
 
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(
-          `/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.subChildCategory}`
-        );
+        router.replace(FULL_PATH_ROUTES.adminCategoriesSubChildCategory);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -433,7 +428,7 @@ const SubChildCategoryFormComponent = ({
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={`/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.subChildCategory}`}
+            href={FULL_PATH_ROUTES.adminCategoriesSubChildCategory}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>

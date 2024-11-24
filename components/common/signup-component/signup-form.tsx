@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { setLoadingState } from "@/framework/redux/reducers";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { REGISTARTION_URL } from "@/constants/apis";
-import { MESSAGES, ROUTES, USER_TYPES } from "@/constants";
+import { FULL_PATH_ROUTES, MESSAGES, ROUTES, USER_TYPES } from "@/constants";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -67,7 +67,7 @@ const SignupForm = ({ countries }: { countries: any }) => {
       );
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(`/${ROUTES.ws}/${ROUTES.auth}/${ROUTES.signin}`);
+        router.replace(FULL_PATH_ROUTES.wsAuthSignin);
       } else {
         toast.error(
           registrationResponse.data.message ||

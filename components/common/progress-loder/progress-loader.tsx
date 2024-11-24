@@ -1,5 +1,5 @@
 "use client";
-import { LOCAL_STORAGE, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
 import {
   setAdminUserDetailsState,
   setWholeSalerUserDetailsState,
@@ -24,9 +24,9 @@ const ProgressLoader = () => {
         const user = JSON.parse(userDetails) as LoggedInUser;
         dispatch(setAdminUserDetailsState(user));
         if (
-          pathName.includes(`/${ROUTES.admin}/${ROUTES.auth}/${ROUTES.signin}`)
+          pathName.includes(FULL_PATH_ROUTES.adminAuthSignin)
         ) {
-          router.replace(`/${ROUTES.admin}/${ROUTES.dashboard}`);
+          router.replace(FULL_PATH_ROUTES.adminDashboard);
         }
       } 
       // else {
@@ -38,9 +38,9 @@ const ProgressLoader = () => {
         const user = JSON.parse(userDetails) as LoggedInUser;
         dispatch(setWholeSalerUserDetailsState(user));
         if (
-          pathName.includes(`/${ROUTES.ws}/${ROUTES.auth}/${ROUTES.signin}`)
+          pathName.includes(FULL_PATH_ROUTES.wsAuthSignin)
         ) {
-          router.replace(`/${ROUTES.ws}/${ROUTES.dashboard}`);
+          router.replace(FULL_PATH_ROUTES.wsDashboard);
         }
       } 
       // else {

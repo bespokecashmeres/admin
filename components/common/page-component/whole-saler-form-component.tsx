@@ -10,7 +10,7 @@ import {
   SubmitButton,
 } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { MESSAGES, ROUTES, USER_TYPES } from "@/constants";
+import { FULL_PATH_ROUTES, MESSAGES, ROUTES, USER_TYPES } from "@/constants";
 import {
   ADMIN_ADD_WHOLE_SALER_URL,
   ADMIN_UPDATE_WHOLE_SALER_DATA_URL,
@@ -91,9 +91,7 @@ const WholeSalerFormComponent = ({
       });
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(
-          `/${ROUTES.admin}/${ROUTES.wholeSaler}`
-        );
+        router.replace(FULL_PATH_ROUTES.adminWholeSaler);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -178,7 +176,7 @@ const WholeSalerFormComponent = ({
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={`/${ROUTES.admin}/${ROUTES.wholeSaler}`}
+            href={FULL_PATH_ROUTES.adminWholeSaler}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>

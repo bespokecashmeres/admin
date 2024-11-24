@@ -74,3 +74,44 @@ export const SUB_CHILD_CATEGORY_DROPDOWN_URL = "/sub-child-category/options";
 
 // Gender
 export const GENDER_LIST_API = "/gender/list";
+
+// Fabrics
+export const FABRICS_LIST_URL = "/fabrics/list";
+export const FABRICS_UPDATE_URL = "/fabrics/update";
+export const FABRICS_STATUS_URL = "/fabrics/status";
+export const FABRICS_ADD_URL = "/fabrics/add";
+export const FABRICS_GET_URL = "/fabrics";
+export const FABRICS_DROPDOWN_URL = "/fabrics/options";
+
+// Product Type
+export const PRODUCT_TYPE_LIST_URL = "/product-type/list";
+export const PRODUCT_TYPE_UPDATE_URL = "/product-type/update";
+export const PRODUCT_TYPE_STATUS_URL = "/product-type/status";
+export const PRODUCT_TYPE_ADD_URL = "/product-type/add";
+export const PRODUCT_TYPE_GET_URL = "/product-type";
+export const PRODUCT_TYPE_DROPDOWN_URL = "/product-type/options";
+
+// Size
+export const SIZE_LIST_URL = "/size/list";
+export const SIZE_UPDATE_URL = "/size/update";
+export const SIZE_STATUS_URL = "/size/status";
+export const SIZE_ADD_URL = "/size/add";
+export const SIZE_GET_URL = "/size";
+export const SIZE_DROPDOWN_URL = "/size/options";
+
+// Color
+export const COLOR_LIST_URL = "/color/list";
+export const COLOR_UPDATE_URL = "/color/update";
+export const COLOR_STATUS_URL = "/color/status";
+export const COLOR_ADD_URL = "/color/add";
+export const COLOR_GET_URL = "/color";
+export const COLOR_DROPDOWN_URL = "/color/options";
+
+// Product
+export const PRODUCT_LIST_URL = "/product/list";
+export const PRODUCT_ROW_REORDER_URL = "/product/row/reorder";
+export const PRODUCT_UPDATE_URL = "/product/update";
+export const PRODUCT_STATUS_URL = "/product/status";
+export const PRODUCT_ADD_URL = "/product/add";
+export const PRODUCT_GET_URL = "/product";
+export const PRODUCT_RELATED_OPTIONS_DROPDOWN_URL = "/product/related-options";

@@ -1,5 +1,5 @@
 import { ListComponent } from "@/components";
-import { ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
 import {
   SUB_CATEGORY_LIST_URL,
   SUB_CATEGORY_ROW_REORDER_URL,
@@ -46,7 +46,7 @@ export default function Page() {
     <ListComponent
       fetchUrl={SUB_CATEGORY_LIST_URL}
       statusUrl={SUB_CATEGORY_STATUS_URL}
-      pageRoute={`${ROUTES.categories}/${ROUTES.subCategory}`}
+      pageRoute={FULL_PATH_ROUTES.categoriesSubCategory}
       searchPlaceholder="COMMON.SEARCH"
       title="SUB_CATEGORY.TITLE"
       columnConfigs={columnConfigs}

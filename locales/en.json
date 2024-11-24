@@ -72,7 +72,21 @@
     "UPLOAD_DISABLED": "Upload Disabled",
     "SLUG": "Slug",
     "CATEGORIES": "Categories",
-    "INVALID_SLUG": "Slug must be URL-friendly and cannot contain spaces"
+    "INVALID_SLUG": "Slug must be URL-friendly and cannot contain spaces",
+    "FABRIC_ID": "Fabric ID",
+    "PRODUCT_TYPE": "Product Type",
+    "SECTION_NAME": "Section Name",
+    "INFO": "Info",
+    "LABEL": "Label",
+    "IMAGES": "Images",
+    "RELATED_PRODUCTS": "Related Products",
+    "PRICE": "Price",
+    "DISCOUNTED_PRICE": "Discounted Price",
+    "NO_OF_QUANTITY": "No Of Quantity",
+    "QUANTITY_DISCOUNT": "Quantity Discount",
+    "TOOLTIP": "Tooltip",
+    "DESIGN": "Design",
+    "SHIPPING_AND_RETURN_POLICY": "Shipping And Return Policy"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
@@ -129,5 +143,21 @@
   },
   "SUB_CHILD_CATEGORY": {
     "TITLE": "Sub Child Category"
+  },
+  "PRODUCT": {
+    "TITLE": "Product"
+  },
+  "PRODUCT_TYPE": {
+    "TITLE": "Product Type",
+    "SIDEBAR_TITLE": "Type"
+  },
+  "SIZE": {
+    "TITLE": "Size"
+  },
+  "FABRIC": {
+    "TITLE": "Fabric"
+  },
+  "COLOR": {
+    "TITLE": "Color"
   }
 }
