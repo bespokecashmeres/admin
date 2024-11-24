@@ -11,6 +11,7 @@ import {
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import {
+  FULL_PATH_ROUTES,
   LOCALES,
   MESSAGES,
   ROUTES,
@@ -110,7 +111,7 @@ const LookBookFormComponent = ({ editData }: { editData?: any }) => {
 
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(`/${ROUTES.admin}/${ROUTES.lookbook}`);
+        router.replace(FULL_PATH_ROUTES.adminLookbook);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -219,7 +220,7 @@ const LookBookFormComponent = ({ editData }: { editData?: any }) => {
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={`/${ROUTES.admin}/${ROUTES.lookbook}`}
+            href={FULL_PATH_ROUTES.adminLookbook}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>

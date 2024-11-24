@@ -12,11 +12,24 @@ interface InputFieldProps {
   type?: string;
   disableTab?: boolean;
   readOnly?: boolean;
+  className?: string;
 }
 
 const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
   (
-    { label, name, type, error, required, infoText, disabled, disableTab, readOnly, ...rest },
+    {
+      label,
+      name,
+      type,
+      error,
+      required,
+      infoText,
+      disabled,
+      disableTab,
+      readOnly,
+      className,
+      ...rest
+    },
     ref
   ) => {
     return (
@@ -42,6 +55,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
         </label>
         <input
           ref={ref}
+          type={type}
           id={name}
           name={name}
           disabled={disabled} // Apply disabled state to the input
@@ -53,7 +67,8 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
               : "focus:border-blue-500 focus:ring-1 focus:ring-blue-500",
             disabled
               ? "bg-gray-200 text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:cursor-not-allowed" // Disabled styles
-              : ""
+              : "",
+            className
           )}
           readOnly={readOnly}
           {...(disableTab ? { tabIndex: -1 } : {})}

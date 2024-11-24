@@ -30,6 +30,7 @@ const ListComponent = ({
   showReorder = false,
   reorderUrl = "",
   showLanguageFilter = false,
+  customFilters = [],
 }: {
   fetchUrl: string;
   statusUrl: string;
@@ -40,6 +41,7 @@ const ListComponent = ({
   showReorder?: boolean;
   reorderUrl?: string;
   showLanguageFilter?: boolean;
+  customFilters?: { component: React.ComponentType<any>; props?: Object }[];
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -190,6 +192,21 @@ const ListComponent = ({
       <div className="sm:flex sm:justify-between sm:items-center mb-5">
         <StatusFilter filter={filter} handleFilter={handleFilter} />
       </div>
+
+      {customFilters.length > 0 && (
+        <div className="sm:flex sm:justify-between sm:items-center mb-5">
+          {customFilters.map(
+            ({ component: CustomFilter, props = {} }, index) => (
+              <CustomFilter
+                key={index}
+                {...props}
+                filter={filter}
+                handleFilter={handleFilter}
+              />
+            )
+          )}
+        </div>
+      )}
 
       {showLanguageFilter && (
         <div className="sm:flex sm:justify-between sm:items-center mb-1">

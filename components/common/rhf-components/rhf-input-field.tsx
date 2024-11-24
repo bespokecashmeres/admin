@@ -15,6 +15,7 @@ interface RHFInputFieldProps {
   type?: string;
   disableTab?: boolean;
   readOnly?: boolean;
+  className?: string;
 }
 
 const RHFInputField: React.FC<RHFInputFieldProps> = ({
@@ -26,7 +27,8 @@ const RHFInputField: React.FC<RHFInputFieldProps> = ({
   disabled = false,
   type,
   disableTab = false,
-  readOnly = false
+  readOnly = false,
+  className = ""
 }) => {
   const t = useTranslations();
   const { control } = useFormContext();
@@ -45,6 +47,7 @@ const RHFInputField: React.FC<RHFInputFieldProps> = ({
   return (
     <InputField
       {...field}
+      className={className}
       label={label}
       type={type}
       error={error?.message}

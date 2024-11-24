@@ -10,3 +10,4 @@ export { default as DebouncedSearch } from "./search-input";
 export { default as FileField } from "./file-field";
 export { default as FileUploadButton } from "./file-upload-button";
 export { default as TextareaField } from "./text-area-field";
+export { default as MultiFileField } from "./multi-file-field";

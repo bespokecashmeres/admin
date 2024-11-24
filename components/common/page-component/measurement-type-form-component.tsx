@@ -8,7 +8,7 @@ import {
   SubmitButton,
 } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { MESSAGES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, MESSAGES, ROUTES } from "@/constants";
 import {
   MEASUREMENT_TYPE_ADD_URL,
   MEASUREMENT_TYPE_UPDATE_URL,
@@ -137,9 +137,7 @@ const MeasurementTypeFormComponent = ({ editData }: { editData?: any }) => {
       });
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(
-          `/${ROUTES.admin}/${ROUTES.users}/${ROUTES.measurementType}`
-        );
+        router.replace(FULL_PATH_ROUTES.adminUsersMeasurementType);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -198,7 +196,7 @@ const MeasurementTypeFormComponent = ({ editData }: { editData?: any }) => {
         <div className="mt-6 flex justify-end gap-4">
           <CancelLinkButton
             label={t("COMMON.CANCEL")}
-            href={`/${ROUTES.admin}/${ROUTES.users}/${ROUTES.measurementType}`}
+            href={FULL_PATH_ROUTES.adminUsersMeasurementType}
           />
           <SubmitButton label={t("COMMON.SUBMIT")} disabled={disableSubmit} />
         </div>

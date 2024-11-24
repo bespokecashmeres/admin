@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { LOCAL_STORAGE, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
 import { usePathname, useRouter } from "next/navigation";
 import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header/header";
@@ -17,14 +17,14 @@ export default function DefaultLayout({
     if (pathname.includes(`/${ROUTES.ws}`)) {
       const wToken = localStorage.getItem(LOCAL_STORAGE.wToken);
       if (!wToken) {
-        router.replace(`/${ROUTES.ws}/${ROUTES.auth}/${ROUTES.signin}`);
+        router.replace(FULL_PATH_ROUTES.wsAuthSignin);
       }
       return;
     }
 
     const aToken = localStorage.getItem(LOCAL_STORAGE.aToken);
     if (!aToken) {
-      router.replace(`/${ROUTES.admin}/${ROUTES.auth}/${ROUTES.signin}`);
+      router.replace(FULL_PATH_ROUTES.adminAuthSignin);
     }
   }, [pathname]);
 

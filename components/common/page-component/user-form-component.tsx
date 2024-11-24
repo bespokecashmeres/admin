@@ -13,7 +13,7 @@ import {
   SubmitButton,
 } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { MESSAGES, ROUTES, USER_TYPES } from "@/constants";
+import { FULL_PATH_ROUTES, MESSAGES, ROUTES, USER_TYPES } from "@/constants";
 import {
   ADMIN_ADD_USER_URL,
   ADMIN_UPDATE_USER_DATA_URL,
@@ -170,7 +170,7 @@ const UserFormComponent = ({
       });
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(`/${ROUTES.admin}/${ROUTES.users}`);
+        router.replace(FULL_PATH_ROUTES.adminUsers);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -391,7 +391,7 @@ const UserFormComponent = ({
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={`/${ROUTES.admin}/${ROUTES.users}`}
+            href={FULL_PATH_ROUTES.adminUsers}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>

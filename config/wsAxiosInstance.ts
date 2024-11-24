@@ -7,7 +7,7 @@ import axios, {
 } from "axios";
 import toast from "react-hot-toast";
 import CONFIG from ".";
-import { LOCAL_STORAGE, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
 import { getUserLocale } from "./locale";
 import { clearLocalStorageTokenAndData } from "@/utils/common.utils";
 // import { toast } from 'react-toastify' // Import a toast library (e.g., react-toastify)
@@ -50,7 +50,7 @@ wsAxiosInstance.interceptors.response.use(
         clearLocalStorageTokenAndData();
       }
       toast.error(response.data?.message);
-      window.location.href = `/${ROUTES.ws}/${ROUTES.auth}/${ROUTES.signin}`;
+      window.location.href = FULL_PATH_ROUTES.wsAuthSignin;
     }
     // You can handle successful responses here
     return response; // Return only the data portion of the response

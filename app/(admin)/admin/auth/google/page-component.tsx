@@ -1,6 +1,6 @@
 "use client";
 
-import { LOCAL_STORAGE, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ const PageComponent = () => {
       const sessionData: any = session;
       localStorage.setItem(LOCAL_STORAGE.aToken, sessionData?.accessToken);
       localStorage.setItem(LOCAL_STORAGE.admin, sessionData?.userData);
-      router.push(`/${ROUTES.admin}/${ROUTES.dashboard}`);
+      router.push(FULL_PATH_ROUTES.adminDashboard);
     }
   }, [session]);
 

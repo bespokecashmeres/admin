@@ -6,15 +6,15 @@ import {
   RHFFormDropdownField,
   RHFInputField,
   RHFTextareaField,
-  SubmitButton
+  SubmitButton,
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { LOCALES, MESSAGES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCALES, MESSAGES, ROUTES } from "@/constants";
 import {
   MAIN_CATEGORY_DROPDOWN_URL,
   SUB_CATEGORY_ADD_URL,
-  SUB_CATEGORY_UPDATE_URL
+  SUB_CATEGORY_UPDATE_URL,
 } from "@/constants/apis";
 import { SLUG_REGEX } from "@/constants/regex";
 import { setLoadingState } from "@/framework/redux/reducers";
@@ -22,7 +22,7 @@ import { DropDownOptionType, Locale } from "@/types/index";
 import {
   getAWSImageUrl,
   validateFileSize,
-  validateImageFileType
+  validateImageFileType,
 } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -182,9 +182,7 @@ const SubCategoryFormComponent = ({
 
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(
-          `/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.subCategory}`
-        );
+        router.replace(FULL_PATH_ROUTES.adminCategoriesSubCategory);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -271,7 +269,7 @@ const SubCategoryFormComponent = ({
               required
             />
           </div>
-          
+
           {renderLanguageFields(activeTab)}
 
           <div className="grid gap-5 mt-4 md:grid-cols-2">
@@ -296,7 +294,7 @@ const SubCategoryFormComponent = ({
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={`/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.subCategory}`}
+            href={FULL_PATH_ROUTES.adminCategoriesSubCategory}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>

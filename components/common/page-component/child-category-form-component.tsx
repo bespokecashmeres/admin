@@ -10,7 +10,7 @@ import {
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { LOCALES, MESSAGES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCALES, MESSAGES, ROUTES } from "@/constants";
 import {
   CHILD_CATEGORY_ADD_URL,
   CHILD_CATEGORY_UPDATE_URL,
@@ -236,9 +236,7 @@ const ChildCategoryFormComponent = ({
 
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(
-          `/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.childCategory}`
-        );
+        router.replace(FULL_PATH_ROUTES.adminCategoriesChildCategory);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -357,7 +355,7 @@ const ChildCategoryFormComponent = ({
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={`/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.childCategory}`}
+            href={FULL_PATH_ROUTES.adminCategoriesChildCategory}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>

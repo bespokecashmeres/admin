@@ -4,6 +4,7 @@ import { LoadingMessage, WholeSalerFormComponent } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES, ROUTES } from "@/constants";
 import { setLoadingState } from "@/framework/redux/reducers";
+import { buildPath } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -22,7 +23,7 @@ const EditComponent = ({
   useEffect(() => {
     const fetchSingleData = async () => {
       adminAxiosInstance
-        .get(`/${ROUTES.admin}/${ROUTES.wholeSaler}/${id}`)
+        .get(buildPath(true, ROUTES.admin, ROUTES.wholeSaler, id))
         .then((response) => {
           dispatch(setLoadingState(false));
           const result = response.data as any;

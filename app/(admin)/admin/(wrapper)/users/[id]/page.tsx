@@ -6,8 +6,7 @@ import {
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 import React from "react";
-import { handleApiCall } from "@/utils/common.utils";
-import { COUNTRY_LIST_API } from "@/constants/apis";
+import { getCountryList } from "@/utils/common.utils";
 import EditComponent from "./edit-component";
 
 export const viewport: Viewport = viewportData;
@@ -20,13 +19,7 @@ export async function generateMetadata() {
 
 const Edit = async ({ params }: { params: { id: string } }) => {
   const t = await getTranslations();
-  const res: any = await handleApiCall(COUNTRY_LIST_API, "GET", null, {});
-
-  const filteredRes = res?.data?.map((country: any) => ({
-    value: country?._id,
-    label: `${country?.phoneCode}`,
-    image: `${country?.flag}`
-  }));
+  const filteredRes: any = await getCountryList();
 
   return (
     <DefaultLayout>

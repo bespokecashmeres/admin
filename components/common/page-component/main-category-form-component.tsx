@@ -6,15 +6,16 @@ import {
   RHFFormDropdownField,
   RHFInputField,
   RHFTextareaField,
-  SubmitButton
+  SubmitButton,
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { LOCALES, MESSAGES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCALES, MESSAGES, ROUTES } from "@/constants";
 import {
   MAIN_CATEGORY_ADD_URL,
-  MAIN_CATEGORY_UPDATE_URL
+  MAIN_CATEGORY_UPDATE_URL,
 } from "@/constants/apis";
+import { SLUG_REGEX } from "@/constants/regex";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { DropDownOptionType, Locale } from "@/types/index";
 import { validateFileSize, validateImageFileType } from "@/utils/common.utils";
@@ -109,9 +110,7 @@ const MainCategoryFormComponent = ({
 
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(
-          `/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.mainCategory}`
-        );
+        router.replace(FULL_PATH_ROUTES.adminCategoriesMainCategory);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -150,6 +149,12 @@ const MainCategoryFormComponent = ({
           },
         },
       },
+      slug: {
+        pattern: {
+          value: SLUG_REGEX,
+          message: t(MESSAGES.INVALID_SLUG),
+        },
+      },
     };
   }, [t, editData]);
 
@@ -181,7 +186,12 @@ const MainCategoryFormComponent = ({
           {renderLanguageFields(activeTab)}
 
           <div className="grid gap-5 mt-4 md:grid-cols-2">
-            <RHFInputField name="slug" label={t("COMMON.SLUG")} required />
+            <RHFInputField
+              name="slug"
+              label={t("COMMON.SLUG")}
+              rules={validationRules.slug}
+              required
+            />
             <RHFFormDropdownField
               name="genderId"
               label={t("COMMON.GENDER")}
@@ -206,7 +216,7 @@ const MainCategoryFormComponent = ({
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={`/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.mainCategory}`}
+            href={FULL_PATH_ROUTES.adminCategoriesMainCategory}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>

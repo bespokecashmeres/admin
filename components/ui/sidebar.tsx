@@ -9,7 +9,7 @@ import SidebarLinkGroup from "./sidebar-link-group";
 import SidebarLink from "./sidebar-link";
 import Logo from "./logo";
 import clsx from "clsx";
-import { ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
 import { useTranslations } from "next-intl";
 
 export default function Sidebar() {
@@ -101,14 +101,14 @@ export default function Sidebar() {
         ...(isAdmin
           ? [
               {
-                title: t("USERS.TITLE"),
+                title: t("PRODUCT.TITLE"),
                 route: "#",
-                conditionRoute: ROUTES.users,
+                conditionRoute: ROUTES.product,
                 icon: (
                   <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                     <path
                       className={`fill-current ${
-                        newPathName.includes(ROUTES.users)
+                        newPathName.includes(ROUTES.product)
                           ? "text-indigo-500"
                           : "text-slate-600"
                       }`}
@@ -116,7 +116,7 @@ export default function Sidebar() {
                     />
                     <path
                       className={`fill-current ${
-                        newPathName.includes(ROUTES.users)
+                        newPathName.includes(ROUTES.product)
                           ? "text-indigo-300"
                           : "text-slate-400"
                       }`}
@@ -126,12 +126,24 @@ export default function Sidebar() {
                 ),
                 children: [
                   {
-                    title: t("USERS.TITLE"),
-                    route: `/${ROUTES.admin}/${ROUTES.users}`,
+                    title: t("PRODUCT.TITLE"),
+                    route: FULL_PATH_ROUTES.adminProductProducts,
                   },
                   {
-                    title: t("COMMON.MEASUREMENT_TYPES"),
-                    route: `/${ROUTES.admin}/${ROUTES.users}/${ROUTES.measurementType}`,
+                    title: t("FABRIC.TITLE"),
+                    route: FULL_PATH_ROUTES.adminProductFabric,
+                  },
+                  {
+                    title: t("PRODUCT_TYPE.SIDEBAR_TITLE"),
+                    route: FULL_PATH_ROUTES.adminProductProductType,
+                  },
+                  {
+                    title: t("SIZE.TITLE"),
+                    route: FULL_PATH_ROUTES.adminProductSize,
+                  },
+                  {
+                    title: t("COLOR.TITLE"),
+                    route: FULL_PATH_ROUTES.adminProductColor,
                   },
                 ],
               },
@@ -162,25 +174,60 @@ export default function Sidebar() {
                 children: [
                   {
                     title: t("MAIN_CATEGORY.TITLE"),
-                    route: `/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.mainCategory}`,
+                    route: FULL_PATH_ROUTES.adminCategoriesMainCategory,
                   },
                   {
                     title: t("SUB_CATEGORY.TITLE"),
-                    route: `/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.subCategory}`,
+                    route: FULL_PATH_ROUTES.adminCategoriesSubCategory,
                   },
                   {
                     title: t("CHILD_CATEGORY.TITLE"),
-                    route: `/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.childCategory}`,
+                    route: FULL_PATH_ROUTES.adminCategoriesChildCategory,
                   },
                   {
                     title: t("SUB_CHILD_CATEGORY.TITLE"),
-                    route: `/${ROUTES.admin}/${ROUTES.categories}/${ROUTES.subChildCategory}`,
+                    route: FULL_PATH_ROUTES.adminCategoriesSubChildCategory,
+                  },
+                ],
+              },
+              {
+                title: t("USERS.TITLE"),
+                route: "#",
+                conditionRoute: ROUTES.users,
+                icon: (
+                  <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                    <path
+                      className={`fill-current ${
+                        newPathName.includes(ROUTES.users)
+                          ? "text-indigo-500"
+                          : "text-slate-600"
+                      }`}
+                      d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"
+                    />
+                    <path
+                      className={`fill-current ${
+                        newPathName.includes(ROUTES.users)
+                          ? "text-indigo-300"
+                          : "text-slate-400"
+                      }`}
+                      d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"
+                    />
+                  </svg>
+                ),
+                children: [
+                  {
+                    title: t("USERS.TITLE"),
+                    route: FULL_PATH_ROUTES.adminUsers,
+                  },
+                  {
+                    title: t("COMMON.MEASUREMENT_TYPES"),
+                    route: FULL_PATH_ROUTES.adminUsersMeasurementType,
                   },
                 ],
               },
               {
                 title: t("COMMON.WHOLE_SALERS"),
-                route: `/${ROUTES.admin}/${ROUTES.wholeSaler}`,
+                route: FULL_PATH_ROUTES.adminWholeSaler,
                 conditionRoute: ROUTES.wholeSaler,
                 icon: (
                   <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
@@ -205,7 +252,7 @@ export default function Sidebar() {
               },
               {
                 title: t("COMMON.LOOKBOOK"),
-                route: `/${ROUTES.admin}/${ROUTES.lookbook}`,
+                route: FULL_PATH_ROUTES.adminLookbook,
                 conditionRoute: ROUTES.lookbook,
                 icon: (
                   <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
@@ -310,7 +357,9 @@ export default function Sidebar() {
                     ) => {
                       const isOpen = newPathName.includes(conditionRoute);
                       if (route !== "#") {
-                        const isOpen = newPathName === route;
+                        const isOpen =
+                          newPathName === route ||
+                          newPathName.startsWith(route);
                         return (
                           <li
                             className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 group is-link-group ${
@@ -398,7 +447,9 @@ export default function Sidebar() {
                                     >
                                       {children?.map(
                                         ({ title, route }, childIndex) => {
-                                          const isOpen = newPathName === route;
+                                          const isOpen =
+                                            newPathName === route ||
+                                            newPathName.startsWith(route);
                                           return (
                                             <li
                                               className="mb-1 last:mb-0"

@@ -17,3 +17,4 @@ export * from "./layout";
 export * from "./page-component";
 export * from "./wrapper";
 export * from "./settings";
+export * from "./filters";
