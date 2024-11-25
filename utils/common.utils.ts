@@ -14,7 +14,7 @@ import {
 import {
   COLOR_DROPDOWN_URL,
   COUNTRY_LIST_API,
-  FABRICS_DROPDOWN_URL,
+  YARN_DROPDOWN_URL,
   GENDER_LIST_API,
   PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
   PRODUCT_TYPE_DROPDOWN_URL,
@@ -297,10 +297,10 @@ export const getColorList = async () => {
   return filteredRes;
 };
 
-export const getFabricList = async () => {
+export const getYarnList = async () => {
   const locale = await getLocale();
   const res: any = await handleApiCall(
-    FABRICS_DROPDOWN_URL,
+    YARN_DROPDOWN_URL,
     "POST",
     {},
     {
@@ -337,4 +337,10 @@ export const getRelatedProductsList = async (_id?: string) => {
     })) ?? [];
 
   return filteredRes;
+};
+
+export const copyToClipboard = (value: string): void => {
+  navigator.clipboard.writeText(value).catch((err: any) => {
+    console.error("Failed to copy text:", err);
+  });
 };

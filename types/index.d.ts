@@ -35,6 +35,7 @@ export interface ColumnConfig {
   header: string;
   cellType: CellType;
   shouldTranslate?: boolean;
+  showCopyButton?: boolean;
 }
 
 export interface Column {

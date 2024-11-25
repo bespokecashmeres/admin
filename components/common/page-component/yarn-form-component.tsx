@@ -11,42 +11,32 @@ import {
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { DEFAULT_LOCALE_VALUE, FULL_PATH_ROUTES, LOCALES, MESSAGES, ROUTES } from "@/constants";
-import {
-  FABRICS_ADD_URL,
-  FABRICS_UPDATE_URL,
-  LOOKBOOK_ADD_URL,
-  LOOKBOOK_UPDATE_URL,
-} from "@/constants/apis";
+import { DEFAULT_LOCALE_VALUE, FULL_PATH_ROUTES, MESSAGES } from "@/constants";
+import { YARN_ADD_URL, YARN_UPDATE_URL } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { Locale } from "@/types/index";
-import {
-  initializeLocalizedObject,
-  validateFileSize,
-  validateImageFileType,
-  validatePdfFileType,
-} from "@/utils/common.utils";
+import { initializeLocalizedObject } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-type FabricFormType = {
+type YarnFormType = {
   name: Record<string, string>;
-  fabricId: string;
-  fabrics: {
+  yarnId: string;
+  yarns: {
     name: Record<string, string>;
     value: Record<string, string>;
     description: Record<string, string>;
   }[];
 };
 
-const FabricFormComponent = ({
+const YarnFormComponent = ({
   editData,
 }: {
-  editData?: FabricFormType & { _id: string };
+  editData?: YarnFormType & { _id: string };
 }) => {
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<Locale>(CONFIG.defaultLocale);
@@ -54,11 +44,11 @@ const FabricFormComponent = ({
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const methods = useForm<FabricFormType>({
+  const methods = useForm<YarnFormType>({
     defaultValues: {
       name: DEFAULT_LOCALE_VALUE,
-      fabricId: "",
-      fabrics: [
+      yarnId: "",
+      yarns: [
         {
           name: DEFAULT_LOCALE_VALUE,
           description: DEFAULT_LOCALE_VALUE,
@@ -70,44 +60,44 @@ const FabricFormComponent = ({
 
   const { fields, append, remove } = useFieldArray({
     control: methods.control,
-    name: "fabrics",
+    name: "yarns",
   });
 
   useEffect(() => {
     if (editData) {
       const defaultName = initializeLocalizedObject(editData.name);
-      const defaultFabrics = editData.fabrics.map((fabric) => ({
-        name: initializeLocalizedObject(fabric.name),
-        value: initializeLocalizedObject(fabric.value),
-        description: initializeLocalizedObject(fabric.description),
+      const defaultYarn = editData.yarns.map((yarn) => ({
+        name: initializeLocalizedObject(yarn.name),
+        value: initializeLocalizedObject(yarn.value),
+        description: initializeLocalizedObject(yarn.description),
       }));
       methods.reset({
         name: defaultName,
-        fabrics: defaultFabrics,
-        fabricId: editData.fabricId || "",
+        yarns: defaultYarn,
+        yarnId: editData.yarnId || "",
       });
     }
   }, [editData]);
 
-  const onSubmit = async (data: FabricFormType) => {
+  const onSubmit = async (data: YarnFormType) => {
     try {
       setDisableSubmit(true);
       dispatch(setLoadingState(true));
 
       const registrationResponse = await adminAxiosInstance({
-        url: editData ? FABRICS_UPDATE_URL : FABRICS_ADD_URL,
+        url: editData ? YARN_UPDATE_URL : YARN_ADD_URL,
         method: editData ? "PUT" : "POST",
         data: {
           name: JSON.stringify(data.name),
-          fabrics: JSON.stringify(data.fabrics),
-          fabricId: data.fabricId,
+          yarns: JSON.stringify(data.yarns),
+          yarnId: data.yarnId,
           _id: editData?._id,
         },
       });
 
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(FULL_PATH_ROUTES.adminProductFabric);
+        router.replace(FULL_PATH_ROUTES.adminProductYarn);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -149,21 +139,21 @@ const FabricFormComponent = ({
               <div className="mb-4.5 flex flex-col gap-2 xl:flex-row">
                 <div className="w-full xl:w-1/2">
                   <RHFInputField
-                    name={`fabrics.${index}.name.${language}`}
+                    name={`yarns.${index}.name.${language}`}
                     label={`${t("COMMON.NAME")} (${language})`}
                     required
                   />
                 </div>
                 <div className="w-full xl:w-1/2">
                   <RHFInputField
-                    name={`fabrics.${index}.value.${language}`}
+                    name={`yarns.${index}.value.${language}`}
                     label={`${t("COMMON.VALUE")} (${language})`}
                     required
                   />
                 </div>
                 <div className="w-full xl:w-1/2">
                   <RHFTextareaField
-                    name={`fabrics.${index}.description.${language}`}
+                    name={`yarns.${index}.description.${language}`}
                     label={`${t("COMMON.DESCRIPTION")} (${language})`}
                   />
                 </div>
@@ -190,17 +180,13 @@ const FabricFormComponent = ({
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <LocaleTabs active={activeTab} handleTabChange={handleTabChange} />
-          <RHFInputField
-            name="fabricId"
-            label={t("COMMON.FABRIC_ID")}
-            required
-          />
+          <RHFInputField name="yarnId" label={t("COMMON.YARN_ID")} required />
           {renderLanguageFields(activeTab)}
         </div>
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={FULL_PATH_ROUTES.adminProductFabric}
+            href={FULL_PATH_ROUTES.adminProductYarn}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>
@@ -209,4 +195,4 @@ const FabricFormComponent = ({
   );
 };
 
-export default FabricFormComponent;
+export default YarnFormComponent;

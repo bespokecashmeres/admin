@@ -14,7 +14,7 @@ export { default as MainCategoryFormComponent } from "./main-category-form-compo
 export { default as SubCategoryFormComponent } from "./sub-category-form-component";
 export { default as ChildCategoryFormComponent } from "./child-category-form-component";
 export { default as SubChildCategoryFormComponent } from "./sub-child-category-form-component";
-export { default as FabricFormComponent } from "./fabric-form-component";
+export { default as YarnFormComponent } from "./yarn-form-component";
 export { default as ProductTypeFormComponent } from "./product-type-form-component";
 export { default as SizeFormComponent } from "./size-form-component";
 export { default as ColorFormComponent } from "./color-form-component";

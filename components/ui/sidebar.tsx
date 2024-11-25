@@ -11,6 +11,7 @@ import Logo from "./logo";
 import clsx from "clsx";
 import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
 import { useTranslations } from "next-intl";
+import CONFIG from "@/config";
 
 export default function Sidebar() {
   const sidebar = useRef<HTMLDivElement>(null);
@@ -130,13 +131,17 @@ export default function Sidebar() {
                     route: FULL_PATH_ROUTES.adminProductProducts,
                   },
                   {
-                    title: t("FABRIC.TITLE"),
-                    route: FULL_PATH_ROUTES.adminProductFabric,
+                    title: t("YARN.TITLE"),
+                    route: FULL_PATH_ROUTES.adminProductYarn,
                   },
-                  {
-                    title: t("PRODUCT_TYPE.SIDEBAR_TITLE"),
-                    route: FULL_PATH_ROUTES.adminProductProductType,
-                  },
+                  ...(!CONFIG.hideProductType
+                    ? [
+                        {
+                          title: t("PRODUCT_TYPE.SIDEBAR_TITLE"),
+                          route: FULL_PATH_ROUTES.adminProductProductType,
+                        },
+                      ]
+                    : []),
                   {
                     title: t("SIZE.TITLE"),
                     route: FULL_PATH_ROUTES.adminProductSize,

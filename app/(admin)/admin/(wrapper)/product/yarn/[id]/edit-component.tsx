@@ -1,9 +1,9 @@
 "use client";
 
-import { FabricFormComponent, LoadingMessage } from "@/components";
+import { YarnFormComponent, LoadingMessage } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES } from "@/constants";
-import { FABRICS_GET_URL } from "@/constants/apis";
+import { YARN_GET_URL } from "@/constants/apis";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -16,7 +16,7 @@ const EditComponent = ({ id }: { id: string }) => {
     setLoading(true);
     const fetchSingleData = async () => {
       adminAxiosInstance
-        .get(`${FABRICS_GET_URL}/${id}`)
+        .get(`${YARN_GET_URL}/${id}`)
         .then((response) => {
           const result = response.data as any;
           if (result.success) {
@@ -38,7 +38,7 @@ const EditComponent = ({ id }: { id: string }) => {
   }, [id]);
 
   return !loading && editData ? (
-    <FabricFormComponent editData={editData} />
+    <YarnFormComponent editData={editData} />
   ) : (
     <LoadingMessage />
   );

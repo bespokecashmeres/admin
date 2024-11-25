@@ -1,8 +1,6 @@
 import { ListComponent, ProductFilter } from "@/components";
-import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES } from "@/constants";
 import {
-  FABRICS_LIST_URL,
-  FABRICS_STATUS_URL,
   PRODUCT_LIST_URL,
   PRODUCT_ROW_REORDER_URL,
   PRODUCT_STATUS_URL,
@@ -34,6 +32,12 @@ const columnConfigs: ColumnConfig[] = [
     cellType: "default",
   },
   { accessor: "slug", header: "COMMON.SLUG", cellType: "default" },
+  {
+    accessor: "gender",
+    header: "COMMON.GENDER",
+    cellType: "default",
+    shouldTranslate: true,
+  },
   {
     accessor: "noOfQuantity",
     header: "COMMON.NO_OF_QUANTITY",

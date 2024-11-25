@@ -36,7 +36,7 @@ export const ROUTES = {
   subChildCategory: "sub-child-category",
   product: "product",
   products: "products",
-  fabric: "fabric",
+  yarn: "yarn",
   productType: "product-type",
   size: "size",
   color: "color"
@@ -64,7 +64,7 @@ export const FULL_PATH_ROUTES = {
     ROUTES.categories,
     ROUTES.subChildCategory
   ),
-  productFabric: buildPath(false, ROUTES.product, ROUTES.fabric),
+  productYarn: buildPath(false, ROUTES.product, ROUTES.yarn),
   productProducts: buildPath(false, ROUTES.product, ROUTES.products),
   productProductType: buildPath(false, ROUTES.product, ROUTES.productType),
   productColor: buildPath(false, ROUTES.product, ROUTES.color),
@@ -78,11 +78,11 @@ export const FULL_PATH_ROUTES = {
     ROUTES.categories,
     ROUTES.childCategory
   ),
-  adminProductFabric: buildPath(
+  adminProductYarn: buildPath(
     true,
     ROUTES.admin,
     ROUTES.product,
-    ROUTES.fabric
+    ROUTES.yarn
   ),
   adminProductProducts: buildPath(
     true,

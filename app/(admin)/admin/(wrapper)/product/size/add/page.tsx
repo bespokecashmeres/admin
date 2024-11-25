@@ -1,16 +1,11 @@
-import {
-  AddEditWrapper,
-  FabricFormComponent,
-  SizeFormComponent,
-} from "@/components";
-import { PRODUCT_TYPE_DROPDOWN_URL } from "@/constants/apis";
-import { getProductTypeList, handleApiCall } from "@/utils/common.utils";
+import { AddEditWrapper, SizeFormComponent } from "@/components";
+import { getProductTypeList } from "@/utils/common.utils";
 import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
 import { Viewport } from "next";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 export const viewport: Viewport = viewportData;
 

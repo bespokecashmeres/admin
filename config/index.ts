@@ -5,6 +5,9 @@ const CONFIG = {
   apiUrl: process.env.NEXT_PUBLIC_API_URL,
   adminDomainURL: process.env.NEXT_PUBLIC_ADMIN_DOMAIN_URL,
   bucketDomain: process.env.NEXT_PUBLIC_BUCKET_DOMAIN,
+
+  // settings
+  hideProductType: true
 } as const;
 
 export default CONFIG;

@@ -1,11 +1,7 @@
-import {
-  AddEditWrapper,
-  FabricFormComponent,
-  ProductFormComponent,
-} from "@/components";
+import { AddEditWrapper, ProductFormComponent } from "@/components";
 import {
   getColorList,
-  getFabricList,
+  getYarnList,
   getGenderList,
   getProductTypeList,
   getRelatedProductsList,
@@ -33,18 +29,21 @@ const Add = async () => {
     productTypeListResult,
     sizeListResult,
     colorListResult,
-    fabricListResult,
-    relatedProductsResult
+    yarnListResult,
+    relatedProductsResult,
   ] = await Promise.allSettled([
     getGenderList(),
     getProductTypeList(),
     getSizeList(),
     getColorList(),
-    getFabricList(),
-    getRelatedProductsList()
+    getYarnList(),
+    getRelatedProductsList(),
   ]);
 
-  const relatedProductsList = relatedProductsResult.status === "fulfilled" ? relatedProductsResult.value : null;
+  const relatedProductsList =
+    relatedProductsResult.status === "fulfilled"
+      ? relatedProductsResult.value
+      : null;
   const genderList =
     genderListResult.status === "fulfilled" ? genderListResult.value : null;
   const productTypeList =
@@ -55,8 +54,8 @@ const Add = async () => {
     sizeListResult.status === "fulfilled" ? sizeListResult.value : null;
   const colorList =
     colorListResult.status === "fulfilled" ? colorListResult.value : null;
-  const fabricList =
-    fabricListResult.status === "fulfilled" ? fabricListResult.value : null;
+  const yarnList =
+    yarnListResult.status === "fulfilled" ? yarnListResult.value : null;
 
   // Optionally log or handle failures
   if (genderListResult.status === "rejected") {
@@ -74,11 +73,11 @@ const Add = async () => {
   if (colorListResult.status === "rejected") {
     console.error("Failed to fetch color list:", colorListResult.reason);
   }
-  if (fabricListResult.status === "rejected") {
-    console.error("Failed to fetch fabric list:", fabricListResult.reason);
+  if (yarnListResult.status === "rejected") {
+    console.error("Failed to fetch yarn list:", yarnListResult.reason);
   }
   if (relatedProductsResult.status === "rejected") {
-    console.error("Failed to fetch fabric list:", relatedProductsResult.reason)
+    console.error("Failed to fetch yarn list:", relatedProductsResult.reason);
   }
 
   return (
@@ -88,7 +87,7 @@ const Add = async () => {
         productTypeList={productTypeList}
         sizeList={sizeList}
         colorList={colorList}
-        fabricList={fabricList}
+        yarnList={yarnList}
         relatedProductsList={relatedProductsList}
       />
     </AddEditWrapper>

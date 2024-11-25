@@ -8,7 +8,7 @@ import { getTranslations } from "next-intl/server";
 import EditComponent from "./edit-component";
 import {
   getColorList,
-  getFabricList,
+  getYarnList,
   getGenderList,
   getProductTypeList,
   getRelatedProductsList,
@@ -30,14 +30,14 @@ const Edit = async ({ params }: { params: { id: string } }) => {
     productTypeListResult,
     sizeListResult,
     colorListResult,
-    fabricListResult,
+    yarnListResult,
     relatedProductsResult
   ] = await Promise.allSettled([
     getGenderList(),
     getProductTypeList(),
     getSizeList(),
     getColorList(),
-    getFabricList(),
+    getYarnList(),
     getRelatedProductsList(params.id)
   ]);
 
@@ -52,8 +52,8 @@ const Edit = async ({ params }: { params: { id: string } }) => {
     sizeListResult.status === "fulfilled" ? sizeListResult.value : null;
   const colorList =
     colorListResult.status === "fulfilled" ? colorListResult.value : null;
-  const fabricList =
-    fabricListResult.status === "fulfilled" ? fabricListResult.value : null;
+  const yarnList =
+    yarnListResult.status === "fulfilled" ? yarnListResult.value : null;
 
   // Optionally log or handle failures
   if (genderListResult.status === "rejected") {
@@ -71,11 +71,11 @@ const Edit = async ({ params }: { params: { id: string } }) => {
   if (colorListResult.status === "rejected") {
     console.error("Failed to fetch color list:", colorListResult.reason);
   }
-  if (fabricListResult.status === "rejected") {
-    console.error("Failed to fetch fabric list:", fabricListResult.reason);
+  if (yarnListResult.status === "rejected") {
+    console.error("Failed to fetch yarn list:", yarnListResult.reason);
   }
   if (relatedProductsResult.status === "rejected") {
-    console.error("Failed to fetch fabric list:", relatedProductsResult.reason)
+    console.error("Failed to fetch yarn list:", relatedProductsResult.reason)
   }
   return (
     <AddEditWrapper title={t("COMMON.EDIT")}>
@@ -85,7 +85,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
         productTypeList={productTypeList}
         sizeList={sizeList}
         colorList={colorList}
-        fabricList={fabricList}
+        yarnList={yarnList}
         relatedProductsList={relatedProductsList}
       />
     </AddEditWrapper>

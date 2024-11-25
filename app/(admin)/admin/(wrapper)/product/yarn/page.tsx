@@ -1,6 +1,6 @@
 import { ListComponent } from "@/components";
-import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
-import { FABRICS_LIST_URL, FABRICS_STATUS_URL } from "@/constants/apis";
+import { FULL_PATH_ROUTES } from "@/constants";
+import { YARN_LIST_URL, YARN_STATUS_URL } from "@/constants/apis";
 import { ColumnConfig } from "@/types/index";
 import {
   generateAdminPageMetadata,
@@ -12,7 +12,7 @@ import { getTranslations } from "next-intl/server";
 export const viewport: Viewport = viewportData;
 
 export async function generateMetadata() {
-  const t = await getTranslations("FABRIC");
+  const t = await getTranslations("YARN");
   const title = t("TITLE");
 
   return generateAdminPageMetadata({ title });
@@ -20,7 +20,7 @@ export async function generateMetadata() {
 
 const columnConfigs: ColumnConfig[] = [
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
-  { accessor: "fabricId", header: "COMMON.FABRIC_ID", cellType: "default" },
+  { accessor: "yarnId", header: "COMMON.YARN_ID", cellType: "default" },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
   { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
 ];
@@ -28,11 +28,11 @@ const columnConfigs: ColumnConfig[] = [
 export default function Page() {
   return (
     <ListComponent
-      fetchUrl={FABRICS_LIST_URL}
-      statusUrl={FABRICS_STATUS_URL}
-      pageRoute={FULL_PATH_ROUTES.productFabric}
+      fetchUrl={YARN_LIST_URL}
+      statusUrl={YARN_STATUS_URL}
+      pageRoute={FULL_PATH_ROUTES.productYarn}
       searchPlaceholder="COMMON.SEARCH"
-      title="FABRIC.TITLE"
+      title="YARN.TITLE"
       columnConfigs={columnConfigs}
       showLanguageFilter
     />
