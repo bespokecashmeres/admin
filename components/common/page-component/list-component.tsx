@@ -43,7 +43,7 @@ const ListComponent = ({
   reorderUrl?: string;
   showLanguageFilter?: boolean;
   customFilters?: { component: React.ComponentType<any>; props?: Object }[];
-  hideCreateButton: boolean;
+  hideCreateButton?: boolean;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
