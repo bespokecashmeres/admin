@@ -19,8 +19,6 @@ import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { DEFAULT_LOCALE_VALUE, FULL_PATH_ROUTES, MESSAGES } from "@/constants";
 import {
   CHILD_CATEGORY_DROPDOWN_URL,
-  FABRICS_ADD_URL,
-  FABRICS_UPDATE_URL,
   MAIN_CATEGORY_DROPDOWN_URL,
   PRODUCT_ADD_URL,
   PRODUCT_UPDATE_URL,
@@ -63,7 +61,7 @@ type ProductFormType = {
   quantityDiscount: number;
   colors: {
     colorId: string;
-    fabricId: string;
+    yarnId: string;
     image: FileList | null;
     images: File[];
     description: Record<string, string>;
@@ -93,7 +91,7 @@ type EditProductFormType = {
   quantityDiscount: number;
   colors: {
     colorId: string;
-    fabricId: string;
+    yarnId: string;
     image: string;
     images: string[];
     description: Record<string, string>;
@@ -113,7 +111,7 @@ const ProductFormComponent = ({
   productTypeList,
   sizeList,
   colorList,
-  fabricList,
+  yarnList,
   relatedProductsList,
 }: {
   editData?: EditProductFormType;
@@ -121,7 +119,7 @@ const ProductFormComponent = ({
   productTypeList: DropDownOptionType[];
   sizeList: DropDownOptionType[];
   colorList: DropDownOptionType[];
-  fabricList: DropDownOptionType[];
+  yarnList: DropDownOptionType[];
   relatedProductsList: DropDownOptionType[];
 }) => {
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
@@ -166,7 +164,7 @@ const ProductFormComponent = ({
       colors: [
         {
           colorId: "",
-          fabricId: "",
+          yarnId: "",
           image: null,
           images: [],
           description: DEFAULT_LOCALE_VALUE,
@@ -328,7 +326,7 @@ const ProductFormComponent = ({
           colors: editData.colors.map((color) => {
             return {
               colorId: color.colorId,
-              fabricId: color.fabricId,
+              yarnId: color.yarnId,
               description: initializeLocalizedObject(color.description),
               image: null,
               images: [],
@@ -404,7 +402,7 @@ const ProductFormComponent = ({
           `colors[${index}][description]`,
           JSON.stringify(color.description)
         );
-        formData.append(`colors[${index}][fabricId]`, color.fabricId);
+        formData.append(`colors[${index}][yarnId]`, color.yarnId);
 
         if (color.image?.length) {
           formData.append(`colors[${index}][image]`, color.image?.[0]);
@@ -799,9 +797,9 @@ const ProductFormComponent = ({
                         </div>
                         <div className="w-full xl:w-1/2">
                           <RHFFormDropdownField
-                            label={t("FABRIC.TITLE")}
-                            name={`colors.${index}.fabricId`}
-                            options={fabricList}
+                            label={t("YARN.TITLE")}
+                            name={`colors.${index}.yarnId`}
+                            options={yarnList}
                             required
                           />
                         </div>
@@ -856,7 +854,7 @@ const ProductFormComponent = ({
                     onClick={() =>
                       colorAppend({
                         colorId: "",
-                        fabricId: "",
+                        yarnId: "",
                         description: DEFAULT_LOCALE_VALUE,
                         image: null,
                         images: [],

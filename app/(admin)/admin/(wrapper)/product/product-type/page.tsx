@@ -1,6 +1,6 @@
 import { ListComponent } from "@/components";
-import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
-import { FABRICS_LIST_URL, FABRICS_STATUS_URL, PRODUCT_TYPE_LIST_URL, PRODUCT_TYPE_STATUS_URL } from "@/constants/apis";
+import { FULL_PATH_ROUTES } from "@/constants";
+import { PRODUCT_TYPE_LIST_URL, PRODUCT_TYPE_STATUS_URL } from "@/constants/apis";
 import { ColumnConfig } from "@/types/index";
 import {
   generateAdminPageMetadata,

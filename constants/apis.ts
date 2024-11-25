@@ -75,13 +75,13 @@ export const SUB_CHILD_CATEGORY_DROPDOWN_URL = "/sub-child-category/options";
 // Gender
 export const GENDER_LIST_API = "/gender/list";
 
-// Fabrics
-export const FABRICS_LIST_URL = "/fabrics/list";
-export const FABRICS_UPDATE_URL = "/fabrics/update";
-export const FABRICS_STATUS_URL = "/fabrics/status";
-export const FABRICS_ADD_URL = "/fabrics/add";
-export const FABRICS_GET_URL = "/fabrics";
-export const FABRICS_DROPDOWN_URL = "/fabrics/options";
+// Yarn
+export const YARN_LIST_URL = "/yarn/list";
+export const YARN_UPDATE_URL = "/yarn/update";
+export const YARN_STATUS_URL = "/yarn/status";
+export const YARN_ADD_URL = "/yarn/add";
+export const YARN_GET_URL = "/yarn";
+export const YARN_DROPDOWN_URL = "/yarn/options";
 
 // Product Type
 export const PRODUCT_TYPE_LIST_URL = "/product-type/list";

@@ -7,13 +7,12 @@ import {
   LocaleTabs,
   RHFFormDropdownField,
   RHFInputField,
-  RHFTextareaField,
   SubmitButton,
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { DEFAULT_LOCALE_VALUE, FULL_PATH_ROUTES, MESSAGES, ROUTES } from "@/constants";
-import { FABRICS_ADD_URL, FABRICS_UPDATE_URL, SIZE_ADD_URL, SIZE_UPDATE_URL } from "@/constants/apis";
+import { DEFAULT_LOCALE_VALUE, FULL_PATH_ROUTES, MESSAGES } from "@/constants";
+import { SIZE_ADD_URL, SIZE_UPDATE_URL } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { DropDownOptionType, Locale } from "@/types/index";
 import { initializeLocalizedObject } from "@/utils/common.utils";

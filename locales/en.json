@@ -73,7 +73,7 @@
     "SLUG": "Slug",
     "CATEGORIES": "Categories",
     "INVALID_SLUG": "Slug must be URL-friendly and cannot contain spaces",
-    "FABRIC_ID": "Fabric ID",
+    "YARN_ID": "Yarn ID",
     "PRODUCT_TYPE": "Product Type",
     "SECTION_NAME": "Section Name",
     "INFO": "Info",
@@ -86,7 +86,8 @@
     "QUANTITY_DISCOUNT": "Quantity Discount",
     "TOOLTIP": "Tooltip",
     "DESIGN": "Design",
-    "SHIPPING_AND_RETURN_POLICY": "Shipping And Return Policy"
+    "SHIPPING_AND_RETURN_POLICY": "Shipping And Return Policy",
+    "COPIED": "Copied"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
@@ -154,8 +155,8 @@
   "SIZE": {
     "TITLE": "Size"
   },
-  "FABRIC": {
-    "TITLE": "Fabric"
+  "YARN": {
+    "TITLE": "Yarn"
   },
   "COLOR": {
     "TITLE": "Color"

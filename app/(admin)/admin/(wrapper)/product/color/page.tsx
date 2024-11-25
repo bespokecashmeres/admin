@@ -1,6 +1,6 @@
 import { ListComponent } from "@/components";
-import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
-import { COLOR_LIST_URL, COLOR_STATUS_URL, FABRICS_LIST_URL, FABRICS_STATUS_URL, PRODUCT_TYPE_LIST_URL, PRODUCT_TYPE_STATUS_URL } from "@/constants/apis";
+import { FULL_PATH_ROUTES } from "@/constants";
+import { COLOR_LIST_URL, COLOR_STATUS_URL } from "@/constants/apis";
 import { ColumnConfig } from "@/types/index";
 import {
   generateAdminPageMetadata,
@@ -20,7 +20,12 @@ export async function generateMetadata() {
 
 const columnConfigs: ColumnConfig[] = [
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
-  { accessor: "code", header: "COMMON.CODE", cellType: "default" },
+  {
+    accessor: "code",
+    header: "COMMON.CODE",
+    cellType: "default",
+    showCopyButton: true,
+  },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
   { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
 ];

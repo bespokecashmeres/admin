@@ -1,13 +1,9 @@
 "use client";
 
-import {
-  FabricFormComponent,
-  LoadingMessage,
-  SizeFormComponent,
-} from "@/components";
+import { LoadingMessage, SizeFormComponent } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES } from "@/constants";
-import { FABRICS_GET_URL, SIZE_GET_URL } from "@/constants/apis";
+import { SIZE_GET_URL } from "@/constants/apis";
 import { DropDownOptionType } from "@/types";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";

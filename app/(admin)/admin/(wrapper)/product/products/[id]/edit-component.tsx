@@ -19,14 +19,14 @@ type EditComponentProps = {
   productTypeList: DropDownOptionType[];
   sizeList: DropDownOptionType[];
   colorList: DropDownOptionType[];
-  fabricList: DropDownOptionType[];
+  yarnList: DropDownOptionType[];
   relatedProductsList: DropDownOptionType[];
 };
 
 const EditComponent: FC<EditComponentProps> = ({
   id,
   colorList,
-  fabricList,
+  yarnList,
   genderList,
   productTypeList,
   sizeList,
@@ -67,7 +67,7 @@ const EditComponent: FC<EditComponentProps> = ({
       productTypeList={productTypeList}
       sizeList={sizeList}
       colorList={colorList}
-      fabricList={fabricList}
+      yarnList={yarnList}
       relatedProductsList={relatedProductsList}
     />
   ) : (

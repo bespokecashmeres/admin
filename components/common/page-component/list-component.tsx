@@ -168,6 +168,7 @@ const ListComponent = ({
                       ? listTranslations[language as Locale][value]
                       : value) || "-"
                   }
+                  showCopyButton={!!col.showCopyButton}
                 />
               ),
             };
