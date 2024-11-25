@@ -38,6 +38,7 @@ export default function Page() {
       title="SIZE.TITLE"
       columnConfigs={columnConfigs}
       showLanguageFilter
+      hideCreateButton
     />
   );
 }

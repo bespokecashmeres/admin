@@ -9,6 +9,7 @@ const PageHeader = ({
   searchPlaceholder,
   createButtonLabel,
   createButtonLink,
+  hideCreateButton,
 }: {
   title: string;
   handleSearchChange: (term: string) => void;
@@ -16,6 +17,7 @@ const PageHeader = ({
   searchPlaceholder: string;
   createButtonLabel: string;
   createButtonLink: string;
+  hideCreateButton: boolean;
 }) => {
   return (
     <div className="sm:flex sm:justify-between sm:items-center mb-5">
@@ -35,7 +37,9 @@ const PageHeader = ({
           placeholder={searchPlaceholder}
         />
         {/* Create button */}
-        <CreateLinkButton label={createButtonLabel} href={createButtonLink} />
+        {!hideCreateButton && (
+          <CreateLinkButton label={createButtonLabel} href={createButtonLink} />
+        )}
       </div>
     </div>
   );

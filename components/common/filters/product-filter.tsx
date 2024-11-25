@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { useDispatch } from "react-redux";
 import { getAWSImageUrl } from "@/utils/common.utils";
+import CONFIG from "@/config";
 
 interface ProductFilterProps {
   filter: Record<string, any>;
@@ -60,6 +61,10 @@ const ProductFilter: FC<ProductFilterProps> = ({ filter, handleFilter }) => {
         childCategoryId: undefined,
         subChildCategoryId: undefined,
       });
+      setMainCategories([]);
+      setSubCategories([]);
+      setChildCategories([]);
+      setSubChildCategories([]);
       return;
     }
     dispatch(setLoadingState(true));
@@ -111,6 +116,9 @@ const ProductFilter: FC<ProductFilterProps> = ({ filter, handleFilter }) => {
         childCategoryId: undefined,
         subChildCategoryId: undefined,
       });
+      setSubCategories([]);
+      setChildCategories([]);
+      setSubChildCategories([]);
       return;
     }
     dispatch(setLoadingState(true));
@@ -160,6 +168,8 @@ const ProductFilter: FC<ProductFilterProps> = ({ filter, handleFilter }) => {
         childCategoryId: undefined,
         subChildCategoryId: undefined,
       });
+      setChildCategories([]);
+      setSubChildCategories([]);
       return;
     }
     dispatch(setLoadingState(true));
@@ -207,6 +217,7 @@ const ProductFilter: FC<ProductFilterProps> = ({ filter, handleFilter }) => {
         childCategoryId: undefined,
         subChildCategoryId: undefined,
       });
+      setSubChildCategories([]);
       return;
     }
     dispatch(setLoadingState(true));
@@ -317,13 +328,15 @@ const ProductFilter: FC<ProductFilterProps> = ({ filter, handleFilter }) => {
   return (
     <div className="flex flex-wrap w-full gap-2">
       <div className="flex-col md:flex-row flex gap-2 w-full">
-        <DropdownField
-          name="product_type_dropdown"
-          label={t("PRODUCT_TYPE.TITLE")}
-          options={productTypes}
-          value={productType}
-          onChange={handleProductTypeChange}
-        />
+        {!CONFIG.hideProductType && (
+          <DropdownField
+            name="product_type_dropdown"
+            label={t("PRODUCT_TYPE.TITLE")}
+            options={productTypes}
+            value={productType}
+            onChange={handleProductTypeChange}
+          />
+        )}
         <DropdownField
           name="gender_dropdown"
           label={t("COMMON.GENDER")}

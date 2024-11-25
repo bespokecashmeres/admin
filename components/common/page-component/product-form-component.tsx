@@ -380,7 +380,12 @@ const ProductFormComponent = ({
       if (data.subChildCategoryId) {
         formData.append("subChildCategoryId", data.subChildCategoryId);
       }
-      formData.append("productTypeId", data.productTypeId);
+      if (productTypeList.length) {
+        formData.append(
+          "productTypeId",
+          CONFIG.hideProductType ? productTypeList[0].value : data.productTypeId
+        );
+      }
       formData.append("genderId", data.genderId);
       formData.append("sizeId", data.sizeId);
 
@@ -691,14 +696,16 @@ const ProductFormComponent = ({
                 options={subChildCategoryList}
               />
             </div>
-            <div className="w-full xl:w-1/2">
-              <RHFFormDropdownField
-                label={t("COMMON.PRODUCT_TYPE")}
-                name="productTypeId"
-                options={productTypeList}
-                required
-              />
-            </div>
+            {!CONFIG.hideProductType && (
+              <div className="w-full xl:w-1/2">
+                <RHFFormDropdownField
+                  label={t("COMMON.PRODUCT_TYPE")}
+                  name="productTypeId"
+                  options={productTypeList}
+                  required
+                />
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col gap-x-2 gap-y-4 xl:flex-row">

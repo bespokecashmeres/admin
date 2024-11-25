@@ -245,12 +245,12 @@ const SizeFormComponent = ({
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <LocaleTabs active={activeTab} handleTabChange={handleTabChange} />
-          <RHFFormDropdownField
+          {!CONFIG.hideProductType && <RHFFormDropdownField
             label={t("COMMON.PRODUCT_TYPE")}
             name="productTypeId"
             options={productTypes}
             required
-          />
+          />}
           {renderLanguageFields(activeTab)}
         </div>
         <div className="mt-2 flex justify-end gap-4">
