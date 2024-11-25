@@ -31,6 +31,7 @@ const ListComponent = ({
   reorderUrl = "",
   showLanguageFilter = false,
   customFilters = [],
+  hideCreateButton = false
 }: {
   fetchUrl: string;
   statusUrl: string;
@@ -42,6 +43,7 @@ const ListComponent = ({
   reorderUrl?: string;
   showLanguageFilter?: boolean;
   customFilters?: { component: React.ComponentType<any>; props?: Object }[];
+  hideCreateButton: boolean;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -187,6 +189,7 @@ const ListComponent = ({
         searchPlaceholder={`${t(searchPlaceholder)}...`}
         searchTerm={searchTerm}
         title={t(title)}
+        hideCreateButton={hideCreateButton}
       />
 
       {/* More actions */}
