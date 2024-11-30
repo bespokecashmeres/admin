@@ -1,9 +1,9 @@
-import React from "react";
-import clsx from "clsx";
 import Tooltip from "@/components/tooltip";
-import { EyeOpenIcon } from "../icons";
-import { useTranslations } from "next-intl";
 import { getAWSImageUrl } from "@/utils/common.utils";
+import clsx from "clsx";
+import { useTranslations } from "next-intl";
+import React from "react";
+import { EyeOpenIcon } from "../icons";
 
 interface FileFieldProps {
   label: string;
@@ -16,7 +16,7 @@ interface FileFieldProps {
   onChange: (file: FileList | null) => void;
   url?: string;
   fileType?: "image" | "pdf";
-  value: FileList | null;
+  value?: FileList | null;
 }
 
 const FileField = React.forwardRef<HTMLInputElement, FileFieldProps>(

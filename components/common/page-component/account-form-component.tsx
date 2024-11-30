@@ -12,7 +12,7 @@ import {
 } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
-import { LOCAL_STORAGE, MESSAGES, ROUTES } from "@/constants";
+import { COOKIES, MESSAGES, ROUTES } from "@/constants";
 import { UPDATE_ACCOUNT_URL } from "@/constants/apis";
 import {
   setAdminUserDetailsState,
@@ -21,9 +21,10 @@ import {
 } from "@/framework/redux/reducers";
 import { CommonSliceTypes } from "@/types/redux";
 import { getAWSImageUrl, pickProperties } from "@/utils/common.utils";
+import Cookies from "js-cookie";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -129,10 +130,11 @@ const AccountFormComponent = ({
           "mobile_number",
         ]);
 
-        localStorage.setItem(
-          LOCAL_STORAGE[isAdmin ? "admin" : "ws"],
+        Cookies.set(
+          COOKIES[isAdmin ? "admin" : "ws"],
           JSON.stringify(userData)
         );
+
         dispatch(
           (isAdmin ? setAdminUserDetailsState : setWholeSalerUserDetailsState)(
             userData

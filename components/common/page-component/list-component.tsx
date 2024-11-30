@@ -18,7 +18,7 @@ import { Column, ColumnConfig, Locale } from "@/types/index";
 import { getAWSImageUrl, statusChangeHandler } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import React, { Fragment, useCallback, useMemo } from "react";
+import React, { FC, Fragment, useCallback, useMemo } from "react";
 
 const ListComponent = ({
   fetchUrl,
@@ -31,7 +31,9 @@ const ListComponent = ({
   reorderUrl = "",
   showLanguageFilter = false,
   customFilters = [],
-  hideCreateButton = false
+  hideCreateButton = false,
+  AboveTableComponent,
+  aboveTabComponentProps = {},
 }: {
   fetchUrl: string;
   statusUrl: string;
@@ -44,6 +46,8 @@ const ListComponent = ({
   showLanguageFilter?: boolean;
   customFilters?: { component: React.ComponentType<any>; props?: Object }[];
   hideCreateButton?: boolean;
+  AboveTableComponent?: FC<any>;
+  aboveTabComponentProps?: Object;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -219,6 +223,10 @@ const ListComponent = ({
             handleTabChange={handleLanguageChange}
           />
         </div>
+      )}
+
+      {AboveTableComponent && (
+        <AboveTableComponent {...aboveTabComponentProps} language={language} />
       )}
 
       <ListTable

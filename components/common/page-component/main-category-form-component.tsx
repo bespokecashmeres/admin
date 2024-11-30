@@ -10,7 +10,7 @@ import {
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { FULL_PATH_ROUTES, LOCALES, MESSAGES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCALES, MESSAGES } from "@/constants";
 import {
   MAIN_CATEGORY_ADD_URL,
   MAIN_CATEGORY_UPDATE_URL,

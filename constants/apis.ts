@@ -115,3 +115,55 @@ export const PRODUCT_STATUS_URL = "/product/status";
 export const PRODUCT_ADD_URL = "/product/add";
 export const PRODUCT_GET_URL = "/product";
 export const PRODUCT_RELATED_OPTIONS_DROPDOWN_URL = "/product/related-options";
+
+// Yarn modules
+
+// Module Info
+export const MODULE_INFO_LIST_URL = "/yarn-module-info/list";
+export const MODULE_INFO_STATUS_URL = "/yarn-module-info/status";
+export const MODULE_INFO_UPSERT_URL = "/yarn-module-info/upsert";
+export const MODULE_INFO_UPSERT_INFO_URL = "/yarn-module-info/upsert/info";
+export const MODULE_INFO_UPSERT_IMAGE_URL = "/yarn-module-info/upsert/image";
+export const MODULE_INFO_GET_URL = "/yarn-module-info";
+export const MODULE_INFO_GET_BY_TYPE_URL = "/yarn-module-info/type";
+export const MODULE_INFO_DROPDOWN_URL = "/yarn-module-info/options";
+
+// Colour
+export const COLOUR_LIST_URL = "/yarn-module/colour/list";
+export const COLOUR_UPDATE_URL = "/yarn-module/colour/update";
+export const COLOUR_STATUS_URL = "/yarn-module/colour/status";
+export const COLOUR_ADD_URL = "/yarn-module/colour/add";
+export const COLOUR_GET_URL = "/yarn-module/colour";
+export const COLOUR_DROPDOWN_URL = "/yarn-module/colour/options";
+
+// Colour
+export const PATTERN_LIST_URL = "/yarn-module/pattern/list";
+export const PATTERN_UPDATE_URL = "/yarn-module/pattern/update";
+export const PATTERN_STATUS_URL = "/yarn-module/pattern/status";
+export const PATTERN_ADD_URL = "/yarn-module/pattern/add";
+export const PATTERN_GET_URL = "/yarn-module/pattern";
+export const PATTERN_DROPDOWN_URL = "/yarn-module/pattern/options";
+
+// Occassion
+export const OCCASSION_LIST_URL = "/yarn-module/occassion/list";
+export const OCCASSION_UPDATE_URL = "/yarn-module/occassion/update";
+export const OCCASSION_STATUS_URL = "/yarn-module/occassion/status";
+export const OCCASSION_ADD_URL = "/yarn-module/occassion/add";
+export const OCCASSION_GET_URL = "/yarn-module/occassion";
+export const OCCASSION_DROPDOWN_URL = "/yarn-module/occassion/options";
+
+// Seasonality
+export const SEASONALITY_LIST_URL = "/yarn-module/seasonality/list";
+export const SEASONALITY_UPDATE_URL = "/yarn-module/seasonality/update";
+export const SEASONALITY_STATUS_URL = "/yarn-module/seasonality/status";
+export const SEASONALITY_ADD_URL = "/yarn-module/seasonality/add";
+export const SEASONALITY_GET_URL = "/yarn-module/seasonality";
+export const SEASONALITY_DROPDOWN_URL = "/yarn-module/seasonality/options";
+
+// Perceived Weight
+export const PERCEIVED_WEIGHT_LIST_URL = "/yarn-module/perceived-weight/list";
+export const PERCEIVED_WEIGHT_UPDATE_URL = "/yarn-module/perceived-weight/update";
+export const PERCEIVED_WEIGHT_STATUS_URL = "/yarn-module/perceived-weight/status";
+export const PERCEIVED_WEIGHT_ADD_URL = "/yarn-module/perceived-weight/add";
+export const PERCEIVED_WEIGHT_GET_URL = "/yarn-module/perceived-weight";
+export const PERCEIVED_WEIGHT_DROPDOWN_URL = "/yarn-module/perceived-weight/options";

@@ -1,13 +1,14 @@
 "use client";
-import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
+import { COOKIES, FULL_PATH_ROUTES, ROUTES } from "@/constants";
 import {
   setAdminUserDetailsState,
   setWholeSalerUserDetailsState,
 } from "@/framework/redux/reducers";
 import { LoggedInUser } from "@/types/index";
 import { CommonSliceTypes } from "@/types/redux";
+import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
-import React, { Fragment, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Loading } from "../loader";
 
@@ -19,7 +20,7 @@ const ProgressLoader = () => {
 
   useEffect(() => {
     if (pathName.includes(`/${ROUTES.admin}`)) {
-      const userDetails = localStorage.getItem(LOCAL_STORAGE.admin);
+      const userDetails = Cookies.get(COOKIES.admin);
       if (userDetails) {
         const user = JSON.parse(userDetails) as LoggedInUser;
         dispatch(setAdminUserDetailsState(user));
@@ -33,7 +34,7 @@ const ProgressLoader = () => {
       //   router.replace(`/${ROUTES.admin}/${ROUTES.auth}/${ROUTES.signin}`);
       // }
     } else {
-      const userDetails = localStorage.getItem(LOCAL_STORAGE.ws);
+      const userDetails = Cookies.get(COOKIES.ws);
       if (userDetails) {
         const user = JSON.parse(userDetails) as LoggedInUser;
         dispatch(setWholeSalerUserDetailsState(user));

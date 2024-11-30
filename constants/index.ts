@@ -4,6 +4,13 @@ import { buildPath } from "@/utils/common.utils";
 
 export const LOCALES = ["en", "da"] as const;
 
+export const COOKIES = {
+  aToken: "aToken",
+  admin: "admin",
+  wToken: "wToken",
+  ws: "ws",
+} as const;
+
 export const LOCAL_STORAGE = {
   aToken: "aToken",
   admin: "admin",
@@ -39,7 +46,13 @@ export const ROUTES = {
   yarn: "yarn",
   productType: "product-type",
   size: "size",
-  color: "color"
+  color: "color",
+  yarnModule: "yarn-module",
+  colour: "colour",
+  pattern: "pattern",
+  occassion: "occassion",
+  seasonality: "seasonality",
+  perceivedWeight: "perceived-weight",
 } as const;
 
 export const FULL_PATH_ROUTES = {
@@ -68,6 +81,19 @@ export const FULL_PATH_ROUTES = {
   productProducts: buildPath(false, ROUTES.product, ROUTES.products),
   productProductType: buildPath(false, ROUTES.product, ROUTES.productType),
   productColor: buildPath(false, ROUTES.product, ROUTES.color),
+  yarnModuleColour: buildPath(false, ROUTES.yarnModule, ROUTES.colour),
+  yarnModulePattern: buildPath(false, ROUTES.yarnModule, ROUTES.pattern),
+  yarnModuleOccassion: buildPath(false, ROUTES.yarnModule, ROUTES.occassion),
+  yarnModuleSeasonality: buildPath(
+    false,
+    ROUTES.yarnModule,
+    ROUTES.seasonality
+  ),
+  yarnModulePerceivedWeight: buildPath(
+    false,
+    ROUTES.yarnModule,
+    ROUTES.perceivedWeight
+  ),
   productSize: buildPath(false, ROUTES.product, ROUTES.size),
   usersMeasurementType: buildPath(false, ROUTES.users, ROUTES.measurementType),
   adminDashboard: buildPath(true, ROUTES.admin, ROUTES.dashboard),
@@ -78,12 +104,7 @@ export const FULL_PATH_ROUTES = {
     ROUTES.categories,
     ROUTES.childCategory
   ),
-  adminProductYarn: buildPath(
-    true,
-    ROUTES.admin,
-    ROUTES.product,
-    ROUTES.yarn
-  ),
+  adminProductYarn: buildPath(true, ROUTES.admin, ROUTES.product, ROUTES.yarn),
   adminProductProducts: buildPath(
     true,
     ROUTES.admin,
@@ -110,7 +131,42 @@ export const FULL_PATH_ROUTES = {
     ROUTES.productType
   ),
   adminProductSize: buildPath(true, ROUTES.admin, ROUTES.product, ROUTES.size),
-  adminProductColor: buildPath(true, ROUTES.admin, ROUTES.product, ROUTES.color),
+  adminProductColor: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.product,
+    ROUTES.color
+  ),
+  adminYarnModuleColour: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.yarnModule,
+    ROUTES.colour
+  ),
+  adminYarnModulePattern: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.yarnModule,
+    ROUTES.pattern
+  ),
+  adminYarnModuleOccassion: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.yarnModule,
+    ROUTES.occassion
+  ),
+  adminYarnModuleSeasonality: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.yarnModule,
+    ROUTES.seasonality
+  ),
+  adminYarnModulePerceivedWeight: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.yarnModule,
+    ROUTES.perceivedWeight
+  ),
   adminCategoriesSubCategory: buildPath(
     true,
     ROUTES.admin,
@@ -181,3 +237,11 @@ export const DEFAULT_LOCALE_VALUE = LOCALES.reduce(
   (acc, lang) => ({ ...acc, [lang]: "" }),
   {}
 );
+
+export const YARN_MODULE_TYPE = {
+  COLOUR: "colour",
+  PATTERN: "pattern",
+  OCCASSION: "occassion",
+  SEASONALITY: "seasonality",
+  PERCEIVED_WEIGHT: "perceivedWeight",
+};

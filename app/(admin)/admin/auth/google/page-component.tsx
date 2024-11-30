@@ -1,10 +1,11 @@
 "use client";
 
-import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
+import { COOKIES, FULL_PATH_ROUTES } from "@/constants";
+import Cookies from "js-cookie";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 const PageComponent = () => {
   const t = useTranslations();
@@ -13,8 +14,8 @@ const PageComponent = () => {
   useEffect(() => {
     if (session) {
       const sessionData: any = session;
-      localStorage.setItem(LOCAL_STORAGE.aToken, sessionData?.accessToken);
-      localStorage.setItem(LOCAL_STORAGE.admin, sessionData?.userData);
+      Cookies.set(COOKIES.aToken, sessionData?.accessToken);
+      Cookies.set(COOKIES.admin, sessionData?.userData);
       router.push(FULL_PATH_ROUTES.adminDashboard);
     }
   }, [session]);
