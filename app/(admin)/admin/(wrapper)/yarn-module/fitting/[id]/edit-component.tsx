@@ -1,13 +1,13 @@
 "use client";
 
-import {
-  LoadingMessage,
-  LookBookFormComponent,
-} from "@/components";
+import { LoadingMessage } from "@/components";
+import YarnModuleFormComponent from "@/components/common/page-component/yarn-module-form-component";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { MESSAGES } from "@/constants";
+import { FULL_PATH_ROUTES, MESSAGES } from "@/constants";
 import {
-  LOOKBOOK_GET_URL,
+  FITTING_ADD_URL,
+  FITTING_GET_URL,
+  FITTING_UPDATE_URL,
 } from "@/constants/apis";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ const EditComponent = ({ id }: { id: string }) => {
     setLoading(true);
     const fetchSingleData = async () => {
       adminAxiosInstance
-        .get(`${LOOKBOOK_GET_URL}/${id}`)
+        .get(`${FITTING_GET_URL}/${id}`)
         .then((response) => {
           const result = response.data as any;
           if (result.success) {
@@ -43,7 +43,12 @@ const EditComponent = ({ id }: { id: string }) => {
   }, [id]);
 
   return !loading && editData ? (
-    <LookBookFormComponent editData={editData} />
+    <YarnModuleFormComponent
+      editData={editData}
+      addApi={FITTING_ADD_URL}
+      redirectUrl={FULL_PATH_ROUTES.adminYarnModuleFitting}
+      updateApi={FITTING_UPDATE_URL}
+    />
   ) : (
     <LoadingMessage />
   );

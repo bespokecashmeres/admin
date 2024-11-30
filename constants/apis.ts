@@ -167,3 +167,27 @@ export const PERCEIVED_WEIGHT_STATUS_URL = "/yarn-module/perceived-weight/status
 export const PERCEIVED_WEIGHT_ADD_URL = "/yarn-module/perceived-weight/add";
 export const PERCEIVED_WEIGHT_GET_URL = "/yarn-module/perceived-weight";
 export const PERCEIVED_WEIGHT_DROPDOWN_URL = "/yarn-module/perceived-weight/options";
+
+// Fitting
+export const FITTING_LIST_URL = "/yarn-module/fitting/list";
+export const FITTING_UPDATE_URL = "/yarn-module/fitting/update";
+export const FITTING_STATUS_URL = "/yarn-module/fitting/status";
+export const FITTING_ADD_URL = "/yarn-module/fitting/add";
+export const FITTING_GET_URL = "/yarn-module/fitting";
+export const FITTING_DROPDOWN_URL = "/yarn-module/fitting/options";
+
+// Material
+export const MATERIAL_LIST_URL = "/yarn-module/material/list";
+export const MATERIAL_UPDATE_URL = "/yarn-module/material/update";
+export const MATERIAL_STATUS_URL = "/yarn-module/material/status";
+export const MATERIAL_ADD_URL = "/yarn-module/material/add";
+export const MATERIAL_GET_URL = "/yarn-module/material";
+export const MATERIAL_DROPDOWN_URL = "/yarn-module/material/options";
+
+// Price Ranges
+export const PRICE_RANGE_LIST_URL = "/yarn-module/price-range/list";
+export const PRICE_RANGE_UPDATE_URL = "/yarn-module/price-range/update";
+export const PRICE_RANGE_STATUS_URL = "/yarn-module/price-range/status";
+export const PRICE_RANGE_ADD_URL = "/yarn-module/price-range/add";
+export const PRICE_RANGE_GET_URL = "/yarn-module/price-range";
+export const PRICE_RANGE_DROPDOWN_URL = "/yarn-module/price-range/options";

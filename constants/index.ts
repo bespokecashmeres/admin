@@ -53,6 +53,9 @@ export const ROUTES = {
   occassion: "occassion",
   seasonality: "seasonality",
   perceivedWeight: "perceived-weight",
+  fitting: "fitting",
+  material: "material",
+  priceRange: "price-range",
 } as const;
 
 export const FULL_PATH_ROUTES = {
@@ -93,6 +96,21 @@ export const FULL_PATH_ROUTES = {
     false,
     ROUTES.yarnModule,
     ROUTES.perceivedWeight
+  ),
+  yarnModuleFitting: buildPath(
+    false,
+    ROUTES.yarnModule,
+    ROUTES.fitting
+  ),
+  yarnModuleMaterial: buildPath(
+    false,
+    ROUTES.yarnModule,
+    ROUTES.material
+  ),
+  yarnModulePriceRange: buildPath(
+    false,
+    ROUTES.yarnModule,
+    ROUTES.priceRange
   ),
   productSize: buildPath(false, ROUTES.product, ROUTES.size),
   usersMeasurementType: buildPath(false, ROUTES.users, ROUTES.measurementType),
@@ -166,6 +184,24 @@ export const FULL_PATH_ROUTES = {
     ROUTES.admin,
     ROUTES.yarnModule,
     ROUTES.perceivedWeight
+  ),
+  adminYarnModuleFitting: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.yarnModule,
+    ROUTES.fitting
+  ),
+  adminYarnModuleMaterial: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.yarnModule,
+    ROUTES.material
+  ),
+  adminYarnModulePriceRanges: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.yarnModule,
+    ROUTES.priceRange
   ),
   adminCategoriesSubCategory: buildPath(
     true,
@@ -244,4 +280,7 @@ export const YARN_MODULE_TYPE = {
   OCCASSION: "occassion",
   SEASONALITY: "seasonality",
   PERCEIVED_WEIGHT: "perceivedWeight",
+  FITTING: "fitting",
+  MATERIAL: "material",
+  PRICE_RANGE: "priceRange"
 };

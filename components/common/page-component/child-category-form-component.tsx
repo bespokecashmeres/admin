@@ -10,7 +10,7 @@ import {
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { FULL_PATH_ROUTES, LOCALES, MESSAGES, ROUTES } from "@/constants";
+import { FULL_PATH_ROUTES, LOCALES, MESSAGES } from "@/constants";
 import {
   CHILD_CATEGORY_ADD_URL,
   CHILD_CATEGORY_UPDATE_URL,
@@ -169,7 +169,6 @@ const ChildCategoryFormComponent = ({
   };
 
   const handleMainCategoryChange = (option: any) => {
-    console.log(option);
     if (option) {
       const gender = methods.getValues("genderId");
       dispatch(setLoadingState(true));
