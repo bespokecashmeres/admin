@@ -1,6 +1,6 @@
-import React from "react";
-import clsx from "clsx";
 import Tooltip from "@/components/tooltip";
+import clsx from "clsx";
+import React from "react";
 
 interface TextareaFieldProps {
   label: string;
@@ -10,11 +10,26 @@ interface TextareaFieldProps {
   error?: string;
   disabled?: boolean;
   readOnly?: boolean;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLTextAreaElement, Element>) => void;
 }
 
 const TextareaField = React.forwardRef<HTMLTextAreaElement, TextareaFieldProps>(
   (
-    { label, name, error, required, infoText, disabled, readOnly, ...rest },
+    {
+      label,
+      name,
+      error,
+      required,
+      infoText,
+      disabled,
+      readOnly,
+      onChange,
+      value,
+      onBlur,
+      ...rest
+    },
     ref
   ) => {
     return (
@@ -43,6 +58,9 @@ const TextareaField = React.forwardRef<HTMLTextAreaElement, TextareaFieldProps>(
           id={name}
           name={name}
           disabled={disabled}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
           className={clsx(
             "w-full p-2 border rounded outline-none",
             "bg-white text-black border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600",

@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
-import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
-import { usePathname, useRouter } from "next/navigation";
-import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header/header";
+import Sidebar from "@/components/ui/sidebar";
+import { COOKIES, FULL_PATH_ROUTES, ROUTES } from "@/constants";
+import Cookies from "js-cookie";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
 export default function DefaultLayout({
   children,
@@ -15,14 +16,14 @@ export default function DefaultLayout({
 
   useEffect(() => {
     if (pathname.includes(`/${ROUTES.ws}`)) {
-      const wToken = localStorage.getItem(LOCAL_STORAGE.wToken);
+      const wToken = Cookies.get(COOKIES.wToken);
       if (!wToken) {
         router.replace(FULL_PATH_ROUTES.wsAuthSignin);
       }
       return;
     }
 
-    const aToken = localStorage.getItem(LOCAL_STORAGE.aToken);
+    const aToken = Cookies.get(COOKIES.aToken);
     if (!aToken) {
       router.replace(FULL_PATH_ROUTES.adminAuthSignin);
     }

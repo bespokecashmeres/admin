@@ -52,7 +52,7 @@
     "NA": "NA",
     "ACCOUNT": "Account",
     "SETTINGS": "Settings",
-    "MY_ACCOUNT":"My Account",
+    "MY_ACCOUNT": "My Account",
     "CHANGE_PASSWORD": "Change Password",
     "CHANGE": "Change",
     "CLEAR": "Clear",
@@ -87,7 +87,8 @@
     "TOOLTIP": "Tooltip",
     "DESIGN": "Design",
     "SHIPPING_AND_RETURN_POLICY": "Shipping And Return Policy",
-    "COPIED": "Copied"
+    "COPIED": "Copied",
+    "YARNS": "Yarns"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
@@ -160,5 +161,20 @@
   },
   "COLOR": {
     "TITLE": "Color"
+  },
+  "COLOUR": {
+    "TITLE": "Colour"
+  },
+  "PATTERN": {
+    "TITLE": "Pattern"
+  },
+  "OCCASSION": {
+    "TITLE": "Occassion"
+  },
+  "SEASONALITY": {
+    "TITLE": "Seasonality"
+  },
+  "PERCEIVED_WEIGHT": {
+    "TITLE": "Perceived Weight"
   }
 }

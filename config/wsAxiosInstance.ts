@@ -1,15 +1,16 @@
 // wsAxiosInstance.ts
 
+import { COOKIES, FULL_PATH_ROUTES } from "@/constants";
+import { clearLocalStorageTokenAndData } from "@/utils/common.utils";
 import axios, {
-  AxiosResponse,
   AxiosError,
+  AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
+import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import CONFIG from ".";
-import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
-import { getUserLocale } from "./locale";
-import { clearLocalStorageTokenAndData } from "@/utils/common.utils";
+import { getUserLocale, getWholeSalerToken } from "./locale";
 // import { toast } from 'react-toastify' // Import a toast library (e.g., react-toastify)
 
 const wsAxiosInstance = axios.create({
@@ -20,13 +21,14 @@ const wsAxiosInstance = axios.create({
 // Request interceptor for adding headers or performing any actions before the request is sent
 wsAxiosInstance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
+    let token = null;
     if (typeof window !== "undefined") {
-      // Add an authorization token from localStorage to the headers if available
-      const token = localStorage.getItem(LOCAL_STORAGE.wToken);
-
-      if (token && config.headers) {
-        config.headers.Authorization = token;
-      }
+      token = Cookies.get(COOKIES.wToken);
+    } else {
+      token = await getWholeSalerToken();
+    }
+    if (token && config.headers) {
+      config.headers.Authorization = token;
     }
     const locale = await getUserLocale();
     config.headers["Accept-Language"] = locale;

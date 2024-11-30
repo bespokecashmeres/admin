@@ -1,19 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
-import { LOCAL_STORAGE, MESSAGES, ROUTES, USER_TYPES } from "@/constants";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { FormProvider, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { RHFInputField, RHFPasswordField, SubmitButton } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
+import {
+  COOKIES,
+  MESSAGES,
+  ROUTES,
+  USER_TYPES
+} from "@/constants";
 import { SIGNIN_API_URL } from "@/constants/apis";
-import { useDispatch } from "react-redux";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { pickProperties } from "@/utils/common.utils";
+import Cookies from "js-cookie";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import SignInGoogle from "./signin-google";
 
 type SignInFormType = {
@@ -58,14 +64,11 @@ const SigninForm = () => {
           "email",
           "country_id",
           "profile_picture",
-          "mobile_number"
+          "mobile_number",
         ]);
-        localStorage.setItem(
-          LOCAL_STORAGE[isAdmin ? "aToken" : "wToken"],
-          result?.token
-        );
-        localStorage.setItem(
-          LOCAL_STORAGE[isAdmin ? "admin" : "ws"],
+        Cookies.set(COOKIES[isAdmin ? "aToken" : "wToken"], result?.token);
+        Cookies.set(
+          COOKIES[isAdmin ? "admin" : "ws"],
           JSON.stringify(userData)
         );
         router.replace(

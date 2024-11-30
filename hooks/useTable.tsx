@@ -5,7 +5,7 @@ import adminAxiosInstance from "@/config/adminAxiosInstance";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import { SORT_DIRECTION } from "@/constants/enum";
 import { Locale, SortConfig } from "@/types/index";
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type FetchResponse<T> = {
   currentPage: number;
@@ -57,11 +57,7 @@ const useTable = <T extends Record<string, any>>({
   const [totalRows, setTotalRows] = useState(0);
   const [language, setLanguage] = useState<Locale>(CONFIG.defaultLocale);
 
-  useEffect(() => {
-    fetchRows();
-  }, [currentPage, rowsPerPage, sortConfig, searchTerm, filter, language]);
-
-  const fetchRows = async () => {
+  const fetchRows = useCallback(async () => {
     setLoading(true);
     const sortBy = sortConfig?.key;
     const sortOrder = sortBy
@@ -77,7 +73,7 @@ const useTable = <T extends Record<string, any>>({
       sortBy,
       sortOrder,
       search: searchTerm,
-      ...(Object.keys(filter).length > 0 && { filter }),
+      filter,
       ...(showLanguageFilter ? { language } : {}),
     };
 
@@ -95,67 +91,75 @@ const useTable = <T extends Record<string, any>>({
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, rowsPerPage, sortConfig, searchTerm, filter, language]);
 
-  const handleSortChange = (key: string) => {
-    let direction = SORT_DIRECTION.ASCENDING;
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === SORT_DIRECTION.ASCENDING
-    ) {
-      direction = SORT_DIRECTION.DESCENDING;
-    }
-    setSortConfig({ key, direction });
-  };
+  useEffect(() => {
+    fetchRows();
+  }, [fetchRows]);
 
-  const handleSearchChange = (term: string) => {
+  const handleSortChange = useCallback(
+    (key: string) => {
+      let direction = SORT_DIRECTION.ASCENDING;
+      if (
+        sortConfig &&
+        sortConfig.key === key &&
+        sortConfig.direction === SORT_DIRECTION.ASCENDING
+      ) {
+        direction = SORT_DIRECTION.DESCENDING;
+      }
+      setSortConfig({ key, direction });
+    },
+    [sortConfig]
+  );
+
+  const handleSearchChange = useCallback((term: string) => {
     setSearchTerm(term);
     setCurrentPage(1); // Reset to first page on search
-  };
+  }, []);
 
-  const handleFilter = (filter: object) => {
+  const handleFilter = useCallback((filter: object) => {
     setFilter((prev) => ({ ...prev, ...filter }));
     setCurrentPage(1); // Reset to first page on search
-  };
+  }, []);
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
-  };
+  }, []);
 
-  const handleRowsPerPageChange = (number: number) => {
+  const handleRowsPerPageChange = useCallback((number: number) => {
     setRowsPerPage(number);
     setCurrentPage(1); // Reset to first page on rows per page change
-  };
+  }, []);
 
-  const onReorder = async (
-    reorderedRows: any,
-    currentPage: number,
-    rowsPerPage: number
-  ) => {
-    setLoading(true);
-    setRows(reorderedRows);
-    const startingOrder = (currentPage - 1) * rowsPerPage + 1;
-    const bulkOperationRows = reorderedRows?.map((row: any, index: number) => ({
-      _id: row._id,
-      order: startingOrder + index,
-    }));
+  const onReorder = useCallback(
+    async (reorderedRows: any, currentPage: number, rowsPerPage: number) => {
+      setLoading(true);
+      setRows(reorderedRows);
+      const startingOrder = (currentPage - 1) * rowsPerPage + 1;
+      const bulkOperationRows = reorderedRows?.map(
+        (row: any, index: number) => ({
+          _id: row._id,
+          order: startingOrder + index,
+        })
+      );
 
-    try {
-      await (isAdmin
-        ? adminAxiosInstance
-        : wsAxiosInstance
-      ).post(reorderUrl, { rows: JSON.stringify(bulkOperationRows) });
-    } catch (error) {
-      console.error("Failed to fetch rows:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+      try {
+        await (isAdmin ? adminAxiosInstance : wsAxiosInstance).post(
+          reorderUrl,
+          { rows: JSON.stringify(bulkOperationRows) }
+        );
+      } catch (error) {
+        console.error("Failed to fetch rows:", error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [reorderUrl]
+  );
 
-  const handleLanguageChange = (language: Locale) => {
+  const handleLanguageChange = useCallback((language: Locale) => {
     setLanguage(language);
-  };
+  }, []);
 
   return {
     rows,

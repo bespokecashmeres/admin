@@ -1,17 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { useAppProvider } from "@/app/app-provider";
-import { usePathname } from "next/navigation";
-import { Transition } from "@headlessui/react";
-import { getBreakpoint } from "../utils/utils";
-import SidebarLinkGroup from "./sidebar-link-group";
-import SidebarLink from "./sidebar-link";
-import Logo from "./logo";
-import clsx from "clsx";
-import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
-import { useTranslations } from "next-intl";
 import CONFIG from "@/config";
+import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
+import { Transition } from "@headlessui/react";
+import clsx from "clsx";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { getBreakpoint } from "../utils/utils";
+import Logo from "./logo";
+import SidebarLink from "./sidebar-link";
+import SidebarLinkGroup from "./sidebar-link-group";
 
 export default function Sidebar() {
   const sidebar = useRef<HTMLDivElement>(null);
@@ -149,6 +149,53 @@ export default function Sidebar() {
                   {
                     title: t("COLOR.TITLE"),
                     route: FULL_PATH_ROUTES.adminProductColor,
+                  },
+                ],
+              },
+              {
+                title: t("COMMON.YARNS"),
+                route: "#",
+                conditionRoute: ROUTES.yarnModule,
+                icon: (
+                  <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                    <path
+                      className={`fill-current ${
+                        newPathName.includes(ROUTES.yarnModule)
+                          ? "text-indigo-500"
+                          : "text-slate-600"
+                      }`}
+                      d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"
+                    />
+                    <path
+                      className={`fill-current ${
+                        newPathName.includes(ROUTES.yarnModule)
+                          ? "text-indigo-300"
+                          : "text-slate-400"
+                      }`}
+                      d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"
+                    />
+                  </svg>
+                ),
+                children: [
+                  {
+                    title: t("COLOUR.TITLE"),
+                    route: FULL_PATH_ROUTES.adminYarnModuleColour,
+                  },
+                  {
+                    title: t("PATTERN.TITLE"),
+                    route: FULL_PATH_ROUTES.adminYarnModulePattern,
+                  },
+                  {
+                    title: t("OCCASSION.TITLE"),
+                    route: FULL_PATH_ROUTES.adminYarnModuleOccassion,
+                  },
+                  {
+                    title: t("SEASONALITY.TITLE"),
+                    route: FULL_PATH_ROUTES.adminYarnModuleSeasonality,
+                  },
+                  {
+                    title: t("PERCEIVED_WEIGHT.TITLE"),
+                    route: FULL_PATH_ROUTES.adminYarnModulePerceivedWeight,
                   },
                 ],
               },

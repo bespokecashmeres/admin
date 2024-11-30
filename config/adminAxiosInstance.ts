@@ -1,15 +1,16 @@
 // adminAxiosInstance.ts
 
+import { COOKIES, FULL_PATH_ROUTES } from "@/constants";
+import { clearLocalStorageTokenAndData } from "@/utils/common.utils";
 import axios, {
-  AxiosResponse,
   AxiosError,
+  AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
+import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import CONFIG from ".";
-import { FULL_PATH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/constants";
-import { getUserLocale } from "./locale";
-import { clearLocalStorageTokenAndData } from "@/utils/common.utils";
+import { getAdminToken, getUserLocale } from "./locale";
 // import { toast } from 'react-toastify' // Import a toast library (e.g., react-toastify)
 
 const adminAxiosInstance = axios.create({
@@ -20,13 +21,14 @@ const adminAxiosInstance = axios.create({
 // Request interceptor for adding headers or performing any actions before the request is sent
 adminAxiosInstance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
+    let token = null;
     if (typeof window !== "undefined") {
-      // Add an authorization token from localStorage to the headers if available
-      const token = localStorage.getItem(LOCAL_STORAGE.aToken);
-
-      if (token && config.headers) {
-        config.headers.Authorization = token;
-      }
+      token = Cookies.get(COOKIES.aToken);
+    } else {
+      token = await getAdminToken()
+    }
+    if (token && config.headers) {
+      config.headers.Authorization = token;
     }
     const locale = await getUserLocale();
     config.headers["Accept-Language"] = locale;
@@ -48,9 +50,9 @@ adminAxiosInstance.interceptors.response.use(
     ) {
       if (typeof window !== "undefined") {
         clearLocalStorageTokenAndData();
+        toast.error(response.data?.message);
+        window.location.href = FULL_PATH_ROUTES.adminAuthSignin;
       }
-      toast.error(response.data?.message);
-      window.location.href = FULL_PATH_ROUTES.adminAuthSignin;
     }
     // You can handle successful responses here
     return response; // Return only the data portion of the response

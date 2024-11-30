@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useCallback } from "react";
-import { TabButton } from "../buttons";
 import { useTranslations } from "next-intl";
+import { useCallback } from "react";
+import { TabButton } from "../buttons";
 
 interface StatusFilterProps {
   filter: Record<string, any>;
@@ -11,10 +11,14 @@ interface StatusFilterProps {
 
 const StatusFilter = ({ filter, handleFilter }: StatusFilterProps) => {
   const t = useTranslations();
-  const filterHasStatus = filter.hasOwnProperty("status");
+  const filterHasStatus =
+    filter.hasOwnProperty("status") && filter.status !== undefined;
   const filterStatusValue = !!(filter.status ?? false);
 
-  const handleAllFilter = useCallback(() => handleFilter({}), [handleFilter]);
+  const handleAllFilter = useCallback(
+    () => handleFilter({ status: undefined }),
+    [handleFilter]
+  );
   const handleActiveFilter = useCallback(
     () => handleFilter({ status: true }),
     [handleFilter]

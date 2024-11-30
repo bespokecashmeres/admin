@@ -4,8 +4,8 @@ import { getUserLocale } from "@/config/locale";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import {
   BIND_LANGUAGE_TRANSLATE_KEY,
+  COOKIES,
   IMAGE_ALLOWED_TYPES,
-  LOCAL_STORAGE,
   LOCALES,
   MAX_FILE_UPLOAD_SIZE,
   MESSAGES,
@@ -14,18 +14,20 @@ import {
 import {
   COLOR_DROPDOWN_URL,
   COUNTRY_LIST_API,
-  YARN_DROPDOWN_URL,
   GENDER_LIST_API,
+  MODULE_INFO_GET_BY_TYPE_URL,
   PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
   PRODUCT_TYPE_DROPDOWN_URL,
   SIZE_DROPDOWN_URL,
+  YARN_DROPDOWN_URL,
 } from "@/constants/apis";
 import {
   AllowedImageFileType,
   AllowedPdfFileType,
   BindLanguageTranslateKeyType,
 } from "@/types/index";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import Cookies from "js-cookie";
 import { getLocale, getTranslations } from "next-intl/server";
 import toast from "react-hot-toast";
 
@@ -47,7 +49,7 @@ export const pickProperties = (
   }, {} as KeyValueObject);
 };
 
-export const handleApiCall = async <T>(
+export const handleApiCall = async <T extends AxiosResponse<T, any>>(
   url: string,
   method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" = "GET",
   data: any = null,
@@ -68,9 +70,19 @@ export const handleApiCall = async <T>(
     if (data) {
       config.data = data;
     }
-    const response: AxiosResponse<T> = await (isAdmin
+    const response: AxiosResponse = await (isAdmin
       ? adminAxiosInstance
       : wsAxiosInstance)(config);
+
+    await axios({
+      url: `${CONFIG.adminDomainURL}/api/protected-api`,
+      method: "GET",
+      headers: {
+        "is-admin": true,
+        "code": response.data?.code,
+        "status-code": response.data?.statusCode
+      }
+    });
     return response.data;
   } catch (error) {
     console.log("Fetch API error:", error);
@@ -80,10 +92,10 @@ export const handleApiCall = async <T>(
 
 export const clearLocalStorageTokenAndData = () => {
   if (typeof window !== "undefined") {
-    localStorage.removeItem(LOCAL_STORAGE.aToken);
-    localStorage.removeItem(LOCAL_STORAGE.admin);
-    localStorage.removeItem(LOCAL_STORAGE.wToken);
-    localStorage.removeItem(LOCAL_STORAGE.ws);
+    Cookies.remove(COOKIES.aToken);
+    Cookies.remove(COOKIES.admin);
+    Cookies.remove(COOKIES.wToken);
+    Cookies.remove(COOKIES.ws);
   }
 };
 
@@ -343,4 +355,22 @@ export const copyToClipboard = (value: string): void => {
   navigator.clipboard.writeText(value).catch((err: any) => {
     console.error("Failed to copy text:", err);
   });
+};
+
+export const getYarnModuleData = async (type: string) => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    `${MODULE_INFO_GET_BY_TYPE_URL}/${type}`,
+    "GET",
+    undefined,
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  if (res.code === 200) {
+    return res?.data;
+  } else {
+    return null;
+  }
 };
