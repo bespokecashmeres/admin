@@ -176,5 +176,14 @@
   },
   "PERCEIVED_WEIGHT": {
     "TITLE": "Perceived Weight"
+  },
+  "FITTING": {
+    "TITLE": "Fitting"
+  },
+  "MATERIAL": {
+    "TITLE": "Material"
+  },
+  "PRICE_RANGE": {
+    "TITLE": "Price Range"
   }
 }

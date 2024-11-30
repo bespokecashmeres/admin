@@ -197,6 +197,18 @@ export default function Sidebar() {
                     title: t("PERCEIVED_WEIGHT.TITLE"),
                     route: FULL_PATH_ROUTES.adminYarnModulePerceivedWeight,
                   },
+                  {
+                    title: t("FITTING.TITLE"),
+                    route: FULL_PATH_ROUTES.adminYarnModuleFitting,
+                  },
+                  {
+                    title: t("MATERIAL.TITLE"),
+                    route: FULL_PATH_ROUTES.adminYarnModuleMaterial,
+                  },
+                  {
+                    title: t("PRICE_RANGE.TITLE"),
+                    route: FULL_PATH_ROUTES.adminYarnModulePriceRanges,
+                  },
                 ],
               },
               {
