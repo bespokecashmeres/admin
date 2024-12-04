@@ -136,7 +136,7 @@ export const COLOUR_ADD_URL = "/yarn-module/colour/add";
 export const COLOUR_GET_URL = "/yarn-module/colour";
 export const COLOUR_DROPDOWN_URL = "/yarn-module/colour/options";
 
-// Colour
+// Pattern
 export const PATTERN_LIST_URL = "/yarn-module/pattern/list";
 export const PATTERN_UPDATE_URL = "/yarn-module/pattern/update";
 export const PATTERN_STATUS_URL = "/yarn-module/pattern/status";
@@ -191,3 +191,11 @@ export const PRICE_RANGE_STATUS_URL = "/yarn-module/price-range/status";
 export const PRICE_RANGE_ADD_URL = "/yarn-module/price-range/add";
 export const PRICE_RANGE_GET_URL = "/yarn-module/price-range";
 export const PRICE_RANGE_DROPDOWN_URL = "/yarn-module/price-range/options";
+
+// Gender
+export const GENDER_LIST_URL = "/gender/list";
+export const GENDER_UPDATE_URL = "/gender/update";
+export const GENDER_STATUS_URL = "/gender/status";
+export const GENDER_ADD_URL = "/gender/add";
+export const GENDER_GET_URL = "/gender";
+export const GENDER_DROPDOWN_URL = "/gender/options";
