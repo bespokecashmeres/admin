@@ -56,6 +56,7 @@ export const ROUTES = {
   fitting: "fitting",
   material: "material",
   priceRange: "price-range",
+  gender: "gender"
 } as const;
 
 export const FULL_PATH_ROUTES = {
@@ -85,6 +86,7 @@ export const FULL_PATH_ROUTES = {
   productProductType: buildPath(false, ROUTES.product, ROUTES.productType),
   productColor: buildPath(false, ROUTES.product, ROUTES.color),
   yarnModuleColour: buildPath(false, ROUTES.yarnModule, ROUTES.colour),
+  yarnGender: buildPath(false, ROUTES.gender),
   yarnModulePattern: buildPath(false, ROUTES.yarnModule, ROUTES.pattern),
   yarnModuleOccassion: buildPath(false, ROUTES.yarnModule, ROUTES.occassion),
   yarnModuleSeasonality: buildPath(
@@ -160,6 +162,11 @@ export const FULL_PATH_ROUTES = {
     ROUTES.admin,
     ROUTES.yarnModule,
     ROUTES.colour
+  ),
+  adminGender: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.gender
   ),
   adminYarnModulePattern: buildPath(
     true,
@@ -282,5 +289,5 @@ export const YARN_MODULE_TYPE = {
   PERCEIVED_WEIGHT: "perceivedWeight",
   FITTING: "fitting",
   MATERIAL: "material",
-  PRICE_RANGE: "priceRange"
+  PRICE_RANGE: "priceRange",
 };

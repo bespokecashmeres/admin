@@ -185,5 +185,8 @@
   },
   "PRICE_RANGE": {
     "TITLE": "Price Range"
+  },
+  "GENDER": {
+    "TITLE": "Gender"
   }
 }
