@@ -9,11 +9,11 @@ import {
   PRICE_RANGE_DROPDOWN_URL,
   SEASONALITY_DROPDOWN_URL,
 } from "@/constants/apis";
-import { getCountryNameList, getDropdownList } from "@/utils/common.utils";
 import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
+import { getCountryNameList, getDropdownList } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 import EditComponent from "./edit-component";

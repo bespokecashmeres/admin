@@ -2,11 +2,11 @@ import {
   AddEditWrapper,
   SubCategoryFormComponent
 } from "@/components";
-import { getGenderList } from "@/utils/common.utils";
 import {
   generateAdminPageMetadata,
   viewportData
 } from "@/utils/generateMetaData.util";
+import { getGenderList } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 

@@ -7,7 +7,7 @@ import { MEASUREMENT_TYPE_ACTIVE_LIST_URL } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { buildPath } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
