@@ -24,7 +24,7 @@ import {
 } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -196,24 +196,22 @@ const YarnFormComponent = ({
     setActiveTab(lang);
   };
 
-  const validationRules = useMemo(() => {
-    return {
-      image: {
-        validate: {
-          validateImageFileType: (file: FileList) => {
-            return validateImageFileType(
-              file,
-              t("COMMON.FILE_TYPE_NOT_ALLOWED_MESSAGE"),
-              ""
-            );
-          },
-          validateImageFileSize: (file: FileList) => {
-            return validateFileSize(file, t("COMMON.FILE_SIZE_MESSAGE"), "");
-          },
+  const validationRules = {
+    image: {
+      validate: {
+        validateImageFileType: (file: FileList) => {
+          return validateImageFileType(
+            file,
+            t("COMMON.FILE_TYPE_NOT_ALLOWED_MESSAGE"),
+            ""
+          );
+        },
+        validateImageFileSize: (file: FileList) => {
+          return validateFileSize(file, t("COMMON.FILE_SIZE_MESSAGE"), "");
         },
       },
-    };
-  }, [t, editData]);
+    },
+  };
 
   const renderLanguageFields = (language: Locale) => (
     <div key={language} className="space-y-4">
