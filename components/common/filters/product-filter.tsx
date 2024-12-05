@@ -1,24 +1,24 @@
 "use client";
 
-import React, { FC, useEffect, useState } from "react";
-import { DropdownField } from "../inputs";
-import { BindLanguageTranslateKeyType, DropDownOptionType } from "@/types";
-import { useTranslations } from "next-intl";
+import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
+import { MESSAGES } from "@/constants";
 import {
   CHILD_CATEGORY_DROPDOWN_URL,
-  GENDER_LIST_API,
+  GENDER_DROPDOWN_URL,
   MAIN_CATEGORY_DROPDOWN_URL,
   PRODUCT_TYPE_DROPDOWN_URL,
   SUB_CATEGORY_DROPDOWN_URL,
-  SUB_CHILD_CATEGORY_DROPDOWN_URL,
+  SUB_CHILD_CATEGORY_DROPDOWN_URL
 } from "@/constants/apis";
-import { BIND_LANGUAGE_TRANSLATE_KEY, MESSAGES } from "@/constants";
-import toast from "react-hot-toast";
 import { setLoadingState } from "@/framework/redux/reducers";
-import { useDispatch } from "react-redux";
+import { DropDownOptionType } from "@/types";
 import { getAWSImageUrl } from "@/utils/common.utils";
-import CONFIG from "@/config";
+import { useTranslations } from "next-intl";
+import { FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { DropdownField } from "../inputs";
 
 interface ProductFilterProps {
   filter: Record<string, any>;
@@ -274,19 +274,15 @@ const ProductFilter: FC<ProductFilterProps> = ({ filter, handleFilter }) => {
       try {
         dispatch(setLoadingState(true));
         const [genderResponse, productTypeResponse] = await Promise.all([
-          adminAxiosInstance.get(`${GENDER_LIST_API}`),
+          adminAxiosInstance.post(`${GENDER_DROPDOWN_URL}`),
           adminAxiosInstance.post(`${PRODUCT_TYPE_DROPDOWN_URL}`),
         ]);
 
         if (genderResponse.data.success) {
           const filteredGenderList = genderResponse.data?.data?.map(
-            (gender: { _id: string; name: string }) => ({
-              value: gender._id,
-              label: `${t(
-                BIND_LANGUAGE_TRANSLATE_KEY[
-                  gender.name as BindLanguageTranslateKeyType
-                ]
-              )}`,
+            (gender: { value: string; label: string }) => ({
+              value: gender.value,
+              label: gender.label,
             })
           );
           setGenders(filteredGenderList);
