@@ -1,36 +1,28 @@
 import { getAdminToken } from "@/config/locale";
 import {
-    BIND_LANGUAGE_TRANSLATE_KEY,
-} from "@/constants";
-import {
-    COLOR_DROPDOWN_URL,
-    COUNTRY_LIST_API,
-    GENDER_LIST_API,
-    MODULE_INFO_GET_BY_TYPE_URL,
-    PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
-    PRODUCT_TYPE_DROPDOWN_URL,
-    SIZE_DROPDOWN_URL,
-    YARN_DROPDOWN_URL,
+  COLOR_DROPDOWN_URL,
+  COUNTRY_LIST_API,
+  GENDER_DROPDOWN_URL,
+  MODULE_INFO_GET_BY_TYPE_URL,
+  PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
+  PRODUCT_TYPE_DROPDOWN_URL,
+  SIZE_DROPDOWN_URL,
+  YARN_DROPDOWN_URL
 } from "@/constants/apis";
-import {
-    BindLanguageTranslateKeyType,
-} from "@/types/index";
 import { getLocale, getTranslations } from "next-intl/server";
 import { handleApiCall } from "./common.utils";
 
 export const getGenderList = async () => {
   const locale = await getLocale();
   const t = await getTranslations();
-  const res: any = await handleApiCall(GENDER_LIST_API, "GET", null, {
+  const res: any = await handleApiCall(GENDER_DROPDOWN_URL, "POST", null, {
     "Accept-Language": locale,
   });
 
   const filteredGenderList = res?.data?.map(
-    (gender: { _id: string; name: string }) => ({
-      value: gender._id,
-      label: `${t(
-        BIND_LANGUAGE_TRANSLATE_KEY[gender.name as BindLanguageTranslateKeyType]
-      )}`,
+    (gender: { value: string; label: string }) => ({
+      value: gender?.value,
+      label: gender?.label,
     })
   );
 

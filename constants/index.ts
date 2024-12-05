@@ -271,11 +271,6 @@ export const PDF_ALLOWED_TYPES: AllowedPdfFileType[] = [
 
 export const MAX_FILE_UPLOAD_SIZE = 10 * 1024 * 1024;
 
-export const BIND_LANGUAGE_TRANSLATE_KEY = {
-  men: "COMMON.MEN",
-  women: "COMMON.WOMEN",
-} as const;
-
 export const DEFAULT_LOCALE_VALUE = LOCALES.reduce(
   (acc, lang) => ({ ...acc, [lang]: "" }),
   {}

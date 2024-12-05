@@ -1,6 +1,4 @@
-import { BIND_LANGUAGE_TRANSLATE_KEY, LOCALES } from "@/constants";
-import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { LOCALES } from "@/constants";
 
 export type Locale = (typeof LOCALES)[number];
 
@@ -52,7 +50,5 @@ export type LanguageContent = {
   language: string;
   text: string;
 };
-
-export type BindLanguageTranslateKeyType = keyof typeof BIND_LANGUAGE_TRANSLATE_KEY
 
 export type DropDownOptionType = { value: string; label: string };
