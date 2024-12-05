@@ -3,11 +3,10 @@ import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
+import { getProductTypeList } from "@/utils/server-api.utils";
 import { Viewport } from "next";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import EditComponent from "./edit-component";
-import { getProductTypeList, handleApiCall } from "@/utils/common.utils";
-import { PRODUCT_TYPE_DROPDOWN_URL } from "@/constants/apis";
 
 export const viewport: Viewport = viewportData;
 

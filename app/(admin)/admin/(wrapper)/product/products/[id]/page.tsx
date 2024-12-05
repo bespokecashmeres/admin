@@ -3,17 +3,17 @@ import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
-import { Viewport } from "next";
-import { getTranslations } from "next-intl/server";
-import EditComponent from "./edit-component";
 import {
   getColorList,
-  getYarnList,
   getGenderList,
   getProductTypeList,
   getRelatedProductsList,
   getSizeList,
-} from "@/utils/common.utils";
+  getYarnList,
+} from "@/utils/server-api.utils";
+import { Viewport } from "next";
+import { getTranslations } from "next-intl/server";
+import EditComponent from "./edit-component";
 
 export const viewport: Viewport = viewportData;
 

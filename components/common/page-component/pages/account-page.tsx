@@ -1,4 +1,4 @@
-import { getCountryList } from "@/utils/common.utils";
+import { getCountryList } from "@/utils/server-api.utils";
 import { getTranslations } from "next-intl/server";
 import { SettingWrapper } from "../../settings";
 import AccountFormComponent from "../account-form-component";

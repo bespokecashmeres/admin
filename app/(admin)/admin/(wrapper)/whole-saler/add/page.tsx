@@ -3,9 +3,9 @@ import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
+import { getCountryList } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
-import { getCountryList } from "@/utils/common.utils";
 
 export const viewport: Viewport = viewportData;
 

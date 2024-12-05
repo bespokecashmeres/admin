@@ -1,9 +1,9 @@
 "use client";
 
+import Tooltip from "@/components/tooltip";
+import clsx from "clsx";
 import React, { useMemo } from "react";
 import Select from "react-select";
-import clsx from "clsx";
-import Tooltip from "@/components/tooltip";
 
 interface DropdownFieldProps {
   label?: string;
@@ -46,7 +46,7 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
       required,
       infoText,
       disabled,
-      options,
+      options = [],
       value,
       onChange,
       isClearable = true,
@@ -55,7 +55,7 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
     ref
   ) => {
     const selectedOption = useMemo(
-      () => options.find((option) => value.includes(option.value)),
+      () => options.find((option) => value.includes(option.value)) ?? '',
       [value]
     );
 

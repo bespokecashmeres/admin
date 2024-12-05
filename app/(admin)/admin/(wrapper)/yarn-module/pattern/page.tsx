@@ -9,11 +9,11 @@ import {
   PATTERN_STATUS_URL
 } from "@/constants/apis";
 import { ColumnConfig } from "@/types/index";
-import { getYarnModuleData } from "@/utils/common.utils";
 import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
+import { getYarnModuleData } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 

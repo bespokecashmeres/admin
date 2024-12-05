@@ -1,12 +1,12 @@
-import { AddEditWrapper} from "@/components";
+import { AddEditWrapper } from "@/components";
 import {
   generateAdminPageMetadata,
   viewportData
 } from "@/utils/generateMetaData.util";
+import { getGenderList } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 import EditComponent from "./edit-component";
-import { getGenderList} from "@/utils/common.utils";
 
 export const viewport: Viewport = viewportData;
 
