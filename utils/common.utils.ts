@@ -265,19 +265,21 @@ export const getCountryNameList = async () => {
     value: country?._id,
     label: `${country?.name}`,
     image: `${country?.flag}`,
-  }));
+  })) ?? [];
 
   return filteredRes;
 };
 
 export const getProductTypeList = async () => {
   const locale = await getLocale();
+  const token = await getAdminToken();
   const res: any = await handleApiCall(
     PRODUCT_TYPE_DROPDOWN_URL,
     "POST",
     {},
     {
       "Accept-Language": locale,
+      Authorization: token,
     }
   );
 

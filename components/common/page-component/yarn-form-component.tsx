@@ -117,7 +117,7 @@ const YarnFormComponent = ({
   useEffect(() => {
     if (editData) {
       const defaultName = initializeLocalizedObject(editData.name);
-      const defaultYarn = editData.yarns.map((yarn) => ({
+      const defaultYarn = editData?.yarns?.map((yarn) => ({
         name: initializeLocalizedObject(yarn.name),
         value: initializeLocalizedObject(yarn.value),
         info: initializeLocalizedObject(yarn.info),
@@ -222,7 +222,7 @@ const YarnFormComponent = ({
       />
       <div className="mb-4">
         <div className="relative">
-          {fields.map((item: any, index) => (
+          {fields?.map((item: any, index) => (
             <fieldset
               key={item.id}
               className="mb-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 p-3"
@@ -289,55 +289,61 @@ const YarnFormComponent = ({
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <LocaleTabs active={activeTab} handleTabChange={handleTabChange} />
-          <RHFInputField name="yarnId" label={t("COMMON.YARN_ID")} required />
-          <RHFFormDropdownField
-            name="countryId"
-            label={t("COMMON.ORIGIN")}
-            options={countries}
-            required
-          />
-          <RHFFormDropdownField
-            name="colourId"
-            label={t("COMMON.COLOUR")}
-            options={colours}
-            required
-          />
-          <RHFFormDropdownField
-            name="patternId"
-            label={t("COMMON.PATTERN")}
-            options={patterns}
-            required
-          />
-          <RHFFormDropdownField
-            name="occassionId"
-            label={t("COMMON.OCCASSION")}
-            options={occassions}
-            required
-          />
-          <RHFFormDropdownField
-            name="seasonalityId"
-            label={t("COMMON.SEASONALITY")}
-            options={seasonalities}
-            required
-          />
-          <RHFFormDropdownField
-            name="perceivedWeightId"
-            label={t("COMMON.PERCEIVED_WEIGHT")}
-            options={perceivedWeights}
-            required
-          />
-          <RHFFormDropdownField
-            name="fittingId"
-            label={t("COMMON.FITTING")}
-            options={fittings}
-            required
-          />
-          <RHFFormDropdownField
-            name="materialId"
-            label={t("COMMON.MATERIAL")}
-            options={materials}
-            required
-          />
+          <div className="grid gap-5 md:grid-cols-3">
+            <RHFInputField name="yarnId" label={t("COMMON.YARN_ID")} required />
+            <RHFFormDropdownField
+              name="countryId"
+              label={t("COMMON.ORIGIN")}
+              options={countries}
+              required
+            />
+            <RHFFormDropdownField
+              name="colourId"
+              label={t("COMMON.COLOUR")}
+              options={colours}
+              required
+            />
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            <RHFFormDropdownField
+              name="patternId"
+              label={t("COMMON.PATTERN")}
+              options={patterns}
+              required
+            />
+            <RHFFormDropdownField
+              name="occassionId"
+              label={t("COMMON.OCCASSION")}
+              options={occassions}
+              required
+            />
+            <RHFFormDropdownField
+              name="seasonalityId"
+              label={t("COMMON.SEASONALITY")}
+              options={seasonalities}
+              required
+            />
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            <RHFFormDropdownField
+              name="perceivedWeightId"
+              label={t("COMMON.PERCEIVED_WEIGHT")}
+              options={perceivedWeights}
+              required
+            />
+            <RHFFormDropdownField
+              name="fittingId"
+              label={t("COMMON.FITTING")}
+              options={fittings}
+              required
+            />
+            <RHFFormDropdownField
+              name="materialId"
+              label={t("COMMON.MATERIAL")}
+              options={materials}
+              required
+            />
+          </div>
           <RHFFormDropdownField
             name="priceRangeId"
             label={t("COMMON.PRICE_RANGE")}
