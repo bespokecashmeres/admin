@@ -1,14 +1,37 @@
 "use client";
 
-import { YarnFormComponent, LoadingMessage } from "@/components";
+import { LoadingMessage, YarnFormComponent } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES } from "@/constants";
 import { YARN_GET_URL } from "@/constants/apis";
+import { DropDownOptionType } from "@/types";
 import { useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const EditComponent = ({ id }: { id: string }) => {
+const EditComponent = ({
+  id,
+  countries,
+  colours,
+  patterns,
+  occassions,
+  seasonalities,
+  perceivedWeights,
+  fittings,
+  materials,
+  priceRanges,
+}: {
+  id: string;
+  colours: DropDownOptionType[];
+  countries: DropDownOptionType[];
+  patterns: DropDownOptionType[];
+  occassions: DropDownOptionType[];
+  seasonalities: DropDownOptionType[];
+  perceivedWeights: DropDownOptionType[];
+  fittings: DropDownOptionType[];
+  materials: DropDownOptionType[];
+  priceRanges: DropDownOptionType[];
+}) => {
   const t = useTranslations();
   const [loading, setLoading] = useState(true);
   const [editData, setEditData] = useState(null);
@@ -38,7 +61,18 @@ const EditComponent = ({ id }: { id: string }) => {
   }, [id]);
 
   return !loading && editData ? (
-    <YarnFormComponent editData={editData} />
+    <YarnFormComponent
+      editData={editData}
+      countries={countries}
+      colours={colours}
+      patterns={patterns}
+      occassions={occassions}
+      seasonalities={seasonalities}
+      perceivedWeights={perceivedWeights}
+      fittings={fittings}
+      materials={materials}
+      priceRanges={priceRanges}
+    />
   ) : (
     <LoadingMessage />
   );

@@ -88,7 +88,16 @@
     "DESIGN": "Design",
     "SHIPPING_AND_RETURN_POLICY": "Shipping And Return Policy",
     "COPIED": "Copied",
-    "YARNS": "Yarns"
+    "YARNS": "Yarns",
+    "ORIGIN": "Origin",
+    "COLOUR": "Colour",
+    "PATTERN": "Pattern",
+    "OCCASSION": "Occassion",
+    "SEASONALITY": "Seasonality",
+    "PERCEIVED_WEIGHT": "Perceived Weight",
+    "FITTING": "Fitting",
+    "MATERIAL": "Material",
+    "PRICE_RANGE": "Price Range"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
