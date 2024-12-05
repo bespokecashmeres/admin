@@ -1,6 +1,6 @@
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { getUserLocale } from "@/config/locale";
+import { getAdminToken, getUserLocale } from "@/config/locale";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
 import {
   BIND_LANGUAGE_TRANSLATE_KEY,
@@ -79,9 +79,9 @@ export const handleApiCall = async <T extends AxiosResponse<T, any>>(
       method: "GET",
       headers: {
         "is-admin": true,
-        "code": response.data?.code,
-        "status-code": response.data?.statusCode
-      }
+        code: response.data?.code,
+        "status-code": response.data?.statusCode,
+      },
     });
     return response.data;
   } catch (error) {
@@ -249,6 +249,27 @@ export const getCountryList = async () => {
   return filteredRes;
 };
 
+export const getCountryNameList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    COUNTRY_LIST_API,
+    "GET",
+    null,
+    {
+      "Accept-Language": locale,
+    },
+    false
+  );
+
+  const filteredRes = res?.data?.map((country: any) => ({
+    value: country?._id,
+    label: `${country?.name}`,
+    image: `${country?.flag}`,
+  }));
+
+  return filteredRes;
+};
+
 export const getProductTypeList = async () => {
   const locale = await getLocale();
   const res: any = await handleApiCall(
@@ -297,6 +318,28 @@ export const getColorList = async () => {
     {},
     {
       "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getDropdownList = async (url: string) => {
+  const locale = await getLocale();
+  const token = await getAdminToken();
+  const res: any = await handleApiCall(
+    url,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+      Authorization: token,
     }
   );
 
