@@ -70,6 +70,54 @@ const Add = async () => {
   const countries =
     countriesResult.status === "fulfilled" ? countriesResult.value : [];
 
+  // Log resolved values
+  console.log("colours:", colours);
+  console.log("patterns:", patterns);
+  console.log("occassions:", occassions);
+  console.log("seasonalities:", seasonalities);
+  console.log("perceivedWeights:", perceivedWeights);
+  console.log("fittings:", fittings);
+  console.log("materials:", materials);
+  console.log("priceRanges:", priceRanges);
+  console.log("countries:", countries);
+
+  // Add error handling for all results
+  if (coloursResult.status === "rejected") {
+    console.error("Failed to fetch colours list:", coloursResult.reason);
+  }
+  if (patternsResult.status === "rejected") {
+    console.error("Failed to fetch patterns list:", patternsResult.reason);
+  }
+  if (occassionsResult.status === "rejected") {
+    console.error("Failed to fetch occassions list:", occassionsResult.reason);
+  }
+  if (seasonalityResult.status === "rejected") {
+    console.error(
+      "Failed to fetch seasonality list:",
+      seasonalityResult.reason
+    );
+  }
+  if (perceivedWeightResult.status === "rejected") {
+    console.error(
+      "Failed to fetch perceived weight list:",
+      perceivedWeightResult.reason
+    );
+  }
+  if (fittingResult.status === "rejected") {
+    console.error("Failed to fetch fittings list:", fittingResult.reason);
+  }
+  if (materialResult.status === "rejected") {
+    console.error("Failed to fetch materials list:", materialResult.reason);
+  }
+  if (priceRangeResult.status === "rejected") {
+    console.error(
+      "Failed to fetch price ranges list:",
+      priceRangeResult.reason
+    );
+  }
+  if (countriesResult.status === "rejected") {
+    console.error("Failed to fetch countries list:", countriesResult.reason);
+  }
   return (
     <AddEditWrapper title={t("COMMON.CREATE")}>
       <YarnFormComponent
