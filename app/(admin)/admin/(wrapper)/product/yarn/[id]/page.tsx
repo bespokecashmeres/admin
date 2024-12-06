@@ -6,8 +6,7 @@ import {
   OCCASSION_DROPDOWN_URL,
   PATTERN_DROPDOWN_URL,
   PERCEIVED_WEIGHT_DROPDOWN_URL,
-  PRICE_RANGE_DROPDOWN_URL,
-  SEASONALITY_DROPDOWN_URL,
+  SEASONALITY_DROPDOWN_URL
 } from "@/constants/apis";
 import {
   generateAdminPageMetadata,
@@ -37,7 +36,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
     perceivedWeightResult,
     fittingResult,
     materialResult,
-    priceRangeResult,
+    // priceRangeResult,
   ] = await Promise.allSettled([
     getCountryNameList(),
     getDropdownList(COLOUR_DROPDOWN_URL),
@@ -47,7 +46,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
     getDropdownList(PERCEIVED_WEIGHT_DROPDOWN_URL),
     getDropdownList(FITTING_DROPDOWN_URL),
     getDropdownList(MATERIAL_DROPDOWN_URL),
-    getDropdownList(PRICE_RANGE_DROPDOWN_URL),
+    // getDropdownList(PRICE_RANGE_DROPDOWN_URL),
   ]);
 
   const colours =
@@ -66,10 +65,10 @@ const Edit = async ({ params }: { params: { id: string } }) => {
     fittingResult.status === "fulfilled" ? fittingResult.value : [];
   const materials =
     materialResult.status === "fulfilled" ? materialResult.value : [];
-  const priceRanges =
-    priceRangeResult.status === "fulfilled" ? priceRangeResult.value : [];
-  const countries =
+    const countries =
     countriesResult.status === "fulfilled" ? countriesResult.value : [];
+    // const priceRanges =
+    //   priceRangeResult.status === "fulfilled" ? priceRangeResult.value : [];
 
   return (
     <AddEditWrapper title={t("COMMON.EDIT")}>
@@ -83,7 +82,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
         perceivedWeights={perceivedWeights}
         fittings={fittings}
         materials={materials}
-        priceRanges={priceRanges}
+        // priceRanges={priceRanges}
       />
     </AddEditWrapper>
   );
