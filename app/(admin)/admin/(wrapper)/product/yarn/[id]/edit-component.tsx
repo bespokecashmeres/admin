@@ -19,7 +19,7 @@ const EditComponent = ({
   perceivedWeights,
   fittings,
   materials,
-  priceRanges,
+  // priceRanges,
 }: {
   id: string;
   colours: DropDownOptionType[];
@@ -30,7 +30,7 @@ const EditComponent = ({
   perceivedWeights: DropDownOptionType[];
   fittings: DropDownOptionType[];
   materials: DropDownOptionType[];
-  priceRanges: DropDownOptionType[];
+  // priceRanges: DropDownOptionType[];
 }) => {
   const t = useTranslations();
   const [loading, setLoading] = useState(true);
@@ -71,7 +71,7 @@ const EditComponent = ({
       perceivedWeights={perceivedWeights}
       fittings={fittings}
       materials={materials}
-      priceRanges={priceRanges}
+      // priceRanges={priceRanges}
     />
   ) : (
     <LoadingMessage />

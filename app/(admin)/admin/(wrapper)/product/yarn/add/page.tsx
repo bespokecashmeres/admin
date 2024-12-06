@@ -6,8 +6,7 @@ import {
   OCCASSION_DROPDOWN_URL,
   PATTERN_DROPDOWN_URL,
   PERCEIVED_WEIGHT_DROPDOWN_URL,
-  PRICE_RANGE_DROPDOWN_URL,
-  SEASONALITY_DROPDOWN_URL,
+  SEASONALITY_DROPDOWN_URL
 } from "@/constants/apis";
 import {
   generateAdminPageMetadata,
@@ -36,7 +35,7 @@ const Add = async () => {
     perceivedWeightResult,
     fittingResult,
     materialResult,
-    priceRangeResult,
+    // priceRangeResult,
   ] = await Promise.allSettled([
     getCountryNameList(),
     getDropdownList(COLOUR_DROPDOWN_URL),
@@ -46,7 +45,7 @@ const Add = async () => {
     getDropdownList(PERCEIVED_WEIGHT_DROPDOWN_URL),
     getDropdownList(FITTING_DROPDOWN_URL),
     getDropdownList(MATERIAL_DROPDOWN_URL),
-    getDropdownList(PRICE_RANGE_DROPDOWN_URL),
+    // getDropdownList(PRICE_RANGE_DROPDOWN_URL),
   ]);
 
   const colours =
@@ -65,59 +64,11 @@ const Add = async () => {
     fittingResult.status === "fulfilled" ? fittingResult.value : [];
   const materials =
     materialResult.status === "fulfilled" ? materialResult.value : [];
-  const priceRanges =
-    priceRangeResult.status === "fulfilled" ? priceRangeResult.value : [];
-  const countries =
+    const countries =
     countriesResult.status === "fulfilled" ? countriesResult.value : [];
+    // const priceRanges =
+    //   priceRangeResult.status === "fulfilled" ? priceRangeResult.value : [];
 
-  // Log resolved values
-  console.log("colours:", colours);
-  console.log("patterns:", patterns);
-  console.log("occassions:", occassions);
-  console.log("seasonalities:", seasonalities);
-  console.log("perceivedWeights:", perceivedWeights);
-  console.log("fittings:", fittings);
-  console.log("materials:", materials);
-  console.log("priceRanges:", priceRanges);
-  console.log("countries:", countries);
-
-  // Add error handling for all results
-  if (coloursResult.status === "rejected") {
-    console.error("Failed to fetch colours list:", coloursResult.reason);
-  }
-  if (patternsResult.status === "rejected") {
-    console.error("Failed to fetch patterns list:", patternsResult.reason);
-  }
-  if (occassionsResult.status === "rejected") {
-    console.error("Failed to fetch occassions list:", occassionsResult.reason);
-  }
-  if (seasonalityResult.status === "rejected") {
-    console.error(
-      "Failed to fetch seasonality list:",
-      seasonalityResult.reason
-    );
-  }
-  if (perceivedWeightResult.status === "rejected") {
-    console.error(
-      "Failed to fetch perceived weight list:",
-      perceivedWeightResult.reason
-    );
-  }
-  if (fittingResult.status === "rejected") {
-    console.error("Failed to fetch fittings list:", fittingResult.reason);
-  }
-  if (materialResult.status === "rejected") {
-    console.error("Failed to fetch materials list:", materialResult.reason);
-  }
-  if (priceRangeResult.status === "rejected") {
-    console.error(
-      "Failed to fetch price ranges list:",
-      priceRangeResult.reason
-    );
-  }
-  if (countriesResult.status === "rejected") {
-    console.error("Failed to fetch countries list:", countriesResult.reason);
-  }
   return (
     <AddEditWrapper title={t("COMMON.CREATE")}>
       <YarnFormComponent
@@ -129,7 +80,7 @@ const Add = async () => {
         perceivedWeights={perceivedWeights}
         fittings={fittings}
         materials={materials}
-        priceRanges={priceRanges}
+        // priceRanges={priceRanges}
       />
     </AddEditWrapper>
   );
