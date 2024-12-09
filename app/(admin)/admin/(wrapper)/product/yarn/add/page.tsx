@@ -12,7 +12,7 @@ import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
-import { getCountryNameList, getDropdownList } from "@/utils/server-api.utils";
+import { getCountryNameList, getDropdownList, getGenderList } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -27,6 +27,7 @@ export async function generateMetadata() {
 const Add = async () => {
   const t = await getTranslations();
   const [
+    gendersResult,
     countriesResult,
     coloursResult,
     patternsResult,
@@ -37,6 +38,7 @@ const Add = async () => {
     materialResult,
     // priceRangeResult,
   ] = await Promise.allSettled([
+    getGenderList(),
     getCountryNameList(),
     getDropdownList(COLOUR_DROPDOWN_URL),
     getDropdownList(PATTERN_DROPDOWN_URL),
@@ -47,7 +49,9 @@ const Add = async () => {
     getDropdownList(MATERIAL_DROPDOWN_URL),
     // getDropdownList(PRICE_RANGE_DROPDOWN_URL),
   ]);
-
+  
+  const genders =
+    gendersResult.status === "fulfilled" ? gendersResult.value : [];
   const colours =
     coloursResult.status === "fulfilled" ? coloursResult.value : [];
   const patterns =
@@ -72,6 +76,7 @@ const Add = async () => {
   return (
     <AddEditWrapper title={t("COMMON.CREATE")}>
       <YarnFormComponent
+        genders={genders}
         countries={countries}
         colours={colours}
         patterns={patterns}

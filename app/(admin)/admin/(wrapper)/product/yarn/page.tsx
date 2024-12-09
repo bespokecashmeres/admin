@@ -19,8 +19,11 @@ export async function generateMetadata() {
 }
 
 const columnConfigs: ColumnConfig[] = [
+  { accessor: "image", header: "COMMON.IMAGE", cellType: "image" },
+  { accessor: "yarnId", header: "COMMON.YARN_ID", cellType: "default", showCopyButton: true },
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
-  { accessor: "yarnId", header: "COMMON.YARN_ID", cellType: "default" },
+  { accessor: "price", header: "COMMON.PRICE", cellType: "default" },
+  { accessor: "gender", header: "COMMON.GENDER", cellType: "default" },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
   { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
 ];

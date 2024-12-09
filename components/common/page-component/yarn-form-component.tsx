@@ -8,6 +8,7 @@ import {
   RHFFileField,
   RHFFormDropdownField,
   RHFInputField,
+  RHFNumberField,
   RHFTextareaField,
   SubmitButton,
 } from "@/components";
@@ -40,7 +41,9 @@ type YarnFormYarnsType = {
 
 type YarnFormFieldsType = {
   name: Record<string, string>;
-  yarnId: string;
+  price: number;
+  genderId: string;
+  image: string;
   countryId: string;
   colourId: string;
   patternId: string;
@@ -65,6 +68,7 @@ type EditYarnFormType = YarnFormFieldsType & {
 
 const YarnFormComponent = ({
   editData,
+  genders,
   countries,
   colours,
   patterns,
@@ -73,9 +77,10 @@ const YarnFormComponent = ({
   perceivedWeights,
   fittings,
   materials,
-  // priceRanges,
-}: {
+}: // priceRanges,
+{
   editData?: EditYarnFormType;
+  genders: DropDownOptionType[];
   colours: DropDownOptionType[];
   countries: DropDownOptionType[];
   patterns: DropDownOptionType[];
@@ -95,7 +100,9 @@ const YarnFormComponent = ({
   const methods = useForm<YarnFormType>({
     defaultValues: {
       name: DEFAULT_LOCALE_VALUE,
-      yarnId: "",
+      image: "",
+      price: 0,
+      genderId: "",
       colourId: "",
       countryId: "",
       fittingId: "",
@@ -124,8 +131,9 @@ const YarnFormComponent = ({
       }));
       methods.reset({
         name: defaultName,
+        genderId: editData.genderId || "",
+        price: editData.price || 0,
         yarns: defaultYarn,
-        yarnId: editData.yarnId || "",
         colourId: editData.colourId || "",
         countryId: editData.countryId || "",
         fittingId: editData.fittingId || "",
@@ -146,7 +154,11 @@ const YarnFormComponent = ({
       dispatch(setLoadingState(true));
       const formData = new FormData();
       formData.append("name", JSON.stringify(data.name));
-      formData.append("yarnId", data.yarnId);
+      formData.append("price", `${data.price}`);
+      if (data.image && data.image[0]) {
+        formData.append("image", data.image[0]);
+      }
+      formData.append("genderId", data.genderId);
       formData.append("colourId", data.colourId);
       formData.append("countryId", data.countryId);
       formData.append("fittingId", data.fittingId);
@@ -217,11 +229,6 @@ const YarnFormComponent = ({
 
   const renderLanguageFields = (language: Locale) => (
     <div key={language} className="space-y-4">
-      <RHFInputField
-        name={`name.${language}`}
-        label={`${t("COMMON.NAME")} (${language})`}
-        required
-      />
       <div className="mb-4">
         <div className="relative">
           {fields?.map((item: any, index) => (
@@ -292,7 +299,12 @@ const YarnFormComponent = ({
         <div className="space-y-4">
           <LocaleTabs active={activeTab} handleTabChange={handleTabChange} />
           <div className="grid gap-5 md:grid-cols-3">
-            <RHFInputField name="yarnId" label={t("COMMON.YARN_ID")} required />
+            <RHFFormDropdownField
+              name="genderId"
+              label={t("COMMON.GENDER")}
+              options={genders}
+              required
+            />
             <RHFFormDropdownField
               name="countryId"
               label={t("COMMON.ORIGIN")}
@@ -352,6 +364,25 @@ const YarnFormComponent = ({
             options={priceRanges}
             required
           /> */}
+          <div className="grid gap-5 md:grid-cols-3">
+            <RHFInputField
+              key={`name.${activeTab}`}
+              name={`name.${activeTab}`}
+              label={`${t("COMMON.NAME")} (${activeTab})`}
+              required
+            />
+            <RHFNumberField label={t("COMMON.PRICE")} name="price" required />
+            <RHFFileField
+              name="image"
+              label={t("COMMON.IMAGE")}
+              rules={validationRules.image}
+              accept="image/jpeg, image/png"
+              infoText={t("COMMON.IMAGE_ACCEPTED_FORMAT")}
+              fileType="image"
+              url={editData?.image ?? ""}
+              required={!editData?.image}
+            />
+          </div>
           {renderLanguageFields(activeTab)}
         </div>
         <div className="mt-2 flex justify-end gap-4">
