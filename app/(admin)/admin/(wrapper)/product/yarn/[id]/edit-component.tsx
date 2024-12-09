@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 
 const EditComponent = ({
   id,
+  genders,
   countries,
   colours,
   patterns,
@@ -19,9 +20,10 @@ const EditComponent = ({
   perceivedWeights,
   fittings,
   materials,
-  // priceRanges,
-}: {
+}: // priceRanges,
+{
   id: string;
+  genders: DropDownOptionType[];
   colours: DropDownOptionType[];
   countries: DropDownOptionType[];
   patterns: DropDownOptionType[];
@@ -63,6 +65,7 @@ const EditComponent = ({
   return !loading && editData ? (
     <YarnFormComponent
       editData={editData}
+      genders={genders}
       countries={countries}
       colours={colours}
       patterns={patterns}
