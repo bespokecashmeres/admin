@@ -51,4 +51,4 @@ export type LanguageContent = {
   text: string;
 };
 
-export type DropDownOptionType = { value: string; label: string };
+export type DropDownOptionType = { value: string; label: string; status?: boolean };

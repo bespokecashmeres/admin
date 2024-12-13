@@ -91,7 +91,15 @@ const useTable = <T extends Record<string, any>>({
     } finally {
       setLoading(false);
     }
-  }, [currentPage, rowsPerPage, sortConfig, searchTerm, filter, language]);
+  }, [
+    currentPage,
+    rowsPerPage,
+    sortConfig,
+    searchTerm,
+    filter,
+    language,
+    fetchUrl,
+  ]);
 
   useEffect(() => {
     fetchRows();

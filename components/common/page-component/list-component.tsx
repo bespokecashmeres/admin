@@ -34,11 +34,12 @@ const ListComponent = ({
   hideCreateButton = false,
   AboveTableComponent,
   aboveTabComponentProps = {},
+  createButtonUrl,
 }: {
   fetchUrl: string;
   statusUrl: string;
   pageRoute: string;
-  title: string;
+  title?: string;
   searchPlaceholder: string;
   columnConfigs: ColumnConfig[];
   showReorder?: boolean;
@@ -48,6 +49,7 @@ const ListComponent = ({
   hideCreateButton?: boolean;
   AboveTableComponent?: FC<any>;
   aboveTabComponentProps?: Object;
+  createButtonUrl?: string;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -188,12 +190,12 @@ const ListComponent = ({
       {/* Page header */}
       <PageHeader
         createButtonLabel={t("COMMON.CREATE")}
-        createButtonLink={`/${ROUTES.admin}/${pageRoute}/${ROUTES.add}`}
+        createButtonLink={createButtonUrl ?? `/${ROUTES.admin}/${pageRoute}/${ROUTES.add}`}
         handleSearchChange={handleSearchChange}
         searchPlaceholder={`${t(searchPlaceholder)}...`}
         searchTerm={searchTerm}
-        title={t(title)}
         hideCreateButton={hideCreateButton}
+        {...(title ? { title: t(title) } : {})}
       />
 
       {/* More actions */}

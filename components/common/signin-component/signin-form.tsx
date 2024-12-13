@@ -20,7 +20,6 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import SignInGoogle from "./signin-google";
 
 type SignInFormType = {
   email: string;
@@ -129,11 +128,11 @@ const SigninForm = () => {
         </form>
       </FormProvider>
 
-      {isAdmin && (
+      {/* {isAdmin && (
         <div className="pt-5 mt-6 border-t border-slate-200 dark:border-slate-700">
           <SignInGoogle disabled={disableSubmit} />
         </div>
-      )}
+      )} */}
     </>
   );
 };

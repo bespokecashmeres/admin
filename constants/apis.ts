@@ -199,3 +199,21 @@ export const GENDER_STATUS_URL = "/gender/status";
 export const GENDER_ADD_URL = "/gender/add";
 export const GENDER_GET_URL = "/gender";
 export const GENDER_DROPDOWN_URL = "/gender/options";
+
+// Step Type
+export const STEP_TYPE_TABS_URL = "/step-type/tabs";
+export const STEP_TYPE_UPDATE_URL = "/step-type/update";
+export const STEP_TYPE_STATUS_URL = "/step-type/status";
+export const STEP_TYPE_ADD_URL = "/step-type/add";
+export const STEP_TYPE_GET_URL = "/step-type";
+export const STEP_TYPE_DROPDOWN_URL = "/step-type/options";
+
+// Step Card
+export const STEP_CARD_LIST_URL = "/step-card/list";
+export const STEP_CARD_UPDATE_URL = "/step-card/update";
+export const STEP_CARD_STATUS_URL = "/step-card/status";
+export const STEP_CARD_ADD_URL = "/step-card/add";
+export const STEP_CARD_GET_URL = "/step-card";
+export const STEP_CARD_DROPDOWN_URL = "/step-card/options";
+export const STEP_CARD_ROW_REORDER_URL = "/step-card/row/reorder";
+
