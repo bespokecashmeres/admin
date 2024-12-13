@@ -56,7 +56,8 @@ export const ROUTES = {
   fitting: "fitting",
   material: "material",
   priceRange: "price-range",
-  gender: "gender"
+  gender: "gender",
+  steps: "steps",
 } as const;
 
 export const FULL_PATH_ROUTES = {
@@ -99,21 +100,9 @@ export const FULL_PATH_ROUTES = {
     ROUTES.yarnModule,
     ROUTES.perceivedWeight
   ),
-  yarnModuleFitting: buildPath(
-    false,
-    ROUTES.yarnModule,
-    ROUTES.fitting
-  ),
-  yarnModuleMaterial: buildPath(
-    false,
-    ROUTES.yarnModule,
-    ROUTES.material
-  ),
-  yarnModulePriceRange: buildPath(
-    false,
-    ROUTES.yarnModule,
-    ROUTES.priceRange
-  ),
+  yarnModuleFitting: buildPath(false, ROUTES.yarnModule, ROUTES.fitting),
+  yarnModuleMaterial: buildPath(false, ROUTES.yarnModule, ROUTES.material),
+  yarnModulePriceRange: buildPath(false, ROUTES.yarnModule, ROUTES.priceRange),
   productSize: buildPath(false, ROUTES.product, ROUTES.size),
   usersMeasurementType: buildPath(false, ROUTES.users, ROUTES.measurementType),
   adminDashboard: buildPath(true, ROUTES.admin, ROUTES.dashboard),
@@ -132,6 +121,7 @@ export const FULL_PATH_ROUTES = {
     ROUTES.products
   ),
   adminLookbook: buildPath(true, ROUTES.admin, ROUTES.lookbook),
+  adminSteps: buildPath(true, ROUTES.admin, ROUTES.steps),
   adminCategoriesMainCategory: buildPath(
     true,
     ROUTES.admin,
@@ -163,11 +153,7 @@ export const FULL_PATH_ROUTES = {
     ROUTES.yarnModule,
     ROUTES.colour
   ),
-  adminGender: buildPath(
-    true,
-    ROUTES.admin,
-    ROUTES.gender
-  ),
+  adminGender: buildPath(true, ROUTES.admin, ROUTES.gender),
   adminYarnModulePattern: buildPath(
     true,
     ROUTES.admin,

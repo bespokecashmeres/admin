@@ -97,7 +97,11 @@
     "PERCEIVED_WEIGHT": "Perceived Weight",
     "FITTING": "Fitting",
     "MATERIAL": "Material",
-    "PRICE_RANGE": "Price Range"
+    "PRICE_RANGE": "Price Range",
+    "STEPS": "Step Details",
+    "ADD": "Add",
+    "GRAPH_IMAGE": "Graph Image",
+    "REAL_IMAGE": "Real Image"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
@@ -197,5 +201,13 @@
   },
   "GENDER": {
     "TITLE": "Gender"
+  },
+  "STEP_TYPE": {
+    "TITLE": "Step Type",
+    "ADD_NEW_STEP": "Add New Step",
+    "EDIT_STEP": "Edit Step"
+  },
+  "STEP_CARD": {
+    "TITLE": "Step Card"
   }
 }

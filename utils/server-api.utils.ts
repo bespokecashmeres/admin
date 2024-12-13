@@ -7,6 +7,7 @@ import {
   PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
   PRODUCT_TYPE_DROPDOWN_URL,
   SIZE_DROPDOWN_URL,
+  STEP_TYPE_TABS_URL,
   YARN_DROPDOWN_URL
 } from "@/constants/apis";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -196,6 +197,27 @@ export const getRelatedProductsList = async (_id?: string) => {
     })) ?? [];
 
   return filteredRes;
+};
+
+
+export const getStepTypeData = async () => {
+  const locale = await getLocale();
+  const token = await getAdminToken();
+  const res: any = await handleApiCall(
+    `${STEP_TYPE_TABS_URL}`,
+    "POST",
+    undefined,
+    {
+      "Accept-Language": locale,
+      "Authorization": token
+    }
+  );
+
+  if (res.code === 200) {
+    return res?.data;
+  } else {
+    return null;
+  }
 };
 
 export const getYarnModuleData = async (type: string) => {

@@ -1,6 +1,5 @@
-import React from "react";
-import { DebouncedSearch } from "../inputs";
 import { CreateLinkButton } from "../buttons";
+import { DebouncedSearch } from "../inputs";
 
 const PageHeader = ({
   title,
@@ -11,7 +10,7 @@ const PageHeader = ({
   createButtonLink,
   hideCreateButton,
 }: {
-  title: string;
+  title?: string;
   handleSearchChange: (term: string) => void;
   searchTerm: string;
   searchPlaceholder: string;
@@ -23,9 +22,11 @@ const PageHeader = ({
     <div className="sm:flex sm:justify-between sm:items-center mb-5">
       {/* Left: Title */}
       <div className="mb-4 sm:mb-0">
-        <h1 className="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold">
-          {title} ✨
-        </h1>
+        {title && (
+          <h1 className="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold">
+            {title} ✨
+          </h1>
+        )}
       </div>
 
       {/* Right: Actions */}

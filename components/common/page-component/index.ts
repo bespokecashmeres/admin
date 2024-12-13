@@ -14,6 +14,7 @@ export { default as PageHeader } from "./page-header";
 export { default as ProductFormComponent } from "./product-form-component";
 export { default as ProductTypeFormComponent } from "./product-type-form-component";
 export { default as SizeFormComponent } from "./size-form-component";
+export { default as StepCardFormComponent } from "./step-card-form-component";
 export { default as SubCategoryFormComponent } from "./sub-category-form-component";
 export { default as SubChildCategoryFormComponent } from "./sub-child-category-form-component";
 export { default as UserFormComponent } from "./user-form-component";
