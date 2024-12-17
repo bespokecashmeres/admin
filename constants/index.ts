@@ -36,6 +36,7 @@ export const ROUTES = {
   settings: "settings",
   changePassword: "change-password",
   lookbook: "lookbook",
+  contactUs: "contact-us",
   categories: "categories",
   mainCategory: "main-category",
   subCategory: "sub-category",
@@ -121,6 +122,7 @@ export const FULL_PATH_ROUTES = {
     ROUTES.products
   ),
   adminLookbook: buildPath(true, ROUTES.admin, ROUTES.lookbook),
+  adminContactUs: buildPath(true, ROUTES.admin, ROUTES.contactUs),
   adminSteps: buildPath(true, ROUTES.admin, ROUTES.steps),
   adminCategoriesMainCategory: buildPath(
     true,
