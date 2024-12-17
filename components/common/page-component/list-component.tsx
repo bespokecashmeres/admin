@@ -22,8 +22,8 @@ import React, { FC, Fragment, useCallback, useMemo } from "react";
 
 const ListComponent = ({
   fetchUrl,
-  statusUrl,
-  pageRoute,
+  statusUrl = "",
+  pageRoute = "",
   title,
   searchPlaceholder,
   columnConfigs,
@@ -35,10 +35,11 @@ const ListComponent = ({
   AboveTableComponent,
   aboveTabComponentProps = {},
   createButtonUrl,
+  showStatusFilter = true,
 }: {
   fetchUrl: string;
-  statusUrl: string;
-  pageRoute: string;
+  statusUrl?: string;
+  pageRoute?: string;
   title?: string;
   searchPlaceholder: string;
   columnConfigs: ColumnConfig[];
@@ -50,6 +51,7 @@ const ListComponent = ({
   AboveTableComponent?: FC<any>;
   aboveTabComponentProps?: Object;
   createButtonUrl?: string;
+  showStatusFilter?: boolean;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -190,7 +192,9 @@ const ListComponent = ({
       {/* Page header */}
       <PageHeader
         createButtonLabel={t("COMMON.CREATE")}
-        createButtonLink={createButtonUrl ?? `/${ROUTES.admin}/${pageRoute}/${ROUTES.add}`}
+        createButtonLink={
+          createButtonUrl ?? `/${ROUTES.admin}/${pageRoute}/${ROUTES.add}`
+        }
         handleSearchChange={handleSearchChange}
         searchPlaceholder={`${t(searchPlaceholder)}...`}
         searchTerm={searchTerm}
@@ -199,9 +203,11 @@ const ListComponent = ({
       />
 
       {/* More actions */}
-      <div className="sm:flex sm:justify-between sm:items-center mb-5">
-        <StatusFilter filter={filter} handleFilter={handleFilter} />
-      </div>
+      {showStatusFilter && (
+        <div className="sm:flex sm:justify-between sm:items-center mb-5">
+          <StatusFilter filter={filter} handleFilter={handleFilter} />
+        </div>
+      )}
 
       {customFilters.length > 0 && (
         <div className="sm:flex sm:justify-between sm:items-center mb-5">

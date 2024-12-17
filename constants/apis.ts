@@ -217,3 +217,5 @@ export const STEP_CARD_GET_URL = "/step-card";
 export const STEP_CARD_DROPDOWN_URL = "/step-card/options";
 export const STEP_CARD_ROW_REORDER_URL = "/step-card/row/reorder";
 
+// Contact us
+export const PRE_USER_REGISTRATION_LIST_URL = "/pre-user-registration/list";
