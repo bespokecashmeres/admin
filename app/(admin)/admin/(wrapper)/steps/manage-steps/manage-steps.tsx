@@ -4,13 +4,14 @@ import {
   ModalWrapper,
   NormalButton,
   PlusIcon,
-  VariableLengthTabs
+  VariableLengthTabs,
 } from "@/components";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES } from "@/constants";
 import {
   STEP_TYPE_GET_URL,
-  STEP_TYPE_STATUS_URL
+  STEP_TYPE_ROW_REORDER_URL,
+  STEP_TYPE_STATUS_URL,
 } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
 import { DropDownOptionType } from "@/types";
@@ -24,6 +25,8 @@ import {
   useEffect,
   useState,
 } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import AddModal, { EditStepFormType } from "./add-modal";
@@ -114,6 +117,28 @@ const ManageSteps: FC<{
     []
   );
 
+  const handlePermanentDelete = useCallback(async (deleteId: string) => {
+    try {
+      dispatch(setLoadingState(true));
+      const stepResponse = await adminAxiosInstance({
+        url: `${STEP_TYPE_GET_URL}/${deleteId}`,
+        method: "DELETE",
+      });
+      if (stepResponse.data.success) {
+        setSteps((prev) => prev.filter((step) => step.value !== deleteId));
+      } else {
+        toast.error(
+          stepResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
+    } finally {
+      dispatch(setLoadingState(false));
+    }
+  }, []);
+
   const handleEditClick: MouseEventHandler<SVGSVGElement> = useCallback(
     async (event) => {
       try {
@@ -151,6 +176,40 @@ const ManageSteps: FC<{
     toggleModal(true);
   }, []);
 
+  const moveTab = useCallback(async (dragIndex: number, hoverIndex: number) => {
+    try {
+      dispatch(setLoadingState(true));
+      let tabs: DropDownOptionType[] = [];
+      setSteps((prev) => {
+        const updatedTabs = [...prev];
+
+        // Move the dragged tab to the new position
+        const [movedTab] = updatedTabs.splice(dragIndex, 1);
+        updatedTabs.splice(hoverIndex, 0, movedTab);
+
+        // Update the reorder field based on the new positions
+        updatedTabs.forEach((tab, index) => {
+          tab.reorder = index;
+        });
+
+        tabs = updatedTabs;
+
+        return updatedTabs;
+      });
+
+      await adminAxiosInstance({
+        url: STEP_TYPE_ROW_REORDER_URL,
+        method: "POST",
+        data: { rows: JSON.stringify(tabs) },
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
+    } finally {
+      dispatch(setLoadingState(false));
+    }
+  }, []);
+
   return (
     <>
       <div className="mb-4">
@@ -159,13 +218,17 @@ const ManageSteps: FC<{
         </h1>
       </div>
       <div className="flex items-start gap-5">
-        <VariableLengthTabs
-          active={activeStep}
-          handleChange={handleStepChange}
-          tabs={steps}
-          handleDelete={handleStepDelete}
-          handleEdit={handleEditClick}
-        />
+        <DndProvider backend={HTML5Backend}>
+          <VariableLengthTabs
+            active={activeStep}
+            handleChange={handleStepChange}
+            tabs={steps}
+            handleDelete={handleStepDelete}
+            handleEdit={handleEditClick}
+            handlePermanentDelete={handlePermanentDelete}
+            moveTab={moveTab}
+          />
+        </DndProvider>
         <NormalButton
           label={t("COMMON.ADD")}
           Icon={PlusIcon}
