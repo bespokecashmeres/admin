@@ -1,5 +1,17 @@
+export { default as CategoriesIcon } from "./categories-icon";
+export { default as ContactUsIcon } from "./contact-us-icon";
+export { default as CopyIcon } from "./copy-icon";
+export { default as DashboardIcon } from "./dashboard-icon";
 export { default as EyeCloseIcon } from "./eye-close-icon";
 export { default as EyeOpenIcon } from "./eye-open-icon";
-export { default as PlusIcon } from "./plus-icon";
+export { default as FittingSizesIcon } from "./fitting-sizes-icon";
+export { default as GenderIcon } from "./gender-icon";
 export { default as LogoIcon } from "./logo-icon";
-export { default as CopyIcon } from "./copy-icon";
+export { default as LookbookIcon } from "./lookbook-icon";
+export { default as PlusIcon } from "./plus-icon";
+export { default as ProductIcon } from "./product-icon";
+export { default as StepsIcon } from "./steps-icon";
+export { default as UsersIcon } from "./users-icon";
+export { default as WholeSalerIcon } from "./whole-saler-icon";
+export { default as YarnIcon } from "./yarn-icon";
+

@@ -205,6 +205,7 @@ export const STEP_TYPE_TABS_URL = "/step-type/tabs";
 export const STEP_TYPE_UPDATE_URL = "/step-type/update";
 export const STEP_TYPE_STATUS_URL = "/step-type/status";
 export const STEP_TYPE_ADD_URL = "/step-type/add";
+export const STEP_TYPE_ROW_REORDER_URL = "/step-type/row/reorder";
 export const STEP_TYPE_GET_URL = "/step-type";
 export const STEP_TYPE_DROPDOWN_URL = "/step-type/options";
 
@@ -219,3 +220,11 @@ export const STEP_CARD_ROW_REORDER_URL = "/step-card/row/reorder";
 
 // Contact us
 export const PRE_USER_REGISTRATION_LIST_URL = "/pre-user-registration/list";
+
+// Fitting sizes
+export const FITTING_SIZES_LIST_URL = "/fitting-sizes/list";
+export const FITTING_SIZES_UPDATE_URL = "/fitting-sizes/update";
+export const FITTING_SIZES_STATUS_URL = "/fitting-sizes/status";
+export const FITTING_SIZES_ADD_URL = "/fitting-sizes/add";
+export const FITTING_SIZES_GET_URL = "/fitting-sizes";
+export const FITTING_SIZES_DROPDOWN_URL = "/fitting-sizes/options";
