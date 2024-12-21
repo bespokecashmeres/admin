@@ -3,10 +3,11 @@ import ImageUploadField from "@/components/common/page-component/yarn-module-inf
 import InfoTextareaField from "@/components/common/page-component/yarn-module-info/info-text-area";
 import { FULL_PATH_ROUTES, YARN_MODULE_TYPE } from "@/constants";
 import {
+  MATERIAL_GET_URL,
   MATERIAL_LIST_URL,
   MATERIAL_STATUS_URL,
   MODULE_INFO_UPSERT_IMAGE_URL,
-  MODULE_INFO_UPSERT_INFO_URL
+  MODULE_INFO_UPSERT_INFO_URL,
 } from "@/constants/apis";
 import { ColumnConfig } from "@/types/index";
 import {
@@ -29,7 +30,12 @@ export async function generateMetadata() {
 const columnConfigs: ColumnConfig[] = [
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
-  { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
+  {
+    accessor: "_id",
+    header: "COMMON.ACTION",
+    cellType: "action",
+    showDeleteBtn: true,
+  },
 ];
 
 export default async function Page() {
@@ -40,6 +46,7 @@ export default async function Page() {
       <ListComponent
         fetchUrl={MATERIAL_LIST_URL}
         statusUrl={MATERIAL_STATUS_URL}
+        deleteUrl={MATERIAL_GET_URL}
         pageRoute={FULL_PATH_ROUTES.yarnModuleMaterial}
         searchPlaceholder="COMMON.SEARCH"
         title="MATERIAL.TITLE"

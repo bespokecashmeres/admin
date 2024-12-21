@@ -2,7 +2,7 @@
 
 import { ModalBlank } from "@/components/ui";
 import { useTranslations } from "next-intl";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const DeleteButtonWithConfirmation = ({
   deleteId,
@@ -18,7 +18,7 @@ const DeleteButtonWithConfirmation = ({
   const t = useTranslations();
   const [infoModalOpen, setInfoModalOpen] = useState<boolean>(false);
   return (
-    <div>
+    <>
       <button
         className="text-rose-500 hover:text-rose-600 rounded-full"
         onClick={() => {
@@ -81,7 +81,7 @@ const DeleteButtonWithConfirmation = ({
           </div>
         </div>
       </ModalBlank>
-    </div>
+    </>
   );
 };
 

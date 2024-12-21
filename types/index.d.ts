@@ -34,6 +34,7 @@ export interface ColumnConfig {
   cellType: CellType;
   shouldTranslate?: boolean;
   showCopyButton?: boolean;
+  showDeleteBtn?: boolean;
 }
 
 export interface Column {
@@ -51,4 +52,4 @@ export type LanguageContent = {
   text: string;
 };
 
-export type DropDownOptionType = { value: string; label: string; reorder?: number, status?: boolean };
+export type DropDownOptionType = { value: string; label: string; rowOrder?: number, status?: boolean };

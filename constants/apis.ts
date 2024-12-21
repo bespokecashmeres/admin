@@ -220,6 +220,7 @@ export const STEP_CARD_ROW_REORDER_URL = "/step-card/row/reorder";
 
 // Contact us
 export const PRE_USER_REGISTRATION_LIST_URL = "/pre-user-registration/list";
+export const PRE_USER_REGISTRATION_GET_URL = "/pre-user-registration";
 
 // Fitting sizes
 export const FITTING_SIZES_LIST_URL = "/fitting-sizes/list";

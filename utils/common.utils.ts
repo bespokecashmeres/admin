@@ -118,6 +118,36 @@ export const statusChangeHandler = async ({
   }
 };
 
+export const deleteHandler = async ({
+  setLoading,
+  apiUrl,
+  _id,
+  t,
+  fetchRows,
+}: {
+  setLoading: (value: React.SetStateAction<boolean>) => void;
+  apiUrl: string;
+  _id: string;
+  fetchRows: () => Promise<void>;
+  t: any;
+}) => {
+  try {
+    setLoading(true);
+    const response = await adminAxiosInstance.delete(`${apiUrl}/${_id}`);
+    if (response.data.success) {
+      toast.success(response.data.message || t(MESSAGES.SUCCESS));
+      fetchRows();
+    } else {
+      toast.error(response.data.message || t(MESSAGES.SOMETHING_WENT_WRONG));
+      setLoading(false);
+    }
+  } catch (error) {
+    console.error(error);
+    setLoading(false);
+    toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
+  }
+};
+
 /**
  * Constructs a complete AWS image URL based on the provided image key.
  *
@@ -202,3 +232,8 @@ export const copyToClipboard = (value: string): void => {
   });
 };
 
+
+export const uuidToObjectId = (uuid: string): string => {
+  // Remove dashes and take the first 24 characters
+  return uuid.replace(/-/g, '').slice(0, 24);
+};

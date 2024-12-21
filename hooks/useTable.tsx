@@ -135,7 +135,7 @@ const useTable = <T extends Record<string, any>>({
   }, []);
 
   const handleRowsPerPageChange = useCallback((number: number) => {
-    setRowsPerPage(number);
+    setRowsPerPage(parseInt(`${number}`));
     setCurrentPage(1); // Reset to first page on rows per page change
   }, []);
 

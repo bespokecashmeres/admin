@@ -5,6 +5,7 @@ import { FULL_PATH_ROUTES, YARN_MODULE_TYPE } from "@/constants";
 import {
   MODULE_INFO_UPSERT_IMAGE_URL,
   MODULE_INFO_UPSERT_INFO_URL,
+  OCCASSION_GET_URL,
   OCCASSION_LIST_URL,
   OCCASSION_STATUS_URL,
 } from "@/constants/apis";
@@ -29,7 +30,12 @@ export async function generateMetadata() {
 const columnConfigs: ColumnConfig[] = [
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
-  { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
+  {
+    accessor: "_id",
+    header: "COMMON.ACTION",
+    cellType: "action",
+    showDeleteBtn: true,
+  },
 ];
 
 export default async function Page() {
@@ -40,6 +46,7 @@ export default async function Page() {
       <ListComponent
         fetchUrl={OCCASSION_LIST_URL}
         statusUrl={OCCASSION_STATUS_URL}
+        deleteUrl={OCCASSION_GET_URL}
         pageRoute={FULL_PATH_ROUTES.yarnModuleOccassion}
         searchPlaceholder="COMMON.SEARCH"
         title="OCCASSION.TITLE"
