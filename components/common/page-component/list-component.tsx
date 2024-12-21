@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  DeleteButtonWithConfirmation,
   EditLinkButton,
   EyeOpenIcon,
   ListTable,
@@ -15,7 +16,11 @@ import { ROUTES } from "@/constants";
 import useTable from "@/hooks/useTable";
 import { listTranslations } from "@/locales/manual-translation";
 import { Column, ColumnConfig, Locale } from "@/types/index";
-import { getAWSImageUrl, statusChangeHandler } from "@/utils/common.utils";
+import {
+  deleteHandler,
+  getAWSImageUrl,
+  statusChangeHandler,
+} from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import React, { FC, Fragment, useCallback, useMemo } from "react";
@@ -36,6 +41,7 @@ const ListComponent = ({
   aboveTabComponentProps = {},
   createButtonUrl,
   showStatusFilter = true,
+  deleteUrl = "",
 }: {
   fetchUrl: string;
   statusUrl?: string;
@@ -52,6 +58,7 @@ const ListComponent = ({
   aboveTabComponentProps?: Object;
   createButtonUrl?: string;
   showStatusFilter?: boolean;
+  deleteUrl?: string;
 }) => {
   const pathname = usePathname();
   const t = useTranslations();
@@ -97,6 +104,19 @@ const ListComponent = ({
     [fetchRows, setLoading, statusUrl]
   );
 
+  const handleDelete = useCallback(
+    async (_id: string) => {
+      deleteHandler({
+        _id,
+        apiUrl: deleteUrl,
+        fetchRows,
+        t,
+        setLoading,
+      });
+    },
+    [fetchRows, setLoading, deleteUrl]
+  );
+
   const columns: Column[] = useMemo(
     () =>
       columnConfigs.map((col): Column => {
@@ -133,10 +153,17 @@ const ListComponent = ({
             return {
               ...commonProps,
               cell: (value: string) => (
-                <div className="flex justify-center">
+                <div className="flex justify-center items-center">
                   <EditLinkButton
                     href={`/${ROUTES.admin}/${pageRoute}/${value}`}
                   />
+                  {col.showDeleteBtn && (
+                    <DeleteButtonWithConfirmation
+                      deleteId={value}
+                      handleDelete={handleDelete}
+                      height={32}
+                    />
+                  )}
                 </div>
               ),
             };

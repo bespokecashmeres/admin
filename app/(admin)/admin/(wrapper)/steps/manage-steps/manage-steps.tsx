@@ -125,7 +125,13 @@ const ManageSteps: FC<{
         method: "DELETE",
       });
       if (stepResponse.data.success) {
-        setSteps((prev) => prev.filter((step) => step.value !== deleteId));
+        setSteps((prev) => {
+          const newSteps = prev.filter((step) => step.value !== deleteId);
+          if (activeStep === deleteId) {
+            setActiveStep(newSteps?.[0]?.value ?? "");
+          }
+          return newSteps;
+        });
       } else {
         toast.error(
           stepResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -137,7 +143,7 @@ const ManageSteps: FC<{
     } finally {
       dispatch(setLoadingState(false));
     }
-  }, []);
+  }, [activeStep]);
 
   const handleEditClick: MouseEventHandler<SVGSVGElement> = useCallback(
     async (event) => {
@@ -179,7 +185,7 @@ const ManageSteps: FC<{
   const moveTab = useCallback(async (dragIndex: number, hoverIndex: number) => {
     try {
       dispatch(setLoadingState(true));
-      let tabs: DropDownOptionType[] = [];
+      let reorderTabs: { _id: string; order: number }[] = [];
       setSteps((prev) => {
         const updatedTabs = [...prev];
 
@@ -187,12 +193,11 @@ const ManageSteps: FC<{
         const [movedTab] = updatedTabs.splice(dragIndex, 1);
         updatedTabs.splice(hoverIndex, 0, movedTab);
 
-        // Update the reorder field based on the new positions
+        // Update the rowOrder field based on the new positions
         updatedTabs.forEach((tab, index) => {
-          tab.reorder = index;
+          tab.rowOrder = index;
+          reorderTabs.push({ _id: tab.value, order: index });
         });
-
-        tabs = updatedTabs;
 
         return updatedTabs;
       });
@@ -200,7 +205,7 @@ const ManageSteps: FC<{
       await adminAxiosInstance({
         url: STEP_TYPE_ROW_REORDER_URL,
         method: "POST",
-        data: { rows: JSON.stringify(tabs) },
+        data: { rows: JSON.stringify(reorderTabs) },
       });
     } catch (error) {
       console.error(error);

@@ -1,9 +1,6 @@
 import { ListComponent } from "@/components";
 import { FULL_PATH_ROUTES } from "@/constants";
-import {
-  GENDER_LIST_URL,
-  GENDER_STATUS_URL,
-} from "@/constants/apis";
+import { GENDER_GET_URL, GENDER_LIST_URL, GENDER_STATUS_URL } from "@/constants/apis";
 import { ColumnConfig } from "@/types/index";
 import {
   generateAdminPageMetadata,
@@ -24,7 +21,12 @@ export async function generateMetadata() {
 const columnConfigs: ColumnConfig[] = [
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
-  { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
+  {
+    accessor: "_id",
+    header: "COMMON.ACTION",
+    cellType: "action",
+    showDeleteBtn: true,
+  },
 ];
 
 export default async function Page() {
@@ -33,6 +35,7 @@ export default async function Page() {
       <ListComponent
         fetchUrl={GENDER_LIST_URL}
         statusUrl={GENDER_STATUS_URL}
+        deleteUrl={GENDER_GET_URL}
         pageRoute={FULL_PATH_ROUTES.yarnGender}
         searchPlaceholder="COMMON.SEARCH"
         title="GENDER.TITLE"

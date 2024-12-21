@@ -5,7 +5,7 @@ import { SortConfig } from "@/types/index";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import React from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { DragDropButton } from "../buttons";
 
 export type ColumnType = {
@@ -48,7 +48,7 @@ const ListTable = <T extends Record<string, any>>({
   const t = useTranslations();
   const showReorder = !!onReorder;
 
-  // Handler for Drag and Drop reorder
+  // Handler for Drag and Drop rowOrder
   const handleOnDragEnd = (result: { source: any; destination: any }) => {
     const { source, destination } = result;
 

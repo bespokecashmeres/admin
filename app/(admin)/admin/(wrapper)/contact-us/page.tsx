@@ -1,5 +1,6 @@
 import { ListComponent } from "@/components";
 import {
+  PRE_USER_REGISTRATION_GET_URL,
   PRE_USER_REGISTRATION_LIST_URL
 } from "@/constants/apis";
 import { ColumnConfig } from "@/types/index";
@@ -29,13 +30,14 @@ const columnConfigs: ColumnConfig[] = [
     header: "COMMON.GENDER",
     cellType: "default",
   },
-  { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
+  { accessor: "_id", header: "COMMON.ACTION", cellType: "action", showDeleteBtn: true },
 ];
 
 export default function Page() {
   return (
     <ListComponent
       fetchUrl={PRE_USER_REGISTRATION_LIST_URL}
+      deleteUrl={PRE_USER_REGISTRATION_GET_URL}
       searchPlaceholder="COMMON.SEARCH"
       title="CONTACT_US.TITLE"
       columnConfigs={columnConfigs}

@@ -5,8 +5,9 @@ import { FULL_PATH_ROUTES, YARN_MODULE_TYPE } from "@/constants";
 import {
   MODULE_INFO_UPSERT_IMAGE_URL,
   MODULE_INFO_UPSERT_INFO_URL,
+  PERCEIVED_WEIGHT_GET_URL,
   PERCEIVED_WEIGHT_LIST_URL,
-  PERCEIVED_WEIGHT_STATUS_URL
+  PERCEIVED_WEIGHT_STATUS_URL,
 } from "@/constants/apis";
 import { ColumnConfig } from "@/types/index";
 import {
@@ -29,7 +30,12 @@ export async function generateMetadata() {
 const columnConfigs: ColumnConfig[] = [
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
-  { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
+  {
+    accessor: "_id",
+    header: "COMMON.ACTION",
+    cellType: "action",
+    showDeleteBtn: true,
+  },
 ];
 
 export default async function Page() {
@@ -40,6 +46,7 @@ export default async function Page() {
       <ListComponent
         fetchUrl={PERCEIVED_WEIGHT_LIST_URL}
         statusUrl={PERCEIVED_WEIGHT_STATUS_URL}
+        deleteUrl={PERCEIVED_WEIGHT_GET_URL}
         pageRoute={FULL_PATH_ROUTES.yarnModulePerceivedWeight}
         searchPlaceholder="COMMON.SEARCH"
         title="PERCEIVED_WEIGHT.TITLE"

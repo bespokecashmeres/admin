@@ -3,6 +3,7 @@ import ImageUploadField from "@/components/common/page-component/yarn-module-inf
 import InfoTextareaField from "@/components/common/page-component/yarn-module-info/info-text-area";
 import { FULL_PATH_ROUTES, YARN_MODULE_TYPE } from "@/constants";
 import {
+  COLOUR_GET_URL,
   COLOUR_LIST_URL,
   COLOUR_STATUS_URL,
   MODULE_INFO_UPSERT_IMAGE_URL,
@@ -29,7 +30,12 @@ export async function generateMetadata() {
 const columnConfigs: ColumnConfig[] = [
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
-  { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
+  {
+    accessor: "_id",
+    header: "COMMON.ACTION",
+    cellType: "action",
+    showDeleteBtn: true,
+  },
 ];
 
 export default async function Page() {
@@ -40,6 +46,7 @@ export default async function Page() {
       <ListComponent
         fetchUrl={COLOUR_LIST_URL}
         statusUrl={COLOUR_STATUS_URL}
+        deleteUrl={COLOUR_GET_URL}
         pageRoute={FULL_PATH_ROUTES.yarnModuleColour}
         searchPlaceholder="COMMON.SEARCH"
         title="COLOUR.TITLE"
