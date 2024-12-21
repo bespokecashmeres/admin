@@ -100,10 +100,10 @@ export default function Sidebar() {
                   />
                 ),
                 children: [
-                  {
-                    title: t("PRODUCT.TITLE"),
-                    route: FULL_PATH_ROUTES.adminProductProducts,
-                  },
+                  // {
+                  //   title: t("PRODUCT.TITLE"),
+                  //   route: FULL_PATH_ROUTES.adminProductProducts,
+                  // },
                   {
                     title: t("YARN.TITLE"),
                     route: FULL_PATH_ROUTES.adminProductYarn,
@@ -116,14 +116,14 @@ export default function Sidebar() {
                         },
                       ]
                     : []),
-                  {
-                    title: t("SIZE.TITLE"),
-                    route: FULL_PATH_ROUTES.adminProductSize,
-                  },
-                  {
-                    title: t("COLOR.TITLE"),
-                    route: FULL_PATH_ROUTES.adminProductColor,
-                  },
+                  // {
+                  //   title: t("SIZE.TITLE"),
+                  //   route: FULL_PATH_ROUTES.adminProductSize,
+                  // },
+                  // {
+                  //   title: t("COLOR.TITLE"),
+                  //   route: FULL_PATH_ROUTES.adminProductColor,
+                  // },
                 ],
               },
               {
@@ -168,10 +168,10 @@ export default function Sidebar() {
                     title: t("OCCASSION.TITLE"),
                     route: FULL_PATH_ROUTES.adminYarnModuleOccassion,
                   },
-                  {
-                    title: t("FITTING.TITLE"),
-                    route: FULL_PATH_ROUTES.adminYarnModuleFitting,
-                  },
+                  // {
+                  //   title: t("FITTING.TITLE"),
+                  //   route: FULL_PATH_ROUTES.adminYarnModuleFitting,
+                  // },
                   // {
                   //   title: t("PRICE_RANGE.TITLE"),
                   //   route: FULL_PATH_ROUTES.adminYarnModulePriceRanges,
