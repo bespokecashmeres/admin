@@ -1,6 +1,7 @@
 import { ListComponent } from "@/components";
 import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
 import {
+  STEP_CARD_GET_URL,
   STEP_CARD_LIST_URL,
   STEP_CARD_ROW_REORDER_URL,
   STEP_CARD_STATUS_URL,
@@ -13,7 +14,12 @@ const columnConfigs: ColumnConfig[] = [
   { accessor: "graphImage", header: "COMMON.GRAPH_IMAGE", cellType: "image" },
   { accessor: "realImage", header: "COMMON.REAL_IMAGE", cellType: "image" },
   { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
-  { accessor: "_id", header: "COMMON.ACTION", cellType: "action" },
+  {
+    accessor: "_id",
+    header: "COMMON.ACTION",
+    cellType: "action",
+    showDeleteBtn: true,
+  },
 ];
 
 const StepListComponent: FC<{ activeStep: string }> = ({ activeStep }) => {
@@ -21,6 +27,7 @@ const StepListComponent: FC<{ activeStep: string }> = ({ activeStep }) => {
     <ListComponent
       fetchUrl={`${STEP_CARD_LIST_URL}/${activeStep}`}
       createButtonUrl={`${FULL_PATH_ROUTES.adminSteps}/${ROUTES.add}/${activeStep}`}
+      deleteUrl={STEP_CARD_GET_URL}
       statusUrl={STEP_CARD_STATUS_URL}
       pageRoute={ROUTES.steps}
       searchPlaceholder="COMMON.SEARCH"
