@@ -35,6 +35,7 @@ export interface ColumnConfig {
   shouldTranslate?: boolean;
   showCopyButton?: boolean;
   showDeleteBtn?: boolean;
+  hideEditBtn?: boolean;
 }
 
 export interface Column {

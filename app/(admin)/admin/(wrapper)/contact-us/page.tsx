@@ -30,7 +30,7 @@ const columnConfigs: ColumnConfig[] = [
     header: "COMMON.GENDER",
     cellType: "default",
   },
-  { accessor: "_id", header: "COMMON.ACTION", cellType: "action", showDeleteBtn: true },
+  { accessor: "_id", header: "COMMON.ACTION", cellType: "action", showDeleteBtn: true, hideEditBtn: true },
 ];
 
 export default function Page() {

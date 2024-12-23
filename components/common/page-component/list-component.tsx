@@ -154,9 +154,11 @@ const ListComponent = ({
               ...commonProps,
               cell: (value: string) => (
                 <div className="flex justify-center items-center">
-                  <EditLinkButton
-                    href={`/${ROUTES.admin}/${pageRoute}/${value}`}
-                  />
+                  {!col.hideEditBtn && (
+                    <EditLinkButton
+                      href={`/${ROUTES.admin}/${pageRoute}/${value}`}
+                    />
+                  )}
                   {col.showDeleteBtn && (
                     <DeleteButtonWithConfirmation
                       deleteId={value}
