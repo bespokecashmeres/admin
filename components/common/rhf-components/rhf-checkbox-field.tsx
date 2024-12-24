@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
-import { useFormContext, useController } from "react-hook-form";
 import { CheckboxField } from "@/components";
 import { useTranslations } from "next-intl";
+import React from "react";
+import { useController, useFormContext } from "react-hook-form";
 
 interface RHFCheckboxProps {
   name: string;
@@ -33,6 +33,8 @@ const RHFCheckboxField: React.FC<RHFCheckboxProps> = ({
       ...rules,
     },
   });
+
+  console.log({field});
 
   return (
     <CheckboxField

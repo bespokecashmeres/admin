@@ -101,7 +101,9 @@
     "STEPS": "Step Details",
     "ADD": "Add",
     "GRAPH_IMAGE": "Graph Image",
-    "REAL_IMAGE": "Real Image"
+    "REAL_IMAGE": "Real Image",
+    "FITTING_SIZE": "Fitting Size",
+    "SHOULD_SHOW_FITTING_OPTIONS": "Should show fitting options"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
@@ -215,5 +217,8 @@
   },
   "FITTING_SIZES": {
     "TITLE": "Fitting Sizes"
+  },
+  "FITTING_SIZE_OPTIONS": {
+    "TITLE": "Fitting Size Options"
   }
 }

@@ -5,9 +5,9 @@ import YarnModuleFormComponent from "@/components/common/page-component/yarn-mod
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { FULL_PATH_ROUTES, MESSAGES } from "@/constants";
 import {
-  FITTING_SIZES_ADD_URL,
-  FITTING_SIZES_GET_URL,
-  FITTING_SIZES_UPDATE_URL,
+    FITTING_SIZES_ADD_URL,
+    FITTING_SIZES_GET_URL,
+    FITTING_SIZES_UPDATE_URL,
 } from "@/constants/apis";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -46,7 +46,7 @@ const EditComponent = ({ id }: { id: string }) => {
     <YarnModuleFormComponent
       editData={editData}
       addApi={FITTING_SIZES_ADD_URL}
-      redirectUrl={FULL_PATH_ROUTES.adminFittingSizes}
+      redirectUrl={FULL_PATH_ROUTES.adminFittingFittingSizes}
       updateApi={FITTING_SIZES_UPDATE_URL}
     />
   ) : (

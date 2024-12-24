@@ -18,7 +18,7 @@ import {
   StepsIcon,
   UsersIcon,
   WholeSalerIcon,
-  YarnIcon
+  YarnIcon,
 } from "../common";
 import { getBreakpoint } from "../utils/utils";
 import Logo from "./logo";
@@ -179,14 +179,24 @@ export default function Sidebar() {
                 ],
               },
               {
-                title: t("FITTING_SIZES.TITLE"),
-                route: FULL_PATH_ROUTES.adminFittingSizes,
-                conditionRoute: ROUTES.fittingSizes,
+                title: t("COMMON.FITTING"),
+                route: "#",
+                conditionRoute: ROUTES.fitting,
                 icon: (
                   <FittingSizesIcon
-                    isActive={newPathName.includes(ROUTES.fittingSizes)}
+                    isActive={newPathName.includes(ROUTES.fitting)}
                   />
                 ),
+                children: [
+                  {
+                    title: t("FITTING_SIZES.TITLE"),
+                    route: FULL_PATH_ROUTES.adminFittingFittingSizes,
+                  },
+                  {
+                    title: t("FITTING_SIZE_OPTIONS.TITLE"),
+                    route: FULL_PATH_ROUTES.adminFittingFittingSizeOptions,
+                  },
+                ],
               },
               {
                 title: t("COMMON.STEPS"),

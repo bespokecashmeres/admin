@@ -6,6 +6,7 @@ export { default as AccountFormComponent } from "./account-form-component";
 export { default as ChangePasswordFormComponent } from "./change-password-form-component";
 export { default as ChildCategoryFormComponent } from "./child-category-form-component";
 export { default as ColorFormComponent } from "./color-form-component";
+export { default as FittingSizeOptionsComponent } from "./fitting-size-options-component";
 export { default as ListComponent } from "./list-component";
 export { default as LookBookFormComponent } from "./lookbook-form-component";
 export { default as MainCategoryFormComponent } from "./main-category-form-component";

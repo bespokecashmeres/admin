@@ -2,6 +2,7 @@
 import {
   LocaleTabs,
   NormalCancelButton,
+  RHFCheckboxField,
   RHFInputField,
   SubmitButton,
 } from "@/components";
@@ -21,6 +22,7 @@ type AddStepFormType = {
   name: Record<string, string>;
   info: Record<string, string>;
   productTypeId: string;
+  showFittingOption?: boolean;
 };
 
 export type EditStepFormType = AddStepFormType & { _id: string };
@@ -41,16 +43,19 @@ const AddModal: FC<{
       name: DEFAULT_LOCALE_VALUE,
       info: DEFAULT_LOCALE_VALUE,
       productTypeId: "",
+      showFittingOption: false,
     },
   });
 
   // Reset form when editStep changes
   useEffect(() => {
     if (editStep) {
+      console.log("editStep: ", editStep);
       methods.reset({
         info: editStep.info,
         name: editStep.name,
         productTypeId: editStep.productTypeId,
+        showFittingOption: !!editStep.showFittingOption,
       });
     }
   }, [editStep, methods]);
@@ -74,6 +79,7 @@ const AddModal: FC<{
         const payload = {
           name: JSON.stringify(data.name),
           info: JSON.stringify(data.info),
+          showFittingOption: !!data.showFittingOption,
           ...(editStep ? { _id: editStep._id } : { productTypeId }),
         };
 
@@ -91,6 +97,7 @@ const AddModal: FC<{
               label: result.name?.en ?? "",
               value: result._id,
               status: result.status,
+              showFittingOption: result.showFittingOption,
             });
           }
         } else {
@@ -127,12 +134,7 @@ const AddModal: FC<{
   );
 
   const localeTabsMemo = useMemo(() => {
-    return (
-      <LocaleTabs
-        active={activeTab}
-        handleTabChange={handleTabChange}
-      />
-    );
+    return <LocaleTabs active={activeTab} handleTabChange={handleTabChange} />;
   }, [activeTab, handleTabChange]);
 
   return (
@@ -142,6 +144,10 @@ const AddModal: FC<{
           <div className="space-y-3">
             {localeTabsMemo}
             {renderLanguageFields(activeTab)}
+            <RHFCheckboxField
+              label={`${t("COMMON.SHOULD_SHOW_FITTING_OPTIONS")}.`}
+              name="showFittingOption"
+            />
           </div>
         </div>
         <div className="px-5 py-4 border-t border-slate-200 dark:border-slate-700">
@@ -150,10 +156,7 @@ const AddModal: FC<{
               label={t("COMMON.CANCEL")}
               onClick={handleClose}
             />
-            <SubmitButton
-              label={t("COMMON.SUBMIT")}
-              disabled={disableSubmit}
-            />
+            <SubmitButton label={t("COMMON.SUBMIT")} disabled={disableSubmit} />
           </div>
         </div>
       </form>

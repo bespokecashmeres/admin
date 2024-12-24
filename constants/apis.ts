@@ -69,7 +69,8 @@ export const SUB_CHILD_CATEGORY_UPDATE_URL = "/sub-child-category/update";
 export const SUB_CHILD_CATEGORY_STATUS_URL = "/sub-child-category/status";
 export const SUB_CHILD_CATEGORY_ADD_URL = "/sub-child-category/add";
 export const SUB_CHILD_CATEGORY_GET_URL = "/sub-child-category";
-export const SUB_CHILD_CATEGORY_ROW_REORDER_URL = "/sub-child-category/row/reorder";
+export const SUB_CHILD_CATEGORY_ROW_REORDER_URL =
+  "/sub-child-category/row/reorder";
 export const SUB_CHILD_CATEGORY_DROPDOWN_URL = "/sub-child-category/options";
 
 // Gender
@@ -162,11 +163,14 @@ export const SEASONALITY_DROPDOWN_URL = "/yarn-module/seasonality/options";
 
 // Perceived Weight
 export const PERCEIVED_WEIGHT_LIST_URL = "/yarn-module/perceived-weight/list";
-export const PERCEIVED_WEIGHT_UPDATE_URL = "/yarn-module/perceived-weight/update";
-export const PERCEIVED_WEIGHT_STATUS_URL = "/yarn-module/perceived-weight/status";
+export const PERCEIVED_WEIGHT_UPDATE_URL =
+  "/yarn-module/perceived-weight/update";
+export const PERCEIVED_WEIGHT_STATUS_URL =
+  "/yarn-module/perceived-weight/status";
 export const PERCEIVED_WEIGHT_ADD_URL = "/yarn-module/perceived-weight/add";
 export const PERCEIVED_WEIGHT_GET_URL = "/yarn-module/perceived-weight";
-export const PERCEIVED_WEIGHT_DROPDOWN_URL = "/yarn-module/perceived-weight/options";
+export const PERCEIVED_WEIGHT_DROPDOWN_URL =
+  "/yarn-module/perceived-weight/options";
 
 // Fitting
 export const FITTING_LIST_URL = "/yarn-module/fitting/list";
@@ -229,3 +233,13 @@ export const FITTING_SIZES_STATUS_URL = "/fitting-sizes/status";
 export const FITTING_SIZES_ADD_URL = "/fitting-sizes/add";
 export const FITTING_SIZES_GET_URL = "/fitting-sizes";
 export const FITTING_SIZES_DROPDOWN_URL = "/fitting-sizes/options";
+
+// Fitting size options
+export const FITTING_SIZE_OPTIONS_LIST_URL = "/fitting-size-options/list";
+export const FITTING_SIZE_OPTIONS_UPDATE_URL = "/fitting-size-options/update";
+export const FITTING_SIZE_OPTIONS_STATUS_URL = "/fitting-size-options/status";
+export const FITTING_SIZE_OPTIONS_ADD_URL = "/fitting-size-options/add";
+export const FITTING_SIZE_OPTIONS_GET_URL = "/fitting-size-options";
+export const FITTING_SIZE_OPTIONS_ROW_REORDER_URL = "/fitting-size-options/row/reorder";
+export const FITTING_SIZE_OPTIONS_DROPDOWN_URL =
+  "/fitting-size-options/options";

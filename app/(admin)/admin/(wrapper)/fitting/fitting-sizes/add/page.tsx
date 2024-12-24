@@ -26,7 +26,7 @@ const Add = async () => {
     <AddEditWrapper title={t("COMMON.CREATE")}>
       <YarnModuleFormComponent
         addApi={FITTING_SIZES_ADD_URL}
-        redirectUrl={FULL_PATH_ROUTES.adminFittingSizes}
+        redirectUrl={FULL_PATH_ROUTES.adminFittingFittingSizes}
         updateApi={FITTING_SIZES_UPDATE_URL}
       />
     </AddEditWrapper>
