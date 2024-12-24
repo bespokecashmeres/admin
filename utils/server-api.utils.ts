@@ -2,13 +2,15 @@ import { getAdminToken } from "@/config/locale";
 import {
   COLOR_DROPDOWN_URL,
   COUNTRY_LIST_API,
+  FITTING_SIZES_DROPDOWN_URL,
   GENDER_DROPDOWN_URL,
   MODULE_INFO_GET_BY_TYPE_URL,
   PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
   PRODUCT_TYPE_DROPDOWN_URL,
   SIZE_DROPDOWN_URL,
+  STEP_TYPE_GET_URL,
   STEP_TYPE_TABS_URL,
-  YARN_DROPDOWN_URL
+  YARN_DROPDOWN_URL,
 } from "@/constants/apis";
 import { getLocale, getTranslations } from "next-intl/server";
 import { handleApiCall } from "./common.utils";
@@ -78,6 +80,28 @@ export const getProductTypeList = async () => {
   const token = await getAdminToken();
   const res: any = await handleApiCall(
     PRODUCT_TYPE_DROPDOWN_URL,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+      Authorization: token,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getFittingSizesList = async () => {
+  const locale = await getLocale();
+  const token = await getAdminToken();
+  const res: any = await handleApiCall(
+    FITTING_SIZES_DROPDOWN_URL,
     "POST",
     {},
     {
@@ -199,7 +223,6 @@ export const getRelatedProductsList = async (_id?: string) => {
   return filteredRes;
 };
 
-
 export const getStepTypeData = async () => {
   const locale = await getLocale();
   const token = await getAdminToken();
@@ -209,7 +232,27 @@ export const getStepTypeData = async () => {
     undefined,
     {
       "Accept-Language": locale,
-      "Authorization": token
+      Authorization: token,
+    }
+  );
+
+  if (res.code === 200) {
+    return res?.data;
+  } else {
+    return null;
+  }
+};
+
+export const getSingleStepTypeData = async (_id: string) => {
+  const locale = await getLocale();
+  const token = await getAdminToken();
+  const res: any = await handleApiCall(
+    `${STEP_TYPE_GET_URL}/${_id}`,
+    "GET",
+    undefined,
+    {
+      "Accept-Language": locale,
+      Authorization: token,
     }
   );
 

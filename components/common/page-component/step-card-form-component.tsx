@@ -41,9 +41,11 @@ type EditStepCardFormType = {
 const StepCardFormComponent = ({
   editData,
   stepTypeId,
+  showFittingOption,
 }: {
   editData?: EditStepCardFormType;
   stepTypeId?: string;
+  showFittingOption: boolean;
 }) => {
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<Locale>(CONFIG.defaultLocale);

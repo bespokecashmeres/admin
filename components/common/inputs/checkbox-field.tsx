@@ -7,10 +7,11 @@ interface RHFCheckboxProps {
   required?: boolean;
   rules?: object;
   disabled?: boolean;
+  value: boolean;
 }
 
 const CheckboxField = React.forwardRef<HTMLInputElement, RHFCheckboxProps>(
-  ({ label, name, error, required, disabled, ...rest }, ref) => {
+  ({ label, name, error, required, disabled, value, ...rest }, ref) => {
     return (
       <div>
         {/* Start */}
@@ -20,6 +21,7 @@ const CheckboxField = React.forwardRef<HTMLInputElement, RHFCheckboxProps>(
             type="checkbox"
             className="form-checkbox"
             disabled={disabled}
+            checked={!!value}
             {...rest}
           />
           <span className="text-sm ml-2">{label}</span>

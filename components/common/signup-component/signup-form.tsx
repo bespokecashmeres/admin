@@ -1,24 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
-import { SubmitButton } from "../buttons";
 import {
-  RHFInputField,
-  RHFPasswordField,
   RHFCheckboxField,
-  RHFRadioGroup,
   RHFFormDropdownField,
+  RHFInputField,
   RHFNumberField,
+  RHFPasswordField,
+  RHFRadioGroup,
 } from "@/components";
-import { FormProvider, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { setLoadingState } from "@/framework/redux/reducers";
 import wsAxiosInstance from "@/config/wsAxiosInstance";
+import { FULL_PATH_ROUTES, MESSAGES, USER_TYPES } from "@/constants";
 import { REGISTARTION_URL } from "@/constants/apis";
-import { FULL_PATH_ROUTES, MESSAGES, ROUTES, USER_TYPES } from "@/constants";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { setLoadingState } from "@/framework/redux/reducers";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { SubmitButton } from "../buttons";
 
 type SignUpFormType = {
   email: string;
