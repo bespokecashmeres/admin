@@ -196,6 +196,11 @@ export default function Sidebar() {
                     title: t("FITTING_SIZE_OPTIONS.TITLE"),
                     route: FULL_PATH_ROUTES.adminFittingFittingSizeOptions,
                   },
+                  {
+                    title: t("FITTING_SIZE_OPTION_ALLOCATION.TITLE"),
+                    route:
+                      FULL_PATH_ROUTES.adminFittingFittingSizeOptionAllocation,
+                  },
                 ],
               },
               {

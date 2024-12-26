@@ -1,17 +1,29 @@
 "use client";
 
-import { LoadingMessage, StepCardFormComponent } from "@/components";
+import { LoadingMessage } from "@/components";
+import FittingSizeOptionAllocationComponent from "@/components/common/page-component/fitting-size-option-allocation-component";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
-import { MESSAGES } from "@/constants";
-import { STEP_CARD_GET_URL } from "@/constants/apis";
+import { FULL_PATH_ROUTES, MESSAGES } from "@/constants";
+import {
+  FITTING_SIZE_OPTION_ALLOCATION_ADD_URL,
+  FITTING_SIZE_OPTION_ALLOCATION_GET_URL,
+  FITTING_SIZE_OPTION_ALLOCATION_UPDATE_URL,
+} from "@/constants/apis";
+import { DropDownOptionType } from "@/types";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const EditComponent = ({
   id,
+  productTypeData,
+  fittingSizeData,
+  stepTypes,
 }: {
   id: string;
+  fittingSizeData: DropDownOptionType[];
+  productTypeData: DropDownOptionType[];
+  stepTypes: DropDownOptionType[];
 }) => {
   const t = useTranslations();
   const [loading, setLoading] = useState(true);
@@ -20,7 +32,7 @@ const EditComponent = ({
     setLoading(true);
     const fetchSingleData = async () => {
       adminAxiosInstance
-        .get(`${STEP_CARD_GET_URL}/${id}`)
+        .get(`${FITTING_SIZE_OPTION_ALLOCATION_GET_URL}/${id}`)
         .then((response) => {
           const result = response.data as any;
           if (result.success) {
@@ -42,8 +54,14 @@ const EditComponent = ({
   }, [id]);
 
   return !loading && editData ? (
-    <StepCardFormComponent
+    <FittingSizeOptionAllocationComponent
       editData={editData}
+      addApi={FITTING_SIZE_OPTION_ALLOCATION_ADD_URL}
+      redirectUrl={FULL_PATH_ROUTES.adminFittingFittingSizeOptionAllocation}
+      updateApi={FITTING_SIZE_OPTION_ALLOCATION_UPDATE_URL}
+      productTypeList={productTypeData}
+      fittingSizeList={fittingSizeData}
+      stepTypes={stepTypes}
     />
   ) : (
     <LoadingMessage />

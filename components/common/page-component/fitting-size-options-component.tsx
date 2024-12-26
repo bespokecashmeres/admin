@@ -62,7 +62,6 @@ const FittingSizeOptionsComponent = ({
       methods.reset({
         name: defaultTitle,
         fittingSizeId: editData.fittingSizeId,
-        productTypeId: editData.productTypeId,
       });
     }
   }, [editData]);
@@ -78,7 +77,7 @@ const FittingSizeOptionsComponent = ({
         data: {
           name: JSON.stringify(data.name),
           fittingSizeId: data.fittingSizeId,
-          productTypeId: data.productTypeId,
+          productTypeId: productTypeList?.[0]?.value,
           _id: editData?._id,
         },
       });
@@ -119,12 +118,6 @@ const FittingSizeOptionsComponent = ({
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <LocaleTabs active={activeTab} handleTabChange={handleTabChange} />
-          <RHFFormDropdownField
-            name="productTypeId"
-            label={t("COMMON.PRODUCT_TYPE")}
-            options={productTypeList}
-            required
-          />
           <RHFFormDropdownField
             name="fittingSizeId"
             label={t("COMMON.FITTING_SIZE")}

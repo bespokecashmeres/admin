@@ -41,11 +41,9 @@ type EditStepCardFormType = {
 const StepCardFormComponent = ({
   editData,
   stepTypeId,
-  showFittingOption,
 }: {
   editData?: EditStepCardFormType;
   stepTypeId?: string;
-  showFittingOption: boolean;
 }) => {
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<Locale>(CONFIG.defaultLocale);
@@ -208,6 +206,7 @@ const StepCardFormComponent = ({
             />
           </div>
         </div>
+        
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton label="Cancel" href={FULL_PATH_ROUTES.adminSteps} />
           <SubmitButton label="Submit" disabled={disableSubmit} />

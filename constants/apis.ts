@@ -240,6 +240,19 @@ export const FITTING_SIZE_OPTIONS_UPDATE_URL = "/fitting-size-options/update";
 export const FITTING_SIZE_OPTIONS_STATUS_URL = "/fitting-size-options/status";
 export const FITTING_SIZE_OPTIONS_ADD_URL = "/fitting-size-options/add";
 export const FITTING_SIZE_OPTIONS_GET_URL = "/fitting-size-options";
-export const FITTING_SIZE_OPTIONS_ROW_REORDER_URL = "/fitting-size-options/row/reorder";
+export const FITTING_SIZE_OPTIONS_ROW_REORDER_URL =
+  "/fitting-size-options/row/reorder";
 export const FITTING_SIZE_OPTIONS_DROPDOWN_URL =
   "/fitting-size-options/options";
+
+// Fitting size option allocation
+export const FITTING_SIZE_OPTION_ALLOCATION_LIST_URL =
+  "/fitting-size-option-allocation/list";
+export const FITTING_SIZE_OPTION_ALLOCATION_UPDATE_URL =
+  "/fitting-size-option-allocation/update";
+export const FITTING_SIZE_OPTION_ALLOCATION_STATUS_URL =
+  "/fitting-size-option-allocation/status";
+export const FITTING_SIZE_OPTION_ALLOCATION_ADD_URL =
+  "/fitting-size-option-allocation/add";
+export const FITTING_SIZE_OPTION_ALLOCATION_GET_URL =
+  "/fitting-size-option-allocation";
