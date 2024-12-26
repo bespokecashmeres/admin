@@ -3,7 +3,6 @@ import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
-import { getSingleStepTypeData } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -17,14 +16,10 @@ export async function generateMetadata() {
 
 const Add = async ({ params }: { params: { stepTypeId: string } }) => {
   const t = await getTranslations();
-  const data = await getSingleStepTypeData(params.stepTypeId);
 
   return (
     <AddEditWrapper title={t("COMMON.CREATE")}>
-      <StepCardFormComponent
-        stepTypeId={params?.stepTypeId}
-        showFittingOption={!!data?.showFittingOption}
-      />
+      <StepCardFormComponent stepTypeId={params?.stepTypeId} />
     </AddEditWrapper>
   );
 };

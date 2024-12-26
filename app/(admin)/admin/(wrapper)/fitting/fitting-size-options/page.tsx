@@ -25,11 +25,6 @@ export async function generateMetadata() {
 const columnConfigs: ColumnConfig[] = [
   { accessor: "name", header: "COMMON.NAME", cellType: "default" },
   {
-    accessor: "productType",
-    header: "COMMON.PRODUCT_TYPE",
-    cellType: "default",
-  },
-  {
     accessor: "fittingSize",
     header: "COMMON.FITTING_SIZE",
     cellType: "default",

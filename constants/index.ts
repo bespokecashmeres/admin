@@ -61,6 +61,7 @@ export const ROUTES = {
   steps: "steps",
   fittingSizes: "fitting-sizes",
   fittingSizeOptions: "fitting-size-options",
+  fittingSizeOptionAllocation: "fitting-size-option-allocation",
 } as const;
 
 export const FULL_PATH_ROUTES = {
@@ -100,6 +101,11 @@ export const FULL_PATH_ROUTES = {
     false,
     ROUTES.fitting,
     ROUTES.fittingSizeOptions
+  ),
+  yarnFittingFittingOptionAllocation: buildPath(
+    false,
+    ROUTES.fitting,
+    ROUTES.fittingSizeOptionAllocation
   ),
   yarnModulePattern: buildPath(false, ROUTES.yarnModule, ROUTES.pattern),
   yarnModuleOccassion: buildPath(false, ROUTES.yarnModule, ROUTES.occassion),
@@ -178,6 +184,12 @@ export const FULL_PATH_ROUTES = {
     ROUTES.admin,
     ROUTES.fitting,
     ROUTES.fittingSizeOptions
+  ),
+  adminFittingFittingSizeOptionAllocation: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.fitting,
+    ROUTES.fittingSizeOptionAllocation
   ),
   adminGender: buildPath(true, ROUTES.admin, ROUTES.gender),
   adminYarnModulePattern: buildPath(

@@ -3,7 +3,6 @@ import {
   generateAdminPageMetadata,
   viewportData
 } from "@/utils/generateMetaData.util";
-import { getSingleStepTypeData } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 import EditComponent from "./edit-component";
@@ -18,11 +17,10 @@ export async function generateMetadata() {
 
 const Edit = async ({ params }: { params: { id: string } }) => {
   const t = await getTranslations();
-    const data = await getSingleStepTypeData(params.id);
 
   return (
       <AddEditWrapper title={t("COMMON.EDIT")}>
-        <EditComponent id={params.id} showFittingOption={!!params?.id} />
+        <EditComponent id={params.id} />
       </AddEditWrapper>
   );
 };
