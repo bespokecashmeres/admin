@@ -1,4 +1,4 @@
-import { ListComponent } from "@/components";
+import { FittingSizeOptions, ListComponent } from "@/components";
 import { FULL_PATH_ROUTES } from "@/constants";
 import {
   FITTING_SIZE_OPTIONS_LIST_URL,
@@ -10,6 +10,7 @@ import {
   generateAdminPageMetadata,
   viewportData,
 } from "@/utils/generateMetaData.util";
+import { getFittingSizesList } from "@/utils/server-api.utils";
 import { Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -34,18 +35,28 @@ const columnConfigs: ColumnConfig[] = [
 ];
 
 export default async function Page() {
+  const fittingSizeList = await getFittingSizesList();
+
   return (
     <>
       <ListComponent
         fetchUrl={FITTING_SIZE_OPTIONS_LIST_URL}
         statusUrl={FITTING_SIZE_OPTIONS_STATUS_URL}
         pageRoute={FULL_PATH_ROUTES.yarnFittingFittingOptionSizes}
-        searchPlaceholder="COMMON.SEARCH"
+        searchPlaceholder="COMMON.SEARCH_BY_NAME"
         title="FITTING_SIZE_OPTIONS.TITLE"
         columnConfigs={columnConfigs}
         showLanguageFilter
         showReorder
         reorderUrl={FITTING_SIZE_OPTIONS_ROW_REORDER_URL}
+        customFilters={[
+          {
+            component: FittingSizeOptions,
+            props: {
+              options: fittingSizeList,
+            },
+          },
+        ]}
       />
     </>
   );

@@ -34,7 +34,7 @@ export default async function Page() {
         fetchUrl={FITTING_SIZES_LIST_URL}
         statusUrl={FITTING_SIZES_STATUS_URL}
         pageRoute={FULL_PATH_ROUTES.yarnFittingFittingSizes}
-        searchPlaceholder="COMMON.SEARCH"
+        searchPlaceholder="COMMON.SEARCH_BY_NAME"
         title="FITTING_SIZES.TITLE"
         columnConfigs={columnConfigs}
         showLanguageFilter
