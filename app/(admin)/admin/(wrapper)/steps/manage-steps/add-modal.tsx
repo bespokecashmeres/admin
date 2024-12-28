@@ -2,9 +2,8 @@
 import {
   LocaleTabs,
   NormalCancelButton,
-  RHFCheckboxField,
   RHFInputField,
-  SubmitButton,
+  SubmitButton
 } from "@/components";
 import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
@@ -22,7 +21,6 @@ type AddStepFormType = {
   name: Record<string, string>;
   info: Record<string, string>;
   productTypeId: string;
-  showFittingOption?: boolean;
 };
 
 export type EditStepFormType = AddStepFormType & { _id: string };
@@ -43,7 +41,6 @@ const AddModal: FC<{
       name: DEFAULT_LOCALE_VALUE,
       info: DEFAULT_LOCALE_VALUE,
       productTypeId: "",
-      showFittingOption: false,
     },
   });
 
@@ -55,7 +52,6 @@ const AddModal: FC<{
         info: editStep.info,
         name: editStep.name,
         productTypeId: editStep.productTypeId,
-        showFittingOption: !!editStep.showFittingOption,
       });
     }
   }, [editStep, methods]);
@@ -79,7 +75,6 @@ const AddModal: FC<{
         const payload = {
           name: JSON.stringify(data.name),
           info: JSON.stringify(data.info),
-          showFittingOption: !!data.showFittingOption,
           ...(editStep ? { _id: editStep._id } : { productTypeId }),
         };
 
@@ -97,7 +92,6 @@ const AddModal: FC<{
               label: result.name?.en ?? "",
               value: result._id,
               status: result.status,
-              showFittingOption: result.showFittingOption,
             });
           }
         } else {
@@ -144,10 +138,6 @@ const AddModal: FC<{
           <div className="space-y-3">
             {localeTabsMemo}
             {renderLanguageFields(activeTab)}
-            <RHFCheckboxField
-              label={`${t("COMMON.SHOULD_SHOW_FITTING_OPTIONS")}.`}
-              name="showFittingOption"
-            />
           </div>
         </div>
         <div className="px-5 py-4 border-t border-slate-200 dark:border-slate-700">
