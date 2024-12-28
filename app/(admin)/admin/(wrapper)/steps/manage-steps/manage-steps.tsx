@@ -71,7 +71,6 @@ const ManageSteps: FC<{
           value: newStep.value,
           label: newStep.label,
           status: newStep.status,
-          showFittingOption: newStep.showFittingOption
         };
       } else {
         newPrev.push(newStep);
@@ -162,7 +161,6 @@ const ManageSteps: FC<{
             name: defaultName,
             info: defaultInfo,
             productTypeId: result.productTypeId,
-            showFittingOption: result.showFittingOption,
             _id: result._id,
           });
         } else {
