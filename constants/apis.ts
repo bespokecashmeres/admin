@@ -78,11 +78,13 @@ export const GENDER_LIST_API = "/gender/list";
 
 // Yarn
 export const YARN_LIST_URL = "/yarn/list";
+export const YARN_CARD_LIST_URL = "/yarn/card-list";
 export const YARN_UPDATE_URL = "/yarn/update";
 export const YARN_STATUS_URL = "/yarn/status";
 export const YARN_ADD_URL = "/yarn/add";
 export const YARN_GET_URL = "/yarn";
 export const YARN_DROPDOWN_URL = "/yarn/options";
+export const YARN_GET_DETAIL_URL = "/yarn/details";
 
 // Product Type
 export const PRODUCT_TYPE_LIST_URL = "/product-type/list";

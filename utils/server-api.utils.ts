@@ -1,16 +1,20 @@
 import { getAdminToken } from "@/config/locale";
 import {
   COLOR_DROPDOWN_URL,
+  COLOUR_DROPDOWN_URL,
   COUNTRY_LIST_API,
   FITTING_SIZES_DROPDOWN_URL,
   GENDER_DROPDOWN_URL,
+  MATERIAL_DROPDOWN_URL,
   MODULE_INFO_GET_BY_TYPE_URL,
+  PATTERN_DROPDOWN_URL,
   PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
   PRODUCT_TYPE_DROPDOWN_URL,
   SIZE_DROPDOWN_URL,
   STEP_TYPE_DROPDOWN_URL,
   STEP_TYPE_GET_URL,
   STEP_TYPE_TABS_URL,
+  YARN_CARD_LIST_URL,
   YARN_DROPDOWN_URL,
 } from "@/constants/apis";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -301,5 +305,129 @@ export const getYarnModuleData = async (type: string) => {
     return res?.data;
   } else {
     return null;
+  }
+};
+
+export const getColourList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    COLOUR_DROPDOWN_URL,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getMaterialList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    MATERIAL_DROPDOWN_URL,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getPatternList = async () => {
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    PATTERN_DROPDOWN_URL,
+    "POST",
+    {},
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+export const getYarnCardList = async (searchParams: {
+  [key: string]: string;
+}) => {
+  const {
+    filter,
+    search = "",
+    gender,
+    colour,
+    material,
+    pattern,
+    page = 1
+  } = searchParams;
+  let sortBy = undefined,
+    sortOrder = undefined;
+  if (filter === "price-low-to-high") {
+    sortBy = "price";
+    sortOrder = "asc";
+  } else if (filter === "price-high-to-low") {
+    sortBy = "price";
+    sortOrder = "desc";
+  }
+
+  const filterObj: Record<string, string> = {};
+
+  if (gender && gender.length) {
+    filterObj["genderId"] = gender;
+  }
+
+  if (colour && colour.length) {
+    filterObj["colourId"] = colour;
+  }
+
+  if (material && material.length) {
+    filterObj["materialId"] = material;
+  }
+
+  if (pattern && pattern.length) {
+    filterObj["patternId"] = pattern;
+  }
+
+  const locale = await getLocale();
+  const res: any = await handleApiCall(
+    YARN_CARD_LIST_URL,
+    "POST",
+    {
+      page,
+      perPage: 10,
+      search,
+      sortBy,
+      sortOrder,
+      filter: filterObj,
+    },
+    {
+      "Accept-Language": locale,
+    }
+  );
+
+  if (res.code === 200) {
+    return res?.data;
+  } else {
+    return {};
   }
 };

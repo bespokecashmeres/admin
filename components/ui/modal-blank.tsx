@@ -1,17 +1,19 @@
 "use client";
 
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition } from "@headlessui/react";
 
 interface ModalBlankProps {
-  children: React.ReactNode
-  isOpen: boolean
-  setIsOpen: (value: boolean) => void
+  children: React.ReactNode;
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+  panelClassName?: string;
 }
 
 export default function ModalBlank({
   children,
   isOpen,
-  setIsOpen
+  setIsOpen,
+  panelClassName,
 }: ModalBlankProps) {
   return (
     <Transition appear show={isOpen}>
@@ -35,11 +37,13 @@ export default function ModalBlank({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-4"
         >
-          <Dialog.Panel className="bg-white dark:bg-slate-800 rounded shadow-lg overflow-auto max-w-lg w-full max-h-full">
+          <Dialog.Panel
+            className={`bg-white dark:bg-slate-800 rounded shadow-lg overflow-auto w-full max-h-full ${panelClassName ?? "max-w-lg"}`}
+          >
             {children}
           </Dialog.Panel>
         </Transition.Child>
       </Dialog>
     </Transition>
-  )
+  );
 }

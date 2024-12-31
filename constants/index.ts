@@ -2,23 +2,23 @@ import CONFIG from "@/config";
 import { AllowedImageFileType, AllowedPdfFileType } from "@/types/index";
 import { buildPath } from "@/utils/common.utils";
 
-export const LOCALES = ["en", "da"] as const;
+const LOCALES = ["en", "da"] as const;
 
-export const COOKIES = {
+const COOKIES = {
   aToken: "aToken",
   admin: "admin",
   wToken: "wToken",
   ws: "ws",
 } as const;
 
-export const LOCAL_STORAGE = {
+const LOCAL_STORAGE = {
   aToken: "aToken",
   admin: "admin",
   wToken: "wToken",
   ws: "ws",
 } as const;
 
-export const ROUTES = {
+const ROUTES = {
   admin: "admin",
   auth: "auth",
   ws: "ws",
@@ -58,13 +58,14 @@ export const ROUTES = {
   material: "material",
   priceRange: "price-range",
   gender: "gender",
+  createProduct: "create-product",
   steps: "steps",
   fittingSizes: "fitting-sizes",
   fittingSizeOptions: "fitting-size-options",
   fittingSizeOptionAllocation: "fitting-size-option-allocation",
 } as const;
 
-export const FULL_PATH_ROUTES = {
+const FULL_PATH_ROUTES = {
   adminAuthSignin: buildPath(true, ROUTES.admin, ROUTES.auth, ROUTES.signin),
   categoriesChildCategory: buildPath(
     false,
@@ -192,6 +193,12 @@ export const FULL_PATH_ROUTES = {
     ROUTES.fittingSizeOptionAllocation
   ),
   adminGender: buildPath(true, ROUTES.admin, ROUTES.gender),
+  adminProductCreateProduct: buildPath(
+    true,
+    ROUTES.admin,
+    ROUTES.product,
+    ROUTES.createProduct
+  ),
   adminYarnModulePattern: buildPath(
     true,
     ROUTES.admin,
@@ -251,13 +258,13 @@ export const FULL_PATH_ROUTES = {
   wsDashboard: buildPath(true, ROUTES.ws, ROUTES.dashboard),
 };
 
-export const USER_TYPES = {
+const USER_TYPES = {
   admin: "admin",
   ws: "ws",
   user: "user",
 } as const;
 
-export const HTTP_STATUS_CODES = {
+const HTTP_STATUS_CODES = {
   SUCCESS: 200,
   CREATED: 201,
   BAD_REQUEST: 400,
@@ -268,39 +275,41 @@ export const HTTP_STATUS_CODES = {
   INTERNAL_SERVER_ERROR: 500,
 } as const;
 
-export const APP_NAME = "Bespoke Cashemere" as const;
+const APP_NAME = "Bespoke Cashemere" as const;
 
-export const ADMIN_GENERAL_INFO = {
+const ADMIN_GENERAL_INFO = {
   email: "sales@vamenture.com",
   contact: "vamenture@gmail.com",
   logo: CONFIG.adminDomainURL + "/images/favicon.png",
   website: CONFIG.adminDomainURL,
 } as const;
 
-export const MESSAGES = {
+const MESSAGES = {
   SUCCESS: "COMMON.SUCCESS",
   SOMETHING_WENT_WRONG: "COMMON.SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN",
   LOADING: "COMMON.LOADING",
   INVALID_SLUG: "COMMON.INVALID_SLUG",
 } as const;
 
-export const IMAGE_ALLOWED_TYPES: AllowedImageFileType[] = [
+const IMAGE_ALLOWED_TYPES: AllowedImageFileType[] = [
   "image/jpeg",
   "image/png",
 ] as const;
 
-export const PDF_ALLOWED_TYPES: AllowedPdfFileType[] = [
-  "application/pdf",
-] as const;
+const PDF_ALLOWED_TYPES: AllowedPdfFileType[] = ["application/pdf"] as const;
 
-export const MAX_FILE_UPLOAD_SIZE = 10 * 1024 * 1024;
+const MAX_FILE_UPLOAD_SIZE = 10 * 1024 * 1024;
 
-export const DEFAULT_LOCALE_VALUE = LOCALES.reduce(
+const DEFAULT_LOCALE_VALUE = LOCALES.reduce(
   (acc, lang) => ({ ...acc, [lang]: "" }),
   {}
 );
 
-export const YARN_MODULE_TYPE = {
+const SITE_SETTINGS = {
+  CURRENCY: "$",
+};
+
+const YARN_MODULE_TYPE = {
   COLOUR: "colour",
   PATTERN: "pattern",
   OCCASSION: "occassion",
@@ -310,3 +319,8 @@ export const YARN_MODULE_TYPE = {
   MATERIAL: "material",
   PRICE_RANGE: "priceRange",
 };
+
+export {
+  ADMIN_GENERAL_INFO, APP_NAME, COOKIES, DEFAULT_LOCALE_VALUE, FULL_PATH_ROUTES, HTTP_STATUS_CODES, IMAGE_ALLOWED_TYPES, LOCAL_STORAGE, LOCALES, MAX_FILE_UPLOAD_SIZE, MESSAGES, PDF_ALLOWED_TYPES, ROUTES, SITE_SETTINGS, USER_TYPES, YARN_MODULE_TYPE
+};
+

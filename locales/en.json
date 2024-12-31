@@ -107,7 +107,12 @@
     "SHOULD_SHOW_FITTING_OPTIONS": "Should show fitting options",
     "FITTING_SIZE_OPTION": "Fitting Size Option",
     "STEP_CARD": "Step Card",
-    "STEP_TYPE": "Step Type"
+    "STEP_TYPE": "Step Type",
+    "SELECT": "Select",
+    "CLOSE": "Close",
+    "CHOOSE_A_YARN": "Choose a Yarn",
+    "STEP": "Step",
+    "YARN_FOUND": "Yarn Found"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"
@@ -227,5 +232,8 @@
   },
   "FITTING_SIZE_OPTION_ALLOCATION": {
     "TITLE": "Fitting Size Option Allocation"
+  },
+  "CREATE_A_PRODUCT": {
+    "TITLE": "Create a Product"
   }
 }

@@ -108,6 +108,10 @@ export default function Sidebar() {
                     title: t("YARN.TITLE"),
                     route: FULL_PATH_ROUTES.adminProductYarn,
                   },
+                  {
+                    title: t("CREATE_A_PRODUCT.TITLE"),
+                    route: FULL_PATH_ROUTES.adminProductCreateProduct,
+                  },
                   ...(!CONFIG.hideProductType
                     ? [
                         {
