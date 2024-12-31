@@ -3,7 +3,7 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    trailingSlash: true
+    trailingSlash: false
 };
 
 module.exports = withNextIntl(nextConfig);

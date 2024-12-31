@@ -14,7 +14,7 @@ interface DropdownFieldProps {
   infoText?: string;
   error?: string;
   disabled?: boolean;
-  onChange?: (value: any) => void; // Optional onChange handler
+  onChange?: (value: any, name?: string) => void; // Optional onChange handler
   value: any; // Controlled value from react-hook-form
   isClearable?: boolean;
   className?: string;
@@ -55,14 +55,14 @@ const DropdownField = React.forwardRef<HTMLInputElement, DropdownFieldProps>(
     ref
   ) => {
     const selectedOption = useMemo(
-      () => options.find((option) => value.includes(option.value)) ?? '',
+      () => options.find((option) => value.includes(option.value)) ?? "",
       [value]
     );
 
     // Handle change event
     const handleChange = (selectedOption: any) => {
       if (onChange) {
-        onChange(selectedOption?.value ?? ""); // Call the onChange handler if provided
+        onChange(selectedOption?.value ?? "", name); // Call the onChange handler if provided
       }
     };
 
