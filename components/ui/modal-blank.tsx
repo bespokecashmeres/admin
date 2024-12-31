@@ -6,7 +6,7 @@ interface ModalBlankProps {
   children: React.ReactNode;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
-  panelClassName: string;
+  panelClassName?: string;
 }
 
 export default function ModalBlank({
