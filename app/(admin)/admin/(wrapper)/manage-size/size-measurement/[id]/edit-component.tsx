@@ -19,11 +19,13 @@ const EditComponent = ({
   productTypeData,
   fittingSizeData,
   stepTypes,
+  sizeMeasurementFieldData
 }: {
   id: string;
   fittingSizeData: DropDownOptionType[];
   productTypeData: DropDownOptionType[];
   stepTypes: DropDownOptionType[];
+  sizeMeasurementFieldData: DropDownOptionType[];
 }) => {
   const t = useTranslations();
   const [loading, setLoading] = useState(true);
@@ -62,6 +64,7 @@ const EditComponent = ({
       productTypeList={productTypeData}
       fittingSizeList={fittingSizeData}
       stepTypes={stepTypes}
+      sizeMeasurementFields={sizeMeasurementFieldData}
     />
   ) : (
     <LoadingMessage />
