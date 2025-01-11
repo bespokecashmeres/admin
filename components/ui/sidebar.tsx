@@ -24,6 +24,7 @@ import { getBreakpoint } from "../utils/utils";
 import Logo from "./logo";
 import SidebarLink from "./sidebar-link";
 import SidebarLinkGroup from "./sidebar-link-group";
+import RecursiveSidebarMenu from "./recursive-sidebar-menu";
 
 export default function Sidebar() {
   const sidebar = useRef<HTMLDivElement>(null);
@@ -90,188 +91,200 @@ export default function Sidebar() {
         },
         ...(isAdmin
           ? [
-              {
-                title: t("PRODUCT.TITLE"),
-                route: "#",
-                conditionRoute: ROUTES.product,
-                icon: (
-                  <ProductIcon
-                    isActive={newPathName.includes(ROUTES.product)}
-                  />
-                ),
-                children: [
-                  // {
-                  //   title: t("PRODUCT.TITLE"),
-                  //   route: FULL_PATH_ROUTES.adminProductProducts,
-                  // },
-                  {
-                    title: t("YARN.TITLE"),
-                    route: FULL_PATH_ROUTES.adminProductYarn,
-                  },
-                  {
-                    title: t("CREATE_A_PRODUCT.TITLE"),
-                    route: FULL_PATH_ROUTES.adminProductCreateProduct,
-                  },
-                  ...(!CONFIG.hideProductType
-                    ? [
-                        {
-                          title: t("PRODUCT_TYPE.SIDEBAR_TITLE"),
-                          route: FULL_PATH_ROUTES.adminProductProductType,
-                        },
-                      ]
-                    : []),
-                  // {
-                  //   title: t("SIZE.TITLE"),
-                  //   route: FULL_PATH_ROUTES.adminProductSize,
-                  // },
-                  // {
-                  //   title: t("COLOR.TITLE"),
-                  //   route: FULL_PATH_ROUTES.adminProductColor,
-                  // },
-                ],
-              },
-              {
-                title: t("GENDER.TITLE"),
-                route: FULL_PATH_ROUTES.adminGender,
-                conditionRoute: ROUTES.gender,
-                icon: (
-                  <GenderIcon isActive={newPathName.includes(ROUTES.gender)} />
-                ),
-              },
-              {
-                title: t("COMMON.YARNS"),
-                route: "#",
-                conditionRoute: ROUTES.yarnModule,
-                icon: (
-                  <YarnIcon
-                    isActive={newPathName.includes(ROUTES.yarnModule)}
-                  />
-                ),
-                children: [
-                  {
-                    title: t("COLOUR.TITLE"),
-                    route: FULL_PATH_ROUTES.adminYarnModuleColour,
-                  },
-                  {
-                    title: t("MATERIAL.TITLE"),
-                    route: FULL_PATH_ROUTES.adminYarnModuleMaterial,
-                  },
-                  {
-                    title: t("PATTERN.TITLE"),
-                    route: FULL_PATH_ROUTES.adminYarnModulePattern,
-                  },
-                  {
-                    title: t("SEASONALITY.TITLE"),
-                    route: FULL_PATH_ROUTES.adminYarnModuleSeasonality,
-                  },
-                  {
-                    title: t("PERCEIVED_WEIGHT.TITLE"),
-                    route: FULL_PATH_ROUTES.adminYarnModulePerceivedWeight,
-                  },
-                  {
-                    title: t("OCCASSION.TITLE"),
-                    route: FULL_PATH_ROUTES.adminYarnModuleOccassion,
-                  },
-                  // {
-                  //   title: t("FITTING.TITLE"),
-                  //   route: FULL_PATH_ROUTES.adminYarnModuleFitting,
-                  // },
-                  // {
-                  //   title: t("PRICE_RANGE.TITLE"),
-                  //   route: FULL_PATH_ROUTES.adminYarnModulePriceRanges,
-                  // },
-                ],
-              },
-              {
-                title: t("COMMON.FITTING"),
-                route: "#",
-                conditionRoute: ROUTES.fitting,
-                icon: (
-                  <FittingSizesIcon
-                    isActive={newPathName.includes(ROUTES.fitting)}
-                  />
-                ),
-                children: [
-                  {
-                    title: t("FITTING_SIZES.TITLE"),
-                    route: FULL_PATH_ROUTES.adminFittingFittingSizes,
-                  },
-                  {
-                    title: t("FITTING_SIZE_OPTIONS.TITLE"),
-                    route: FULL_PATH_ROUTES.adminFittingFittingSizeOptions,
-                  },
-                  {
-                    title: t("FITTING_SIZE_OPTION_ALLOCATION.TITLE"),
-                    route:
-                      FULL_PATH_ROUTES.adminFittingFittingSizeOptionAllocation,
-                  },
-                ],
-              },
-              {
-                title: t("COMMON.STEPS"),
-                route: FULL_PATH_ROUTES.adminSteps,
-                conditionRoute: ROUTES.steps,
-                icon: (
-                  <StepsIcon isActive={newPathName.includes(ROUTES.steps)} />
-                ),
-              },
-              {
-                title: t("COMMON.CATEGORIES"),
-                route: "#",
-                conditionRoute: ROUTES.categories,
-                icon: (
-                  <CategoriesIcon
-                    isActive={newPathName.includes(ROUTES.categories)}
-                  />
-                ),
-                children: [
-                  {
-                    title: t("MAIN_CATEGORY.TITLE"),
-                    route: FULL_PATH_ROUTES.adminCategoriesMainCategory,
-                  },
-                  {
-                    title: t("SUB_CATEGORY.TITLE"),
-                    route: FULL_PATH_ROUTES.adminCategoriesSubCategory,
-                  },
-                  {
-                    title: t("CHILD_CATEGORY.TITLE"),
-                    route: FULL_PATH_ROUTES.adminCategoriesChildCategory,
-                  },
-                  {
-                    title: t("SUB_CHILD_CATEGORY.TITLE"),
-                    route: FULL_PATH_ROUTES.adminCategoriesSubChildCategory,
-                  },
-                ],
-              },
-              {
-                title: t("USERS.TITLE"),
-                route: FULL_PATH_ROUTES.adminUsers,
-                conditionRoute: ROUTES.users,
-                icon: (
-                  <UsersIcon isActive={newPathName.includes(ROUTES.users)} />
-                ),
-              },
-              {
-                title: t("COMMON.WHOLE_SALERS"),
-                route: FULL_PATH_ROUTES.adminWholeSaler,
-                conditionRoute: ROUTES.wholeSaler,
-                icon: (
-                  <WholeSalerIcon
-                    isActive={newPathName.includes(ROUTES.wholeSaler)}
-                  />
-                ),
-              },
-              {
-                title: t("CONTACT_US.TITLE"),
-                route: FULL_PATH_ROUTES.adminContactUs,
-                conditionRoute: ROUTES.contactUs,
-                icon: (
-                  <ContactUsIcon
-                    isActive={newPathName.includes(ROUTES.contactUs)}
-                  />
-                ),
-              },
-            ]
+            {
+              title: t("COMMON.MANAGE_YARN"),
+              route: "#",
+              conditionRoute: ROUTES.manageYarn,
+              icon: (
+                <ProductIcon
+                  isActive={newPathName.includes(ROUTES.manageYarn)}
+                />
+              ),
+              children: [
+                {
+                  title: t("COMMON.CHARACTERISTICS"),
+                  route: "#",
+                  conditionRoute: ROUTES.yarnCharacteristics,
+                  children: [
+                    {
+                      title: t("COLOUR.TITLE"),
+                      route: FULL_PATH_ROUTES.adminManageYarnCharacteristicsColour,
+                    },
+                    {
+                      title: t("MATERIAL.TITLE"),
+                      route: FULL_PATH_ROUTES.adminManageYarnCharacteristicsMaterial,
+                    },
+                    {
+                      title: t("SEASONALITY.TITLE"),
+                      route: FULL_PATH_ROUTES.adminManageYarnCharacteristicsSeasonality,
+                    },
+                    {
+                      title: t("PERCEIVED_WEIGHT.TITLE"),
+                      route: FULL_PATH_ROUTES.adminManageYarnCharacteristicsPerceivedWeight,
+                    },
+                  ],
+                },
+                {
+                  title: t("YARN.TITLE"),
+                  route: FULL_PATH_ROUTES.adminManageYarnYarn,
+                },
+              ]
+            },
+            {
+              title: t("COMMON.STEPS"),
+              route: FULL_PATH_ROUTES.adminSteps,
+              icon: (
+                <StepsIcon isActive={newPathName.includes(ROUTES.steps)} />
+              ),
+            },
+            {
+              title: t("COMMON.MANAGE_SIZE"),
+              route: "#",
+              conditionRoute: ROUTES.manageSize,
+              icon: (
+                <FittingSizesIcon isActive={newPathName.includes(ROUTES.manageSize)} />
+              ),
+              children: [
+                {
+                  title: t("COMMON.SIZE_TEXT"),
+                  route: FULL_PATH_ROUTES.adminSizes,
+                },
+                {
+                  title: t("SIZE_MEASUREMENT_FIELDS.TITLE"),
+                  route: FULL_PATH_ROUTES.adminSizeMeasurementFields,
+                },
+                {
+                  title: t("SIZE_MEASUREMENT.TITLE"),
+                  route: FULL_PATH_ROUTES.adminSizeMeasurement,
+                }
+              ]
+            },
+            // {
+            //   title: t("COMMON.SIZE_TEXT"),
+            //   route: FULL_PATH_ROUTES.adminSizes,
+            //   icon: (
+            //     <StepsIcon isActive={newPathName.includes(ROUTES.fittingSizes)} />
+            //   ),
+            // },
+            // {
+            //   title: t("SIZE_MEASUREMENT_FIELDS.TITLE"),
+            //   route: FULL_PATH_ROUTES.adminSizeMeasurementFields,
+            //   icon: (
+            //     <StepsIcon isActive={newPathName.includes(ROUTES.sizeMeasurementFields)} />
+            //   ),
+            // },
+            // {
+            //   title: t("SIZE_MEASUREMENT.TITLE"),
+            //   route: FULL_PATH_ROUTES.adminSizeMeasurement,
+            //   icon: (
+            //     <StepsIcon isActive={newPathName.includes(ROUTES.sizeMeasurement)} />
+            //   ),
+            // },
+            {
+              title: t("PRODUCT.TITLE"),
+              route: "#",
+              conditionRoute: ROUTES.product,
+              icon: (
+                <ProductIcon
+                  isActive={newPathName.includes(ROUTES.product)}
+                />
+              ),
+              children: [
+                // {
+                //   title: t("PRODUCT.TITLE"),
+                //   route: FULL_PATH_ROUTES.adminProductProducts,
+                // },
+                // {
+                //   title: t("YARN.TITLE"),
+                //   route: FULL_PATH_ROUTES.adminProductYarn,
+                // },
+                {
+                  title: t("CREATE_A_PRODUCT.TITLE"),
+                  route: FULL_PATH_ROUTES.adminProductCreateProduct,
+                },
+                ...(!CONFIG.hideProductType
+                  ? [
+                    {
+                      title: t("PRODUCT_TYPE.SIDEBAR_TITLE"),
+                      route: FULL_PATH_ROUTES.adminProductProductType,
+                    },
+                  ]
+                  : []),
+                // {
+                //   title: t("SIZE.TITLE"),
+                //   route: FULL_PATH_ROUTES.adminProductSize,
+                // },
+                // {
+                //   title: t("COLOR.TITLE"),
+                //   route: FULL_PATH_ROUTES.adminProductColor,
+                // },
+              ],
+            },
+            {
+              title: t("GENDER.TITLE"),
+              route: FULL_PATH_ROUTES.adminGender,
+              conditionRoute: ROUTES.gender,
+              icon: (
+                <GenderIcon isActive={newPathName.includes(ROUTES.gender)} />
+              ),
+            },
+            {
+              title: t("COMMON.CATEGORIES"),
+              route: "#",
+              conditionRoute: ROUTES.categories,
+              icon: (
+                <CategoriesIcon
+                  isActive={newPathName.includes(ROUTES.categories)}
+                />
+              ),
+              children: [
+                {
+                  title: t("MAIN_CATEGORY.TITLE"),
+                  route: FULL_PATH_ROUTES.adminCategoriesMainCategory,
+                },
+                {
+                  title: t("SUB_CATEGORY.TITLE"),
+                  route: FULL_PATH_ROUTES.adminCategoriesSubCategory,
+                },
+                {
+                  title: t("CHILD_CATEGORY.TITLE"),
+                  route: FULL_PATH_ROUTES.adminCategoriesChildCategory,
+                },
+                {
+                  title: t("SUB_CHILD_CATEGORY.TITLE"),
+                  route: FULL_PATH_ROUTES.adminCategoriesSubChildCategory,
+                },
+              ],
+            },
+            {
+              title: t("USERS.TITLE"),
+              route: FULL_PATH_ROUTES.adminUsers,
+              conditionRoute: ROUTES.users,
+              icon: (
+                <UsersIcon isActive={newPathName.includes(ROUTES.users)} />
+              ),
+            },
+            {
+              title: t("COMMON.WHOLE_SALERS"),
+              route: FULL_PATH_ROUTES.adminWholeSaler,
+              conditionRoute: ROUTES.wholeSaler,
+              icon: (
+                <WholeSalerIcon
+                  isActive={newPathName.includes(ROUTES.wholeSaler)}
+                />
+              ),
+            },
+            {
+              title: t("CONTACT_US.TITLE"),
+              route: FULL_PATH_ROUTES.adminContactUs,
+              conditionRoute: ROUTES.contactUs,
+              icon: (
+                <ContactUsIcon
+                  isActive={newPathName.includes(ROUTES.contactUs)}
+                />
+              ),
+            },
+          ]
           : []),
       ],
     },
@@ -330,7 +343,8 @@ export default function Sidebar() {
         {/* Links */}
         <div className="space-y-8">
           {/* Pages group */}
-          {links.map(({ title, children }, index) => {
+          <RecursiveSidebarMenu expandOnly={expandOnly} links={links} newPathName={newPathName} setSidebarExpanded={setSidebarExpanded} />
+          {/* {links.map(({ title, children }, index) => {
             return (
               <div key={`${title}-${index}`}>
                 <h3 className="text-xs uppercase text-slate-500 font-semibold pl-3">
@@ -345,7 +359,6 @@ export default function Sidebar() {
                   </span>
                 </h3>
                 <ul className="mt-3">
-                  {/* Dashboard */}
                   {children.map(
                     (
                       { title, children, route, conditionRoute, icon },
@@ -358,9 +371,8 @@ export default function Sidebar() {
                           newPathName.startsWith(route);
                         return (
                           <li
-                            className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 group is-link-group ${
-                              isOpen && "text-indigo-600"
-                            }`}
+                            className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 group is-link-group ${isOpen && "text-indigo-600"
+                              }`}
                             key={`${title}-${index}-${subChildIndex}`}
                           >
                             <SidebarLink href={route}>
@@ -392,11 +404,10 @@ export default function Sidebar() {
                               <>
                                 <a
                                   href="#0"
-                                  className={`block text-slate-200 truncate transition duration-150 ${
-                                    isOpen
-                                      ? "hover:text-slate-200"
-                                      : "hover:text-white"
-                                  }`}
+                                  className={`block text-slate-200 truncate transition duration-150 ${isOpen
+                                    ? "hover:text-slate-200"
+                                    : "hover:text-white"
+                                    }`}
                                   onClick={(e) => {
                                     e.preventDefault();
                                     expandOnly
@@ -420,12 +431,10 @@ export default function Sidebar() {
                                         {title}
                                       </span>
                                     </div>
-                                    {/* Icon */}
                                     <div className="flex shrink-0 ml-2">
                                       <svg
-                                        className={`w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${
-                                          open && "rotate-180"
-                                        }`}
+                                        className={`w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${open && "rotate-180"
+                                          }`}
                                         viewBox="0 0 12 12"
                                       >
                                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -437,9 +446,8 @@ export default function Sidebar() {
                                 {!!children?.length && (
                                   <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                     <ul
-                                      className={`pl-9 mt-1 ${
-                                        !open && "hidden"
-                                      }`}
+                                      className={`pl-9 mt-1 ${!open && "hidden"
+                                        }`}
                                     >
                                       {children?.map(
                                         ({ title, route }, childIndex) => {
@@ -480,7 +488,7 @@ export default function Sidebar() {
                 </ul>
               </div>
             );
-          })}
+          })} */}
         </div>
 
         {/* Expand / collapse button */}

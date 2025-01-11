@@ -27,6 +27,7 @@ type StepCardFormType = {
   description: Record<string, string>;
   graphImage?: FileList | null;
   realImage?: FileList | null;
+  slug: string;
 };
 
 type EditStepCardFormType = {
@@ -35,6 +36,7 @@ type EditStepCardFormType = {
   graphImage: string;
   realImage: string;
   stepTypeId: string;
+  slug: string;
   _id: string;
 };
 
@@ -57,6 +59,7 @@ const StepCardFormComponent = ({
       description: LOCALES.reduce((acc, lang) => ({ ...acc, [lang]: "" }), {}),
       graphImage: null,
       realImage: null,
+      slug: "",
     },
   });
 
@@ -75,6 +78,7 @@ const StepCardFormComponent = ({
       methods.reset({
         title: defaultTitle,
         description: defaultDescription,
+        slug: editData?.slug ?? "",
       });
     }
   }, [editData]);
@@ -101,6 +105,10 @@ const StepCardFormComponent = ({
       if (editData?._id) {
         formData.append("_id", editData._id);
         formData.append("stepTypeId", editData.stepTypeId);
+      } 
+      
+      if (CONFIG.developmentMode){
+        formData.append('slug', data?.slug);
       }
 
       const registrationResponse = await adminAxiosInstance({
@@ -183,6 +191,12 @@ const StepCardFormComponent = ({
 
           {renderLanguageFields(activeTab)}
 
+          {(CONFIG.developmentMode || !editData) && <RHFInputField
+            name="slug"
+            label={t("COMMON.SLUG")}
+            required
+          />}
+
           <div className="grid gap-5 md:grid-cols-2 mt-4">
             <RHFFileField
               label={t("COMMON.GRAPH_IMAGE")}
@@ -206,7 +220,7 @@ const StepCardFormComponent = ({
             />
           </div>
         </div>
-        
+
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton label="Cancel" href={FULL_PATH_ROUTES.adminSteps} />
           <SubmitButton label="Submit" disabled={disableSubmit} />

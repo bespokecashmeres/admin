@@ -1,4 +1,5 @@
 import { ListComponent } from "@/components";
+import CONFIG from "@/config";
 import { FULL_PATH_ROUTES, ROUTES } from "@/constants";
 import {
   STEP_CARD_GET_URL,
@@ -6,19 +7,20 @@ import {
   STEP_CARD_ROW_REORDER_URL,
   STEP_CARD_STATUS_URL,
 } from "@/constants/apis";
-import { ColumnConfig } from "@/types";
+import { CellType, ColumnConfig } from "@/types";
 import { FC } from "react";
 
 const columnConfigs: ColumnConfig[] = [
   { accessor: "title", header: "COMMON.TITLE", cellType: "default" },
+  { accessor: "slug", header: "COMMON.SLUG", cellType: "default" },
   { accessor: "graphImage", header: "COMMON.GRAPH_IMAGE", cellType: "image" },
   { accessor: "realImage", header: "COMMON.REAL_IMAGE", cellType: "image" },
-  { accessor: "status", header: "COMMON.STATUS", cellType: "toggle" },
+  ...(CONFIG.developmentMode ? [{ accessor: "status", header: "COMMON.STATUS", cellType: "toggle" as CellType }] : []),
   {
     accessor: "_id",
     header: "COMMON.ACTION",
     cellType: "action",
-    showDeleteBtn: true,
+    showDeleteBtn: CONFIG.developmentMode,
   },
 ];
 

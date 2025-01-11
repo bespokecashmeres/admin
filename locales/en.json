@@ -99,7 +99,7 @@
     "FITTING": "Fitting",
     "MATERIAL": "Material",
     "PRICE_RANGE": "Price Range",
-    "STEPS": "Step Details",
+    "STEPS": "Manage Steps",
     "ADD": "Add",
     "GRAPH_IMAGE": "Graph Image",
     "REAL_IMAGE": "Real Image",
@@ -112,7 +112,21 @@
     "CLOSE": "Close",
     "CHOOSE_A_YARN": "Choose a Yarn",
     "STEP": "Step",
-    "YARN_FOUND": "Yarn Found"
+    "YARN_FOUND": "Yarn Found",
+    "MANAGE_YARN": "Mange Yarn",
+    "CHARACTERISTICS": "Chararcteristics",
+    "SIZE_MEASUREMENT_FIELD": "Size Measurement Field",
+    "SIZE_MEASUREMENT": "Size Measurement",
+    "SIZE_TEXT": "Sizes",
+    "MIN_RANGE": "Min Range",
+    "MAX_RANGE": "Max Range",
+    "MANAGE_SIZE": "Manage Size"
+  },
+  "SIZE_MEASUREMENT_FIELDS": {
+    "TITLE": "Size Measurement Fields"
+  },
+  "SIZE_MEASUREMENT": {
+    "TITLE": "Size Measurement"
   },
   "META_DATA": {
     "DESCRIPTION": "This is {title} page for {APP_NAME} Admin"

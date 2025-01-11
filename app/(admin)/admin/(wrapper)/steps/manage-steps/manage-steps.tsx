@@ -31,6 +31,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import AddModal, { EditStepFormType } from "./add-modal";
 import StepListComponent from "./step-list-component";
+import CONFIG from "@/config";
 
 const ManageSteps: FC<{
   stepTypes: DropDownOptionType[];
@@ -234,12 +235,12 @@ const ManageSteps: FC<{
             moveTab={moveTab}
           />
         </DndProvider>
-        <NormalButton
+        {CONFIG.developmentMode && <NormalButton
           label={t("COMMON.ADD")}
           Icon={PlusIcon}
           onClick={handleOpen}
           className="mt-0"
-        />
+        />}
       </div>
       <div className="mt-5">
         {activeStep && <StepListComponent activeStep={activeStep} />}

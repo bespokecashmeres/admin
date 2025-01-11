@@ -53,9 +53,7 @@ type YarnFormFieldsType = {
   occassionId: string;
   seasonalityId: string;
   perceivedWeightId: string;
-  // fittingId: string;
   materialId: string;
-  // priceRangeId: string;
 };
 
 type YarnYarnsType = {
@@ -74,28 +72,19 @@ type EditYarnFormType = YarnFormFieldsType & {
 
 const YarnFormComponent = ({
   editData,
-  genders,
   countries,
   colours,
-  patterns,
-  occassions,
   seasonalities,
   perceivedWeights,
-  fittings,
   materials,
-}: // priceRanges,
+}:
 {
   editData?: EditYarnFormType;
-  genders: DropDownOptionType[];
   colours: DropDownOptionType[];
   countries: DropDownOptionType[];
-  patterns: DropDownOptionType[];
-  occassions: DropDownOptionType[];
   seasonalities: DropDownOptionType[];
   perceivedWeights: DropDownOptionType[];
-  fittings: DropDownOptionType[];
   materials: DropDownOptionType[];
-  // priceRanges: DropDownOptionType[];
 }) => {
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<Locale>(CONFIG.defaultLocale);
@@ -112,12 +101,9 @@ const YarnFormComponent = ({
       genderId: "",
       colourId: "",
       countryId: "",
-      // fittingId: "",
       materialId: "",
-      occassionId: "",
       patternId: "",
       perceivedWeightId: "",
-      // priceRangeId: "",
       seasonalityId: "",
       yarns: [],
     },
@@ -140,17 +126,12 @@ const YarnFormComponent = ({
       methods.reset({
         name: defaultName,
         yarnId: editData.yarnId || "",
-        genderId: editData.genderId || "",
         price: editData.price || 0,
         yarns: defaultYarn,
         colourId: editData.colourId || "",
         countryId: editData.countryId || "",
-        // fittingId: editData.fittingId || "",
         materialId: editData.materialId || "",
-        occassionId: editData.occassionId || "",
-        patternId: editData.patternId || "",
         perceivedWeightId: editData.perceivedWeightId || "",
-        // priceRangeId: editData.priceRangeId || "",
         seasonalityId: editData.seasonalityId || "",
       });
     }
@@ -167,15 +148,10 @@ const YarnFormComponent = ({
         formData.append("image", data.image[0]);
       }
       formData.append("yarnId", data.yarnId);
-      formData.append("genderId", data.genderId);
       formData.append("colourId", data.colourId);
       formData.append("countryId", data.countryId);
-      // formData.append("fittingId", data.fittingId);
       formData.append("materialId", data.materialId);
-      formData.append("occassionId", data.occassionId);
-      formData.append("patternId", data.patternId);
       formData.append("perceivedWeightId", data.perceivedWeightId);
-      // formData.append("priceRangeId", data.priceRangeId);
       formData.append("seasonalityId", data.seasonalityId);
       if (editData?._id) formData.append("_id", editData?._id);
       data.yarns.forEach((yarn, index) => {
@@ -199,7 +175,7 @@ const YarnFormComponent = ({
 
       if (registrationResponse.data.success) {
         toast.success(registrationResponse.data.message || t(MESSAGES.SUCCESS));
-        router.replace(FULL_PATH_ROUTES.adminProductYarn);
+        router.replace(FULL_PATH_ROUTES.adminManageYarnYarn);
       } else {
         toast.error(
           registrationResponse.data.message || t(MESSAGES.SOMETHING_WENT_WRONG)
@@ -320,35 +296,15 @@ const YarnFormComponent = ({
               required
             />
             <RHFFormDropdownField
-              name="genderId"
-              label={t("COMMON.GENDER")}
-              options={genders}
-              required
-            />
-            <RHFFormDropdownField
               name="countryId"
               label={t("COMMON.ORIGIN")}
               options={countries}
               required
             />
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
             <RHFFormDropdownField
               name="colourId"
               label={t("COMMON.COLOUR")}
               options={colours}
-              required
-            />
-            <RHFFormDropdownField
-              name="patternId"
-              label={t("COMMON.PATTERN")}
-              options={patterns}
-              required
-            />
-            <RHFFormDropdownField
-              name="occassionId"
-              label={t("COMMON.OCCASSION")}
-              options={occassions}
               required
             />
           </div>
@@ -371,19 +327,7 @@ const YarnFormComponent = ({
               options={materials}
               required
             />
-            {/* <RHFFormDropdownField
-              name="fittingId"
-              label={t("COMMON.FITTING")}
-              options={fittings}
-              required
-            /> */}
           </div>
-          {/* <RHFFormDropdownField
-            name="priceRangeId"
-            label={t("COMMON.PRICE_RANGE")}
-            options={priceRanges}
-            required
-          /> */}
           <div className="grid gap-5 md:grid-cols-3">
             <RHFInputField
               key={`name.${activeTab}`}
@@ -408,7 +352,7 @@ const YarnFormComponent = ({
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton
             label="Cancel"
-            href={FULL_PATH_ROUTES.adminProductYarn}
+            href={FULL_PATH_ROUTES.adminManageYarnYarn}
           />
           <SubmitButton label="Submit" disabled={disableSubmit} />
         </div>

@@ -3,7 +3,6 @@
 import {
   CancelLinkButton,
   LocaleTabs,
-  RHFFormDropdownField,
   RHFInputField,
   RHFNumberField,
   SubmitButton,
@@ -12,7 +11,7 @@ import CONFIG from "@/config";
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { DEFAULT_LOCALE_VALUE, MESSAGES } from "@/constants";
 import { setLoadingState } from "@/framework/redux/reducers";
-import { DropDownOptionType, Locale } from "@/types/index";
+import { Locale } from "@/types/index";
 import { initializeLocalizedObject } from "@/utils/common.utils";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -21,25 +20,22 @@ import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-type FittingSizeOptionsType = {
+type YarnModuleFormType = {
   name: Record<string, string>;
-  minRange: number;
-  maxRange: number;
-  productTypeId: string;
+  slug: string;
+  price: number;
 };
 
-const FittingSizeOptionsComponent = ({
+const MaterialFormComponent = ({
   editData,
   updateApi,
   addApi,
   redirectUrl,
-  productTypeList,
 }: {
-  editData?: FittingSizeOptionsType & { _id: string };
+  editData?: YarnModuleFormType & { _id: string };
   updateApi: string;
   addApi: string;
   redirectUrl: string;
-  productTypeList: DropDownOptionType[];
 }) => {
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<Locale>(CONFIG.defaultLocale);
@@ -47,12 +43,11 @@ const FittingSizeOptionsComponent = ({
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const methods = useForm<FittingSizeOptionsType>({
+  const methods = useForm<YarnModuleFormType>({
     defaultValues: {
       name: DEFAULT_LOCALE_VALUE,
-      productTypeId: "",
-      maxRange: 0,
-      minRange: 0
+      slug: '',
+      price: 0
     },
   });
 
@@ -62,13 +57,13 @@ const FittingSizeOptionsComponent = ({
 
       methods.reset({
         name: defaultTitle,
-        maxRange: editData.maxRange,
-        minRange: editData.minRange
+        price: editData?.price || 0,
+        slug: editData?.slug || ""
       });
     }
   }, [editData]);
 
-  const onSubmit = async (data: FittingSizeOptionsType) => {
+  const onSubmit = async (data: YarnModuleFormType) => {
     try {
       setDisableSubmit(true);
       dispatch(setLoadingState(true));
@@ -78,9 +73,10 @@ const FittingSizeOptionsComponent = ({
         method: editData ? "PUT" : "POST",
         data: {
           name: JSON.stringify(data.name),
-          productTypeId: productTypeList?.[0]?.value,
-          minRange: data.minRange,
-          maxRange: data.maxRange,
+          price: data.price,
+          ...(!editData ? {
+            slug: data.slug,
+          } : {}),
           _id: editData?._id,
         },
       });
@@ -116,23 +112,22 @@ const FittingSizeOptionsComponent = ({
     </div>
   );
 
-  const minRange = methods.watch("minRange");
-
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <LocaleTabs active={activeTab} handleTabChange={handleTabChange} />
           {renderLanguageFields(activeTab)}
-          <RHFNumberField label={t("COMMON.MIN_RANGE")} name="minRange" required />
-          <RHFNumberField label={t("COMMON.MAX_RANGE")} name="maxRange" required rules={{
-            validate: (value: number) => {
-              if (value <= minRange) {
-                return "Max range must be greater than min range"
-              }
-              return true;
-            }
-          }} />
+          {(CONFIG.developmentMode || !editData) && <RHFInputField
+            name="slug"
+            label={t("COMMON.SLUG")}
+            required
+          />}
+          <RHFNumberField 
+            label={t("COMMON.PRICE")}
+            name="price"
+            endorsement="/kg"
+          />
         </div>
         <div className="mt-2 flex justify-end gap-4">
           <CancelLinkButton label={t("COMMON.CANCEL")} href={redirectUrl} />
@@ -143,4 +138,4 @@ const FittingSizeOptionsComponent = ({
   );
 };
 
-export default FittingSizeOptionsComponent;
+export default MaterialFormComponent;

@@ -42,6 +42,8 @@ const ROUTES = {
   subCategory: "sub-category",
   childCategory: "child-category",
   subChildCategory: "sub-child-category",
+  manageYarn: "manage-yarn",
+  yarnCharacteristics: "characteristics",
   product: "product",
   products: "products",
   yarn: "yarn",
@@ -60,9 +62,10 @@ const ROUTES = {
   gender: "gender",
   createProduct: "create-product",
   steps: "steps",
-  fittingSizes: "fitting-sizes",
-  fittingSizeOptions: "fitting-size-options",
-  fittingSizeOptionAllocation: "fitting-size-option-allocation",
+  manageSize: "manage-size",
+  fittingSizes: "sizes",
+  sizeMeasurementFields: "measurement-fields",
+  sizeMeasurement: "size-measurement",
 } as const;
 
 const FULL_PATH_ROUTES = {
@@ -88,25 +91,35 @@ const FULL_PATH_ROUTES = {
     ROUTES.subChildCategory
   ),
   productYarn: buildPath(false, ROUTES.product, ROUTES.yarn),
+  manageYarnYarn: buildPath(false, ROUTES.manageYarn, ROUTES.yarn),
   productProducts: buildPath(false, ROUTES.product, ROUTES.products),
   productProductType: buildPath(false, ROUTES.product, ROUTES.productType),
   productColor: buildPath(false, ROUTES.product, ROUTES.color),
   yarnModuleColour: buildPath(false, ROUTES.yarnModule, ROUTES.colour),
+  manageYarnCharacteristicsColour: buildPath(false, ROUTES.manageYarn, ROUTES.yarnCharacteristics, ROUTES.colour),
+  manageYarnCharacteristicsMaterial: buildPath(false, ROUTES.manageYarn, ROUTES.yarnCharacteristics, ROUTES.material),
+  manageYarnCharacteristicsPerceivedWeight: buildPath(false, ROUTES.manageYarn, ROUTES.yarnCharacteristics, ROUTES.perceivedWeight),
+  manageYarnCharacteristicsSeasonality: buildPath(false, ROUTES.manageYarn, ROUTES.yarnCharacteristics, ROUTES.seasonality),
   yarnGender: buildPath(false, ROUTES.gender),
-  yarnFittingFittingSizes: buildPath(
+  fittingSizes: buildPath(
     false,
-    ROUTES.fitting,
+    ROUTES.manageSize,
     ROUTES.fittingSizes
   ),
-  yarnFittingFittingOptionSizes: buildPath(
+  sizeMeasurement: buildPath(
     false,
-    ROUTES.fitting,
-    ROUTES.fittingSizeOptions
+    ROUTES.manageSize,
+    ROUTES.sizeMeasurement
+  ),
+  sizeMeasurementFields: buildPath(
+    false,
+    ROUTES.manageSize,
+    ROUTES.sizeMeasurementFields
   ),
   yarnFittingFittingOptionAllocation: buildPath(
     false,
     ROUTES.fitting,
-    ROUTES.fittingSizeOptionAllocation
+    ROUTES.sizeMeasurement
   ),
   yarnModulePattern: buildPath(false, ROUTES.yarnModule, ROUTES.pattern),
   yarnModuleOccassion: buildPath(false, ROUTES.yarnModule, ROUTES.occassion),
@@ -134,6 +147,11 @@ const FULL_PATH_ROUTES = {
     ROUTES.childCategory
   ),
   adminProductYarn: buildPath(true, ROUTES.admin, ROUTES.product, ROUTES.yarn),
+  adminManageYarnYarn: buildPath(true, ROUTES.admin, ROUTES.manageYarn, ROUTES.yarn),
+  adminManageYarnCharacteristicsColour: buildPath(true, ROUTES.admin, ROUTES.manageYarn, ROUTES.yarnCharacteristics, ROUTES.colour),
+  adminManageYarnCharacteristicsMaterial: buildPath(true, ROUTES.admin, ROUTES.manageYarn, ROUTES.yarnCharacteristics, ROUTES.material),
+  adminManageYarnCharacteristicsPerceivedWeight: buildPath(true, ROUTES.admin, ROUTES.manageYarn, ROUTES.yarnCharacteristics, ROUTES.perceivedWeight),
+  adminManageYarnCharacteristicsSeasonality: buildPath(true, ROUTES.admin, ROUTES.manageYarn, ROUTES.yarnCharacteristics, ROUTES.seasonality),
   adminProductProducts: buildPath(
     true,
     ROUTES.admin,
@@ -143,6 +161,9 @@ const FULL_PATH_ROUTES = {
   adminLookbook: buildPath(true, ROUTES.admin, ROUTES.lookbook),
   adminContactUs: buildPath(true, ROUTES.admin, ROUTES.contactUs),
   adminSteps: buildPath(true, ROUTES.admin, ROUTES.steps),
+  adminSizes: buildPath(true, ROUTES.admin, ROUTES.manageSize, ROUTES.fittingSizes),
+  adminSizeMeasurementFields: buildPath(true, ROUTES.admin,ROUTES.manageSize, ROUTES.sizeMeasurementFields),
+  adminSizeMeasurement: buildPath(true, ROUTES.admin,ROUTES.manageSize, ROUTES.sizeMeasurement),
   adminCategoriesMainCategory: buildPath(
     true,
     ROUTES.admin,
@@ -174,23 +195,11 @@ const FULL_PATH_ROUTES = {
     ROUTES.yarnModule,
     ROUTES.colour
   ),
-  adminFittingFittingSizes: buildPath(
+  adminFittingSizes: buildPath(
     true,
     ROUTES.admin,
-    ROUTES.fitting,
+    ROUTES.manageSize,
     ROUTES.fittingSizes
-  ),
-  adminFittingFittingSizeOptions: buildPath(
-    true,
-    ROUTES.admin,
-    ROUTES.fitting,
-    ROUTES.fittingSizeOptions
-  ),
-  adminFittingFittingSizeOptionAllocation: buildPath(
-    true,
-    ROUTES.admin,
-    ROUTES.fitting,
-    ROUTES.fittingSizeOptionAllocation
   ),
   adminGender: buildPath(true, ROUTES.admin, ROUTES.gender),
   adminProductCreateProduct: buildPath(
