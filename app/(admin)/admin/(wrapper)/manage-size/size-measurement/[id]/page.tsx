@@ -6,6 +6,7 @@ import {
 import {
   getFittingSizesList,
   getProductTypeList,
+  getSizeMeasurementFieldsList,
   getStepTypesList,
 } from "@/utils/server-api.utils";
 import { Viewport } from "next";
@@ -33,7 +34,9 @@ const Edit = async ({ params }: { params: { id: string } }) => {
     fittingSizeListResult.status === "fulfilled"
       ? fittingSizeListResult.value
       : null;
-  const stepTypes = await getStepTypesList(productTypeData?.[0]?.value);
+      const productTypeId = productTypeData?.[0]?.value;
+  const stepTypes = await getStepTypesList(productTypeId);
+    const sizeMeasurementFieldData = await getSizeMeasurementFieldsList(productTypeId);
 
   return (
     <AddEditWrapper title={t("COMMON.EDIT")}>
@@ -42,6 +45,7 @@ const Edit = async ({ params }: { params: { id: string } }) => {
         productTypeData={productTypeData}
         fittingSizeData={fittingSizeData}
         stepTypes={stepTypes}
+        sizeMeasurementFieldData={sizeMeasurementFieldData}
       />
     </AddEditWrapper>
   );
