@@ -16,7 +16,7 @@ export default function SidebarLinkGroup({
   }
 
   return (
-    <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 group is-link-group ${open && 'bg-slate-900'}`}>
+    <li className={`pl-2 py-1.5 rounded-sm last:mb-0 group is-link-group ${open && 'bg-slate-900'}`}>
       {children(handleClick, openGroup)}
     </li>
   )

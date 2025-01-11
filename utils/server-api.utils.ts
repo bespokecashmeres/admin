@@ -11,6 +11,7 @@ import {
   PRODUCT_RELATED_OPTIONS_DROPDOWN_URL,
   PRODUCT_TYPE_DROPDOWN_URL,
   SIZE_DROPDOWN_URL,
+  SIZE_MEASUREMENT_FIELDS_DROPDOWN_URL,
   STEP_TYPE_DROPDOWN_URL,
   STEP_TYPE_GET_URL,
   STEP_TYPE_TABS_URL,
@@ -109,6 +110,31 @@ export const getFittingSizesList = async () => {
     FITTING_SIZES_DROPDOWN_URL,
     "POST",
     {},
+    {
+      "Accept-Language": locale,
+      Authorization: token,
+    }
+  );
+
+  const filteredRes =
+    res?.data?.map((country: any) => ({
+      value: country?.value,
+      label: `${country?.label}`,
+    })) ?? [];
+
+  return filteredRes;
+};
+
+
+export const getSizeMeasurementFieldsList = async (productTypeId: string) => {
+  const locale = await getLocale();
+  const token = await getAdminToken();
+  const res: any = await handleApiCall(
+    SIZE_MEASUREMENT_FIELDS_DROPDOWN_URL,
+    "POST",
+    {
+      productTypeId,
+    },
     {
       "Accept-Language": locale,
       Authorization: token,

@@ -7,6 +7,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { DeleteButtonWithConfirmation } from "../buttons";
 import EditIcon from "../icons/edit-icon";
 import { ToggleField } from "../inputs";
+import CONFIG from "@/config";
 
 const ItemType = {
   TAB: "tab",
@@ -73,6 +74,7 @@ const DraggableTab = ({
   const [, drag] = useDrag({
     type: ItemType.TAB,
     item: { index },
+    canDrag: CONFIG.developmentMode,
   });
 
   // Drop functionality
@@ -108,18 +110,18 @@ const DraggableTab = ({
       >
         {tab.label.toUpperCase()}
       </button>
-      <div className="flex gap-1 items-center">
-        <ToggleField
+      <div className="flex gap-1 items-center justify-center">
+        {CONFIG.developmentMode && <ToggleField
           checked={!!tab.status}
           name={tab.value}
           onChange={handleDelete}
           disabled={active === tab.value}
-        />
+        />}
         <EditIcon id={tab.value} onClick={handleEdit} />
-        <DeleteButtonWithConfirmation
+        {CONFIG.developmentMode && <DeleteButtonWithConfirmation
           deleteId={tab.value}
           handleDelete={handlePermanentDelete}
-        />
+        />}
       </div>
     </li>
   );

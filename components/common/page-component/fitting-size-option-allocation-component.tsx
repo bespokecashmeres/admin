@@ -9,7 +9,7 @@ import {
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES } from "@/constants";
 import {
-  FITTING_SIZE_OPTIONS_DROPDOWN_URL,
+  SIZE_MEASUREMENT_FIELDS_DROPDOWN_URL,
   STEP_CARD_DROPDOWN_URL,
 } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
@@ -27,7 +27,7 @@ type FittingSizeOptionAllocationType = {
   stepTypeId: string;
   stepCardId: string;
   fittingSizeId: string;
-  fittingSizeOptionId: string;
+  sizeMeasurementFieldId: string;
 };
 
 const FittingSizeOptionAllocationComponent = ({
@@ -38,6 +38,7 @@ const FittingSizeOptionAllocationComponent = ({
   productTypeList,
   fittingSizeList,
   stepTypes,
+  sizeMeasurementFields
 }: {
   editData?: FittingSizeOptionAllocationType & { _id: string };
   updateApi: string;
@@ -46,15 +47,13 @@ const FittingSizeOptionAllocationComponent = ({
   productTypeList: DropDownOptionType[];
   fittingSizeList: DropDownOptionType[];
   stepTypes: DropDownOptionType[];
+  sizeMeasurementFields: DropDownOptionType[];
 }) => {
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
   const t = useTranslations();
   const dispatch = useDispatch();
   const router = useRouter();
   const [stepCardList, setStepCardList] = useState<DropDownOptionType[]>([]);
-  const [fittingSizeOptionList, setFittingSizeOptionList] = useState<
-    DropDownOptionType[]
-  >([]);
 
   const methods = useForm<FittingSizeOptionAllocationType>({
     defaultValues: {
@@ -62,7 +61,7 @@ const FittingSizeOptionAllocationComponent = ({
       fittingSizeId: "",
       stepTypeId: "",
       stepCardId: "",
-      fittingSizeOptionId: "",
+      sizeMeasurementFieldId: "",
       productTypeId: "",
     },
   });
@@ -71,30 +70,15 @@ const FittingSizeOptionAllocationComponent = ({
     if (editData) {
       const fetchData = async () => {
         dispatch(setLoadingState(true));
-        const [stepCardRes, fittingSizeOptionRes] = await Promise.all([
-          adminAxiosInstance.post(
-            `${STEP_CARD_DROPDOWN_URL}/${editData.stepTypeId}`
-          ),
-          adminAxiosInstance.post(FITTING_SIZE_OPTIONS_DROPDOWN_URL, {
-            productTypeId: editData.productTypeId,
-            fittingSizeId: editData.fittingSizeId,
-          }),
-        ]);
+        const stepCardRes = await adminAxiosInstance.post(
+          `${STEP_CARD_DROPDOWN_URL}/${editData.stepTypeId}`
+        );
 
         const stepCardData = stepCardRes.data as any;
-        const fittingSizeOptionData = fittingSizeOptionRes.data as any;
 
         if (stepCardData?.success) {
           setStepCardList(
             stepCardData.data.map((category: any) => ({
-              label: category.label,
-              value: category.value,
-            }))
-          );
-        }
-        if (fittingSizeOptionData?.success) {
-          setFittingSizeOptionList(
-            fittingSizeOptionData.data.map((category: any) => ({
               label: category.label,
               value: category.value,
             }))
@@ -106,7 +90,7 @@ const FittingSizeOptionAllocationComponent = ({
           fittingSizeId: editData.fittingSizeId,
           stepTypeId: editData.stepTypeId,
           stepCardId: editData.stepCardId,
-          fittingSizeOptionId: editData.fittingSizeOptionId,
+          sizeMeasurementFieldId: editData.sizeMeasurementFieldId,
         });
         dispatch(setLoadingState(false));
       };
@@ -177,40 +161,6 @@ const FittingSizeOptionAllocationComponent = ({
     }
   };
 
-  const handleFittingSizeOption = (option: any) => {
-    if (option) {
-      dispatch(setLoadingState(true));
-      methods.setValue("fittingSizeOptionId", "");
-      setFittingSizeOptionList([]);
-      adminAxiosInstance
-        .post(`${FITTING_SIZE_OPTIONS_DROPDOWN_URL}`, {
-          productTypeId: productTypeList?.[0]?.value,
-          fittingSizeId: option,
-        })
-        .then((response) => {
-          const result = response.data as any;
-          if (result.success) {
-            setFittingSizeOptionList(
-              result.data.map((category: any) => ({
-                label: category.label,
-                value: category.value,
-              }))
-            );
-          } else {
-            toast.error(result?.message || t(MESSAGES.SOMETHING_WENT_WRONG));
-            return;
-          }
-        })
-        .catch((err) => {
-          console.log("eee", err);
-          toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
-        })
-        .finally(() => {
-          dispatch(setLoadingState(false));
-        });
-    }
-  };
-
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -236,12 +186,11 @@ const FittingSizeOptionAllocationComponent = ({
             options={fittingSizeList}
             required
             disabled={!!editData}
-            handleOptionSelect={handleFittingSizeOption}
           />
           <RHFFormDropdownField
-            name="fittingSizeOptionId"
-            label={t("COMMON.FITTING_SIZE_OPTION")}
-            options={fittingSizeOptionList}
+            name="sizeMeasurementFieldId"
+            label={t("COMMON.SIZE_MEASUREMENT_FIELD")}
+            options={sizeMeasurementFields}
             required
             disabled={!!editData}
           />

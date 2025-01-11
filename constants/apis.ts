@@ -237,24 +237,24 @@ export const FITTING_SIZES_GET_URL = "/fitting-sizes";
 export const FITTING_SIZES_DROPDOWN_URL = "/fitting-sizes/options";
 
 // Fitting size options
-export const FITTING_SIZE_OPTIONS_LIST_URL = "/fitting-size-options/list";
-export const FITTING_SIZE_OPTIONS_UPDATE_URL = "/fitting-size-options/update";
-export const FITTING_SIZE_OPTIONS_STATUS_URL = "/fitting-size-options/status";
-export const FITTING_SIZE_OPTIONS_ADD_URL = "/fitting-size-options/add";
-export const FITTING_SIZE_OPTIONS_GET_URL = "/fitting-size-options";
-export const FITTING_SIZE_OPTIONS_ROW_REORDER_URL =
-  "/fitting-size-options/row/reorder";
-export const FITTING_SIZE_OPTIONS_DROPDOWN_URL =
-  "/fitting-size-options/options";
+export const SIZE_MEASUREMENT_FIELDS_LIST_URL = "/size-measurement-fields/list";
+export const SIZE_MEASUREMENT_FIELDS_UPDATE_URL = "/size-measurement-fields/update";
+export const SIZE_MEASUREMENT_FIELDS_STATUS_URL = "/size-measurement-fields/status";
+export const SIZE_MEASUREMENT_FIELDS_ADD_URL = "/size-measurement-fields/add";
+export const SIZE_MEASUREMENT_FIELDS_GET_URL = "/size-measurement-fields";
+export const SIZE_MEASUREMENT_FIELDS_ROW_REORDER_URL =
+  "/size-measurement-fields/row/reorder";
+export const SIZE_MEASUREMENT_FIELDS_DROPDOWN_URL =
+  "/size-measurement-fields/options";
 
 // Fitting size option allocation
-export const FITTING_SIZE_OPTION_ALLOCATION_LIST_URL =
-  "/fitting-size-option-allocation/list";
-export const FITTING_SIZE_OPTION_ALLOCATION_UPDATE_URL =
-  "/fitting-size-option-allocation/update";
-export const FITTING_SIZE_OPTION_ALLOCATION_STATUS_URL =
-  "/fitting-size-option-allocation/status";
-export const FITTING_SIZE_OPTION_ALLOCATION_ADD_URL =
-  "/fitting-size-option-allocation/add";
-export const FITTING_SIZE_OPTION_ALLOCATION_GET_URL =
-  "/fitting-size-option-allocation";
+export const SIZE_MEASUREMENT_LIST_URL =
+  "/size-measurement/list";
+export const SIZE_MEASUREMENT_UPDATE_URL =
+  "/size-measurement/update";
+export const SIZE_MEASUREMENT_STATUS_URL =
+  "/size-measurement/status";
+export const SIZE_MEASUREMENT_ADD_URL =
+  "/size-measurement/add";
+export const SIZE_MEASUREMENT_GET_URL =
+  "/size-measurement";

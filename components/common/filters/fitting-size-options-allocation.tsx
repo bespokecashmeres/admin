@@ -2,7 +2,7 @@
 import adminAxiosInstance from "@/config/adminAxiosInstance";
 import { MESSAGES } from "@/constants";
 import {
-  FITTING_SIZE_OPTIONS_DROPDOWN_URL,
+  SIZE_MEASUREMENT_FIELDS_DROPDOWN_URL,
   STEP_CARD_DROPDOWN_URL,
 } from "@/constants/apis";
 import { setLoadingState } from "@/framework/redux/reducers";
@@ -19,6 +19,7 @@ interface FittingSizeOptionFilterProps {
   fittingSizes: DropDownOptionType[];
   stepTypes: DropDownOptionType[];
   productTypeId: string;
+  sizeMeasurementFieldData: DropDownOptionType[];
 }
 
 const FittingSizeOptionAllocations = ({
@@ -27,6 +28,7 @@ const FittingSizeOptionAllocations = ({
   productTypeId,
   filter,
   handleFilter,
+  sizeMeasurementFieldData
 }: FittingSizeOptionFilterProps) => {
   const t = useTranslations();
   const dispatch = useDispatch();
@@ -35,9 +37,6 @@ const FittingSizeOptionAllocations = ({
   const [stepCard, setStepCard] = useState("");
   const [fittingSizeOption, setFittingSizeOption] = useState("");
   const [stepCardList, setStepCardList] = useState<DropDownOptionType[]>([]);
-  const [fittingSizeOptionList, setFittingSizeOptionList] = useState<
-    DropDownOptionType[]
-  >([]);
 
   const handleFittingSizeChange = (value: string) => {
     setFittingSize(value);
@@ -45,46 +44,12 @@ const FittingSizeOptionAllocations = ({
     if (!value) {
       handleFilter({
         fittingSizeId: undefined,
-        fittingSizeOptionId: undefined,
+        sizeMeasurementFieldId: fittingSizeOption || undefined,
         stepCardId: stepCard || undefined,
         stepTypeId: stepType || undefined,
       });
-      setFittingSizeOptionList([]);
       return;
     }
-    dispatch(setLoadingState(true));
-    adminAxiosInstance
-      .post(`${FITTING_SIZE_OPTIONS_DROPDOWN_URL}`, {
-        productTypeId: productTypeId,
-        fittingSizeId: value,
-      })
-      .then((response) => {
-        const result = response.data as any;
-        if (result.success) {
-          setFittingSizeOptionList(
-            result.data.map((category: any) => ({
-              label: category.label,
-              value: category.value,
-            }))
-          );
-          handleFilter({
-            fittingSizeId: value,
-            fittingSizeOptionId: undefined,
-            stepTypeId: stepType || undefined,
-            stepCardId: stepCard || undefined,
-          });
-        } else {
-          toast.error(result?.message || t(MESSAGES.SOMETHING_WENT_WRONG));
-          return;
-        }
-      })
-      .catch((err) => {
-        console.log("eee", err);
-        toast.error(t(MESSAGES.SOMETHING_WENT_WRONG));
-      })
-      .finally(() => {
-        dispatch(setLoadingState(false));
-      });
   };
 
   const handleStepCardChange = (value: string) => {
@@ -94,7 +59,7 @@ const FittingSizeOptionAllocations = ({
       stepTypeId: stepType || undefined,
       stepCardId: newValue,
       fittingSizeId: fittingSize || undefined,
-      fittingSizeOptionId: fittingSizeOption || undefined,
+      sizeMeasurementFieldId: fittingSizeOption || undefined,
     });
   };
 
@@ -105,7 +70,7 @@ const FittingSizeOptionAllocations = ({
       stepTypeId: stepType || undefined,
       stepCardId: stepCard || undefined,
       fittingSizeId: fittingSize || undefined,
-      fittingSizeOptionId: newValue,
+      sizeMeasurementFieldId: newValue,
     });
   };
 
@@ -117,7 +82,7 @@ const FittingSizeOptionAllocations = ({
         stepTypeId: undefined,
         stepCardId: undefined,
         fittingSizeId: fittingSize || undefined,
-        fittingSizeOptionId: fittingSizeOption || undefined,
+        sizeMeasurementFieldId: fittingSizeOption || undefined,
       });
       setStepCardList([]);
       return;
@@ -138,7 +103,7 @@ const FittingSizeOptionAllocations = ({
             stepTypeId: value,
             stepCardId: stepCard || undefined,
             fittingSizeId: fittingSize || undefined,
-            fittingSizeOptionId: fittingSizeOption || undefined,
+            sizeMeasurementFieldId: fittingSizeOption || undefined,
           });
         } else {
           toast.error(result?.message || t(MESSAGES.SOMETHING_WENT_WRONG));
@@ -180,8 +145,8 @@ const FittingSizeOptionAllocations = ({
         />
         <DropdownField
           name="fitting_size_option_dropdown"
-          label={t("COMMON.FITTING_SIZE_OPTION")}
-          options={fittingSizeOptionList}
+          label={t("COMMON.SIZE_MEASUREMENT_FIELD")}
+          options={sizeMeasurementFieldData}
           value={fittingSizeOption}
           onChange={handleFittingSizeOptionChange}
         />
