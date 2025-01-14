@@ -205,7 +205,6 @@ const FULL_PATH_ROUTES = {
   adminProductCreateProduct: buildPath(
     true,
     ROUTES.admin,
-    ROUTES.product,
     ROUTES.createProduct
   ),
   adminYarnModulePattern: buildPath(

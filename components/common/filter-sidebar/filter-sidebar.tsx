@@ -8,25 +8,22 @@ import { useDispatch } from "react-redux";
 import { DebouncedSearch, DropdownField } from "../inputs";
 
 export default function FilterSidebar({
-  genders,
+  // genders,
   colours,
   materials,
-  patterns,
 }: {
-  genders: DropDownOptionType[];
+  // genders: DropDownOptionType[];
   colours: DropDownOptionType[];
   materials: DropDownOptionType[];
-  patterns: DropDownOptionType[];
 }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
 
   // Memoize options to avoid re-renders of DropdownField if props don't change
-  const memoizedGenders = useMemo(() => genders, [genders]);
+  // const memoizedGenders = useMemo(() => genders, [genders]);
   const memoizedColours = useMemo(() => colours, [colours]);
   const memoizedMaterials = useMemo(() => materials, [materials]);
-  const memoizedPatterns = useMemo(() => patterns, [patterns]);
 
   // Memoize the updateSearchParams function
   const updateSearchParams = useCallback(
@@ -69,13 +66,13 @@ export default function FilterSidebar({
               className="w-fill-available pl-9 bg-white dark:bg-slate-800"
             />
           </div>
-          <DropdownField
+          {/* <DropdownField
             options={memoizedGenders}
             name="gender"
             label="Gender"
             value={searchParams?.get("gender") || ""}
             onChange={updateSearchParams}
-          />
+          /> */}
           <DropdownField
             options={memoizedColours}
             name="colour"
@@ -88,13 +85,6 @@ export default function FilterSidebar({
             name="material"
             label="Material"
             value={searchParams?.get("material") || ""}
-            onChange={updateSearchParams}
-          />
-          <DropdownField
-            options={memoizedPatterns}
-            name="pattern"
-            label="Pattern"
-            value={searchParams?.get("pattern") || ""}
             onChange={updateSearchParams}
           />
         </div>
