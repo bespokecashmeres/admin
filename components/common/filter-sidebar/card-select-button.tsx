@@ -104,28 +104,12 @@ const CardSelectButton = ({ yarn }: { yarn: any }) => {
               <div className="rounded-sm border border-slate-200 dark:border-slate-700 p-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div className="flex gap-2">
-                    <span>{t("COMMON.GENDER")}: </span>
-                    <span>{yarnDetails?.gender}</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span>{t("COMMON.PATTERN")}: </span>
-                    <span>{yarnDetails?.pattern}</span>
-                  </div>
-                  <div className="flex gap-2">
                     <span>{t("COMMON.COLOUR")}: </span>
                     <span>{yarnDetails?.colour}</span>
                   </div>
                   <div className="flex gap-2">
                     <span>{t("COMMON.MATERIAL")}: </span>
                     <span>{yarnDetails?.material}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-sm border border-slate-200 dark:border-slate-700 p-2 mt-2">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <div className="flex gap-2">
-                    <span>{t("COMMON.OCCASSION")}: </span>
-                    <span>{yarnDetails?.occassion}</span>
                   </div>
                   <div className="flex gap-2">
                     <span>{t("COMMON.SEASONALITY")}: </span>

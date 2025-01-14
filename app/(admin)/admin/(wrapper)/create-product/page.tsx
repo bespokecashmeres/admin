@@ -43,24 +43,21 @@ const CreateProduct = async ({
   console.log("searchParams: ", searchParams);
   const t = await getTranslations();
   const [
-    gendersResult,
+    // gendersResult,
     colourResult,
     materialList,
-    patternList,
     yarnListResult,
   ] = await Promise.allSettled([
-    getGenderList(),
+    // getGenderList(),
     getColourList(),
     getMaterialList(),
-    getPatternList(),
     getYarnCardList(searchParams),
   ]);
-  const genders =
-    gendersResult.status === "fulfilled" ? gendersResult.value : [];
+  // const genders =
+  //   gendersResult.status === "fulfilled" ? gendersResult.value : [];
   const colours = colourResult.status === "fulfilled" ? colourResult.value : [];
   const materials =
     materialList.status === "fulfilled" ? materialList.value : [];
-  const patterns = patternList.status === "fulfilled" ? patternList.value : [];
   const yarnList =
     yarnListResult.status === "fulfilled" ? yarnListResult.value : {};
 
@@ -77,10 +74,9 @@ const CreateProduct = async ({
       <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9">
         {/* Sidebar */}
         <FilterSidebar
-          genders={genders}
+          // genders={genders}
           colours={colours}
           materials={materials}
-          patterns={patterns}
         />
 
         {/* Content */}

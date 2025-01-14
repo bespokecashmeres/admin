@@ -181,45 +181,51 @@ export default function Sidebar() {
             //   ),
             // },
             {
-              title: t("PRODUCT.TITLE"),
-              route: "#",
-              conditionRoute: ROUTES.product,
+              title: t("CREATE_A_PRODUCT.TITLE"),
+              route: FULL_PATH_ROUTES.adminProductCreateProduct,
               icon: (
                 <ProductIcon
                   isActive={newPathName.includes(ROUTES.product)}
                 />
               ),
-              children: [
-                // {
-                //   title: t("PRODUCT.TITLE"),
-                //   route: FULL_PATH_ROUTES.adminProductProducts,
-                // },
-                // {
-                //   title: t("YARN.TITLE"),
-                //   route: FULL_PATH_ROUTES.adminProductYarn,
-                // },
-                {
-                  title: t("CREATE_A_PRODUCT.TITLE"),
-                  route: FULL_PATH_ROUTES.adminProductCreateProduct,
-                },
-                ...(!CONFIG.hideProductType
-                  ? [
-                    {
-                      title: t("PRODUCT_TYPE.SIDEBAR_TITLE"),
-                      route: FULL_PATH_ROUTES.adminProductProductType,
-                    },
-                  ]
-                  : []),
-                // {
-                //   title: t("SIZE.TITLE"),
-                //   route: FULL_PATH_ROUTES.adminProductSize,
-                // },
-                // {
-                //   title: t("COLOR.TITLE"),
-                //   route: FULL_PATH_ROUTES.adminProductColor,
-                // },
-              ],
             },
+            // {
+            //   title: t("PRODUCT.TITLE"),
+            //   route: "#",
+            //   conditionRoute: ROUTES.product,
+            //   icon: (
+            //     <ProductIcon
+            //       isActive={newPathName.includes(ROUTES.product)}
+            //     />
+            //   ),
+            //   children: [
+            //     // {
+            //     //   title: t("PRODUCT.TITLE"),
+            //     //   route: FULL_PATH_ROUTES.adminProductProducts,
+            //     // },
+            //     // {
+            //     //   title: t("YARN.TITLE"),
+            //     //   route: FULL_PATH_ROUTES.adminProductYarn,
+            //     // },
+
+            //     ...(!CONFIG.hideProductType
+            //       ? [
+            //         {
+            //           title: t("PRODUCT_TYPE.SIDEBAR_TITLE"),
+            //           route: FULL_PATH_ROUTES.adminProductProductType,
+            //         },
+            //       ]
+            //       : []),
+            //     // {
+            //     //   title: t("SIZE.TITLE"),
+            //     //   route: FULL_PATH_ROUTES.adminProductSize,
+            //     // },
+            //     // {
+            //     //   title: t("COLOR.TITLE"),
+            //     //   route: FULL_PATH_ROUTES.adminProductColor,
+            //     // },
+            //   ],
+            // },
             {
               title: t("GENDER.TITLE"),
               route: FULL_PATH_ROUTES.adminGender,
