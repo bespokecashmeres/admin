@@ -161,6 +161,7 @@ const ManageSteps: FC<{
           toggleModal(true, {
             name: defaultName,
             info: defaultInfo,
+            slug: result.slug,
             productTypeId: result.productTypeId,
             _id: result._id,
           });

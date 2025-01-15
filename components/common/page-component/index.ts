@@ -23,3 +23,4 @@ export { default as WholeSalerFormComponent } from "./whole-saler-form-component
 export { default as YarnFormComponent } from "./yarn-form-component";
 export { default as MaterialFormComponent } from "./material-form-component";
 export { default as FittingSizeFormComponent } from "./fitting-size-form-component";
+export * from "./step-page";
