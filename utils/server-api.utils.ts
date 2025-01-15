@@ -12,6 +12,7 @@ import {
   PRODUCT_TYPE_DROPDOWN_URL,
   SIZE_DROPDOWN_URL,
   SIZE_MEASUREMENT_FIELDS_DROPDOWN_URL,
+  STEP_TYPE_DETAILS_URL,
   STEP_TYPE_DROPDOWN_URL,
   STEP_TYPE_GET_URL,
   STEP_TYPE_TABS_URL,
@@ -166,10 +167,35 @@ export const getStepTypesList = async (value?: string) => {
   const filteredRes =
     res?.data?.map((country: any) => ({
       value: country?.value,
+      slug: country?.slug,
+      rowOrder: country?.rowOrder,
       label: `${country?.label}`,
     })) ?? [];
 
   return filteredRes;
+};
+
+
+export const getCurrentStepDetails = async ({ nextStepSlug, productTypeId, searchParams }: { searchParams: any, productTypeId: string, nextStepSlug: string }) => {
+  const locale = await getLocale();
+  const token = await getAdminToken();
+  const payload = {
+    ...searchParams,
+    productTypeId,
+    nextStepSlug
+  }
+  console.log("payload: ", payload);
+  const res: any = await handleApiCall(
+    STEP_TYPE_DETAILS_URL,
+    "POST",
+    payload,
+    {
+      "Accept-Language": locale,
+      Authorization: token,
+    }
+  );
+
+  return res.data;
 };
 
 export const getSizeList = async () => {

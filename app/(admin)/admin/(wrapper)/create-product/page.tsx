@@ -10,9 +10,7 @@ import {
 } from "@/utils/generateMetaData.util";
 import {
   getColourList,
-  getGenderList,
   getMaterialList,
-  getPatternList,
   getYarnCardList,
 } from "@/utils/server-api.utils";
 import { Viewport } from "next";
@@ -61,8 +59,6 @@ const CreateProduct = async ({
   const yarnList =
     yarnListResult.status === "fulfilled" ? yarnListResult.value : {};
 
-  console.log("yarnList: ", yarnList);
-
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-[96rem] mx-auto">
       <div className="mb-5">
@@ -102,7 +98,7 @@ const CreateProduct = async ({
           {/* Pagination */}
           <div className="mt-6">
             <PaginationNumeric
-              rowsPerPage={1}
+              rowsPerPage={10}
               totalRows={yarnList.totalCount ?? 1}
             />
           </div>

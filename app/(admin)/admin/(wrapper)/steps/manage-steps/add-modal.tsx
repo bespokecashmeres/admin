@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 type AddStepFormType = {
   name: Record<string, string>;
   info: Record<string, string>;
+  slug: string;
   productTypeId: string;
 };
 
@@ -41,17 +42,18 @@ const AddModal: FC<{
       name: DEFAULT_LOCALE_VALUE,
       info: DEFAULT_LOCALE_VALUE,
       productTypeId: "",
+      slug: "",
     },
   });
 
   // Reset form when editStep changes
   useEffect(() => {
     if (editStep) {
-      console.log("editStep: ", editStep);
       methods.reset({
         info: editStep.info,
         name: editStep.name,
         productTypeId: editStep.productTypeId,
+        slug: editStep.slug,
       });
     }
   }, [editStep, methods]);
@@ -75,6 +77,7 @@ const AddModal: FC<{
         const payload = {
           name: JSON.stringify(data.name),
           info: JSON.stringify(data.info),
+          ...(!editStep || CONFIG.developmentMode ? { slug: data.slug } : {}),
           ...(editStep ? { _id: editStep._id } : { productTypeId }),
         };
 
@@ -138,6 +141,11 @@ const AddModal: FC<{
           <div className="space-y-3">
             {localeTabsMemo}
             {renderLanguageFields(activeTab)}
+            {(CONFIG.developmentMode || !editStep) && <RHFInputField
+              name="slug"
+              label={t("COMMON.SLUG")}
+              required
+            />}
           </div>
         </div>
         <div className="px-5 py-4 border-t border-slate-200 dark:border-slate-700">

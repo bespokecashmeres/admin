@@ -111,6 +111,7 @@
     "SELECT": "Select",
     "CLOSE": "Close",
     "CHOOSE_A_YARN": "Choose a Yarn",
+    "CHOOSE_A": "Choose a",
     "STEP": "Step",
     "YARN_FOUND": "Yarn Found",
     "MANAGE_YARN": "Mange Yarn",
