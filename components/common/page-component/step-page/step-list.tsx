@@ -57,6 +57,7 @@ const StepPageList = ({ list = [], steps = [], step, nextStepSlug }: { list: any
                             <div>
                                 <button
                                     className="w-full bg-indigo-500 text-white py-3 rounded-b-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                                    onClick={() => handleStepSelect(step?._id)}
                                 >
                                     {t("COMMON.SELECT")}
                                 </button>
