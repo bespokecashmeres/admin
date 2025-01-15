@@ -26,7 +26,6 @@ const StepPage = async ({
 }) => {
     const t = await getTranslations();
     const productTypeData = await getProductTypeList();
-    console.log("productTypeData: ", productTypeData)
     const productTypeId = productTypeData?.[0]?.value;
     const step = params.step;
     const [steps, stepPageData] = await Promise.all([
