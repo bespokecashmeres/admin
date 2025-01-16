@@ -43,7 +43,6 @@ type YarnFormYarnsType = {
 
 type YarnFormFieldsType = {
   name: Record<string, string>;
-  price: number;
   yarnId: string;
   genderId: string;
   image: string;
@@ -96,7 +95,6 @@ const YarnFormComponent = ({
     defaultValues: {
       name: DEFAULT_LOCALE_VALUE,
       image: "",
-      price: 0,
       yarnId: "",
       genderId: "",
       colourId: "",
@@ -126,7 +124,6 @@ const YarnFormComponent = ({
       methods.reset({
         name: defaultName,
         yarnId: editData.yarnId || "",
-        price: editData.price || 0,
         yarns: defaultYarn,
         colourId: editData.colourId || "",
         countryId: editData.countryId || "",
@@ -143,7 +140,6 @@ const YarnFormComponent = ({
       dispatch(setLoadingState(true));
       const formData = new FormData();
       formData.append("name", JSON.stringify(data.name));
-      formData.append("price", `${data.price}`);
       if (data.image && data.image[0]) {
         formData.append("image", data.image[0]);
       }
@@ -335,7 +331,6 @@ const YarnFormComponent = ({
               label={`${t("COMMON.NAME")} (${activeTab})`}
               required
             />
-            <RHFNumberField label={t("COMMON.PRICE")} name="price" required />
             <RHFFileField
               name="image"
               label={t("COMMON.IMAGE")}
