@@ -14,6 +14,7 @@ import {
   SIZE_MEASUREMENT_FIELDS_DROPDOWN_URL,
   STEP_TYPE_DETAILS_URL,
   STEP_TYPE_DROPDOWN_URL,
+  STEP_TYPE_FULL_VIEW_URL,
   STEP_TYPE_GET_URL,
   STEP_TYPE_TABS_URL,
   YARN_CARD_LIST_URL,
@@ -175,8 +176,27 @@ export const getStepTypesList = async (value?: string) => {
   return filteredRes;
 };
 
+export const getStepFullViewDetails = async ({ productTypeId, searchParams }: { searchParams: any, productTypeId: string }) => {
+  const locale = await getLocale();
+  const token = await getAdminToken();
+  const payload = {
+    ...searchParams,
+    productTypeId
+  }
+  const res: any = await handleApiCall(
+    STEP_TYPE_FULL_VIEW_URL,
+    "POST",
+    payload,
+    {
+      "Accept-Language": locale,
+      Authorization: token,
+    }
+  );
 
-export const getCurrentStepDetails = async ({ nextStepSlug, productTypeId, searchParams }: { searchParams: any, productTypeId: string, nextStepSlug: string }) => {
+  return res.data;
+};
+
+export const getCurrentStepDetails = async ({ nextStepSlug, productTypeId, searchParams }: { searchParams: any, productTypeId: string, nextStepSlug?: string }) => {
   const locale = await getLocale();
   const token = await getAdminToken();
   const payload = {
@@ -184,7 +204,6 @@ export const getCurrentStepDetails = async ({ nextStepSlug, productTypeId, searc
     productTypeId,
     nextStepSlug
   }
-  console.log("payload: ", payload);
   const res: any = await handleApiCall(
     STEP_TYPE_DETAILS_URL,
     "POST",
