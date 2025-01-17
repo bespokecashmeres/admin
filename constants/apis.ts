@@ -215,6 +215,7 @@ export const STEP_TYPE_ROW_REORDER_URL = "/step-type/row/reorder";
 export const STEP_TYPE_GET_URL = "/step-type";
 export const STEP_TYPE_DROPDOWN_URL = "/step-type/options";
 export const STEP_TYPE_DETAILS_URL = "/step-type/details";
+export const STEP_TYPE_FULL_VIEW_URL = "/step-type/full-view";
 
 // Step Card
 export const STEP_CARD_LIST_URL = "/step-card/list";

@@ -17,6 +17,10 @@ const StepPageList = ({ list = [], steps = [], step, nextStepSlug }: { list: any
             const params = new URLSearchParams(searchParams?.toString() || "");
             params.set(nextStepSlug, id);
             router.push(`/${ROUTES.admin}/${ROUTES.createProduct}/${parseStep + 1}?${params.toString()}`)
+        } else if (steps.length + 1 === parseStep) {
+            const params = new URLSearchParams(searchParams?.toString() || "");
+            params.set(nextStepSlug, id);
+            router.push(`/${ROUTES.admin}/${ROUTES.createProduct}/${ROUTES.lastStep}/${parseStep + 1}?${params.toString()}`)
         }
     }
 

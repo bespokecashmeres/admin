@@ -65,7 +65,8 @@ const ROUTES = {
   manageSize: "manage-size",
   fittingSizes: "sizes",
   sizeMeasurementFields: "measurement-fields",
-  sizeMeasurement: "size-measurement"
+  sizeMeasurement: "size-measurement",
+  lastStep: "last-step"
 } as const;
 
 const FULL_PATH_ROUTES = {

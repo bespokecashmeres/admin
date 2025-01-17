@@ -121,7 +121,12 @@
     "SIZE_TEXT": "Sizes",
     "MIN_RANGE": "Min Range",
     "MAX_RANGE": "Max Range",
-    "MANAGE_SIZE": "Manage Size"
+    "MANAGE_SIZE": "Manage Size",
+    "FULL_VIEW_SWEATER": "Full View Sweater",
+    "SWEATER_CHARACTERISTICS": "Sweater Chararcteristics",
+    "CHANGE_YARN": "Change Yarn",
+    "YARN_CHARACTERISTICS": "Yarn Chararcteristics",
+    "YOUR_SWEATER": "Your Sweater"
   },
   "SIZE_MEASUREMENT_FIELDS": {
     "TITLE": "Size Measurement Fields"

@@ -14,4 +14,4 @@ export { default as StepsIcon } from "./steps-icon";
 export { default as UsersIcon } from "./users-icon";
 export { default as WholeSalerIcon } from "./whole-saler-icon";
 export { default as YarnIcon } from "./yarn-icon";
-
+export { default as InfoIcon } from "./info-icon";
